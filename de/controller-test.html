@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Controller-Test — Gamepad-Buttons &amp; Sticks online prüfen | ScrollTester.studio</title>
+<meta name="description" content="Kostenloser Online-Controller-Test. Verbinde ein Gamepad und sieh jeden Tastendruck und jede Stick-Bewegung live im Browser.">
+<link rel="canonical" href="https://scrolltester.studio/de/controller-test.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ScrollTester.studio">
+<meta property="og:title" content="Controller-Test — Gamepad-Buttons & Sticks online prüfen | ScrollTester.studio">
+<meta property="og:description" content="Kostenloser Online-Controller-Test. Verbinde ein Gamepad und sieh jeden Tastendruck live erkannt.">
+<meta property="og:url" content="https://scrolltester.studio/de/controller-test.html">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" hreflang="en" href="https://scrolltester.studio/controller-test.html">
+<link rel="alternate" hreflang="es" href="https://scrolltester.studio/es/controller-test.html">
+<link rel="alternate" hreflang="de" href="https://scrolltester.studio/de/controller-test.html">
+<link rel="alternate" hreflang="fr" href="https://scrolltester.studio/fr/controller-test.html">
+<link rel="alternate" hreflang="x-default" href="https://scrolltester.studio/controller-test.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  .btn-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(56px,1fr)); gap:8px; margin-top:16px; }
+  .gbtn{ border:1px solid var(--border); border-radius:8px; background:var(--surface); padding:10px 4px; text-align:center; font-family:'JetBrains Mono',monospace; font-size:.72rem; color:var(--muted); }
+  .gbtn.pressed{ background: linear-gradient(135deg, var(--accent), var(--accent-dark)); border-color:var(--accent); color:#fff; }
+  .stick-box{ position:relative; width:120px; height:120px; border:1px solid var(--panel-line); border-radius:50%; background:rgba(124,244,203,.04); margin:8px auto 0; }
+  .stick-dot{ position:absolute; width:14px; height:14px; border-radius:50%; background:var(--panel-fg); box-shadow:0 0 10px rgba(124,244,203,.7); top:50%; left:50%; transform:translate(-50%,-50%); }
+  .sticks-row{ display:flex; gap:40px; justify-content:center; margin-top:14px; }
+  .stick-label{ text-align:center; color:var(--panel-fg-dim); font-family:'JetBrains Mono',monospace; font-size:.68rem; text-transform:uppercase; letter-spacing:.08em; margin-top:8px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><span class="dot"></span>ScrollTester.studio</a>
+    <nav class="nav-links" id="navLinks" data-lang="de" data-page="controller-test"></nav>
+    <div id="langSwitchMount" data-lang="de" data-page="controller-test" data-base="../"></div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Controller-Diagnose</div>
+      <h1>Controller-Test — jeden Gamepad-Button und -Stick prüfen</h1>
+      <p class="lede">Verbinde einen kabelgebundenen oder kabellosen Controller, drücke eine Taste, um ihn zu aktivieren, und nutze anschließend Tasten und Sticks frei. Alles unten aktualisiert sich live über die Gamepad-API deines Browsers.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="tool-card">
+        <div class="stage" id="stage" style="min-height:140px;">
+          <div><div class="stage-hint" id="statusHint">Kein Controller erkannt. Drücke eine beliebige Taste auf deinem Controller, um ihn zu verbinden.</div></div>
+        </div>
+
+        <div class="readout-panel" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); margin-top:16px;">
+          <div class="readout"><div class="label">Controller</div><div class="value" id="rName" style="font-size:.85rem;">–</div></div>
+          <div class="readout"><div class="label">Tasten</div><div class="value" id="rButtons">0</div></div>
+          <div class="readout"><div class="label">Achsen</div><div class="value" id="rAxes">0</div></div>
+        </div>
+
+        <h3 style="margin:22px 0 4px; font-size:.95rem;">Tasten</h3>
+        <div class="btn-grid" id="btnGrid"></div>
+
+        <h3 style="margin:22px 0 4px; font-size:.95rem;">Analog-Sticks</h3>
+        <div class="sticks-row">
+          <div><div class="stick-box"><div class="stick-dot" id="stickL"></div></div><div class="stick-label">Linker Stick</div></div>
+          <div><div class="stick-box"><div class="stick-dot" id="stickR"></div></div><div class="stick-label">Rechter Stick</div></div>
+        </div>
+      </div>
+
+      <div class="ad-slot">Werbung</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Worauf du achten solltest, wenn ein Controller diesen Test nicht besteht</h2>
+      <div class="metric-grid">
+        <div class="metric-card"><h3>Kein Controller erkannt</h3><p>Chrome und die meisten Browser registrieren ein Gamepad erst, nachdem du eine Taste darauf gedrückt hast — reines Anschließen löst die Erkennung nicht aus.</p></div>
+        <div class="metric-card"><h3>Eine Taste leuchtet nie auf</h3><p>Prüfe zuerst, ob es kein Remapping auf Treiberebene ist (häufig bei Controllern von Drittanbietern), und vermute dann einen verschlissenen Kontakt unter dieser Taste, wenn andere Tasten einwandfrei funktionieren.</p></div>
+        <div class="metric-card"><h3>Stick kehrt nicht zur Mitte zurück</h3><p>Ein Punkt, der beim Loslassen abseits der Mitte bleibt, deutet auf Stick-Drift hin — ein sehr häufiger Fehler bei alternden Analog-Sticks.</p></div>
+        <div class="metric-card"><h3>Verzögerung oder Aussetzer bei kabelloser Verbindung</h3><p>Probiere eine kabelgebundene Verbindung oder frische Batterien, um ein schwaches Signal auszuschließen, bevor du einen Hardware-Defekt vermutest.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>Häufig gestellte Fragen</h2>
+      <div class="faq">
+        <details open>
+          <summary>Warum muss ich erst eine Taste drücken, bevor etwas angezeigt wird?</summary>
+          <p>Browser verlangen eine Nutzeraktion am Controller selbst, bevor er über die Gamepad-API sichtbar wird — das ist eine Datenschutz- und Sicherheitsmaßnahme, kein Fehler.</p>
+        </details>
+        <details>
+          <summary>Funktioniert das mit PlayStation-, Xbox- und Switch-Controllern?</summary>
+          <p>Die meisten modernen Controller funktionieren per USB oder Bluetooth, sobald sie auf Betriebssystemebene gekoppelt sind, auch wenn die Tastennummerierung je nach Marke und Browser leicht abweichen kann.</p>
+        </details>
+        <details>
+          <summary>Warum wird mein Controller erkannt, aber nur manche Eingaben registrieren?</summary>
+          <p>Manche Controller benötigen einen bestimmten USB-Modus (DirectInput statt XInput), um alle Tasten und Trigger korrekt bereitzustellen — prüfe das Handbuch deines Controllers oder die zugehörige App, falls Trigger oder Zusatztasten nicht reagieren.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="siteFooter" data-lang="de" data-base="../"></footer>
+
+<script src="../js/site.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/langswitch.js"></script>
+<script src="../js/footer.js"></script>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const statusHint = document.getElementById('statusHint');
+  const btnGrid = document.getElementById('btnGrid');
+  const stickL = document.getElementById('stickL');
+  const stickR = document.getElementById('stickR');
+  let btnEls = [];
+
+  function buildButtons(count){
+    btnGrid.innerHTML = '';
+    btnEls = [];
+    for (let i = 0; i < count; i++){
+      const d = document.createElement('div');
+      d.className = 'gbtn';
+      d.textContent = 'B' + i;
+      btnGrid.appendChild(d);
+      btnEls.push(d);
+    }
+  }
+
+  function poll(){
+    const pads = navigator.getGamepads ? navigator.getGamepads() : [];
+    const pad = Array.from(pads).find(p => p);
+    if (pad){
+      stage.classList.add('active');
+      statusHint.textContent = 'Controller verbunden — drücke Tasten oder bewege die Sticks.';
+      document.getElementById('rName').textContent = pad.id.slice(0, 28);
+      document.getElementById('rButtons').textContent = pad.buttons.length;
+      document.getElementById('rAxes').textContent = pad.axes.length;
+      if (btnEls.length !== pad.buttons.length) buildButtons(pad.buttons.length);
+      pad.buttons.forEach((b, i) => {
+        if (btnEls[i]) btnEls[i].classList.toggle('pressed', b.pressed || b.value > 0.15);
+      });
+      const lx = pad.axes[0] || 0, ly = pad.axes[1] || 0;
+      const rx = pad.axes[2] || 0, ry = pad.axes[3] || 0;
+      stickL.style.left = (50 + lx * 40) + '%';
+      stickL.style.top = (50 + ly * 40) + '%';
+      stickR.style.left = (50 + rx * 40) + '%';
+      stickR.style.top = (50 + ry * 40) + '%';
+    } else {
+      stage.classList.remove('active');
+      statusHint.textContent = 'Kein Controller erkannt. Drücke eine beliebige Taste auf deinem Controller, um ihn zu verbinden.';
+    }
+    requestAnimationFrame(poll);
+  }
+  requestAnimationFrame(poll);
+})();
+</script>
+</body>
+</html>

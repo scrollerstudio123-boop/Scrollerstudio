@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test de Défilement — Vérifiez la Molette de votre Souris en Ligne | ScrollTester.studio</title>
+<meta name="description" content="Test de molette de défilement gratuit en ligne. Faites défiler dans une direction pour mesurer la vitesse de la molette, détecter les sauts inversés, et obtenir un rapport de diagnostic instantané.">
+<link rel="canonical" href="https://scrolltester.studio/fr/index.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ScrollTester.studio">
+<meta property="og:title" content="Test de Défilement — Vérifiez la Molette de votre Souris en Ligne | ScrollTester.studio">
+<meta property="og:description" content="Test de molette de défilement gratuit. Mesurez la vitesse, détectez les sauts inversés, obtenez un diagnostic instantané.">
+<meta property="og:url" content="https://scrolltester.studio/fr/index.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Test de Défilement — Vérifiez la Molette de votre Souris en Ligne | ScrollTester.studio">
+<meta name="twitter:description" content="Test de molette de défilement gratuit, directement dans le navigateur.">
+<link rel="alternate" hreflang="en" href="https://scrolltester.studio/">
+<link rel="alternate" hreflang="es" href="https://scrolltester.studio/es/index.html">
+<link rel="alternate" hreflang="fr" href="https://scrolltester.studio/fr/index.html">
+<link rel="alternate" hreflang="de" href="https://scrolltester.studio/de/index.html">
+<link rel="alternate" hreflang="pt" href="https://scrolltester.studio/pt/index.html">
+<link rel="alternate" hreflang="zh" href="https://scrolltester.studio/zh/index.html">
+<link rel="alternate" hreflang="hi" href="https://scrolltester.studio/hi/index.html">
+<link rel="alternate" hreflang="ar" href="https://scrolltester.studio/ar/index.html">
+<link rel="alternate" hreflang="id" href="https://scrolltester.studio/id/index.html">
+<link rel="alternate" hreflang="x-default" href="https://scrolltester.studio/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><span class="dot"></span>ScrollTester.studio</a>
+    <nav class="nav-links" id="navLinks" data-lang="fr" data-page="index"></nav>
+    <div id="langSwitchMount" data-lang="fr" data-page="index" data-base="../"></div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Diagnostic Souris</div>
+      <h1>Test de Défilement — la molette de votre souris fait-elle des sauts inversés ?</h1>
+      <p class="lede">Faites défiler dans une seule direction à l'intérieur de la zone ci-dessous. Nous enregistrons chaque mouvement de la molette en direct et effectuons deux passes de détection pour vous dire si votre molette fonctionne normalement ou montre des signes d'usure.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="tool-card">
+        <div class="tool-controls">
+          <span style="color:var(--muted); font-size:.85rem; margin-right:4px;">Durée :</span>
+          <button class="duration-pill" data-secs="15">15s</button>
+          <button class="duration-pill active" data-secs="30">30s</button>
+          <button class="duration-pill" data-secs="60">60s</button>
+          <button class="duration-pill" data-secs="90">90s</button>
+          <button class="btn" id="startBtn" style="margin-left:auto;">Démarrer le Test</button>
+          <button class="btn secondary" id="resetBtn">Réinitialiser</button>
+        </div>
+
+        <div class="stage" id="stage" tabindex="0">
+          <div>
+            <div class="big" id="stageTimer">30</div>
+            <div class="stage-hint">Cliquez sur "Démarrer le Test", puis faites défiler ici dans une seule direction. Changer de direction en cours de test réduit la précision.</div>
+          </div>
+        </div>
+
+        <div class="readout-panel">
+          <div class="readout"><div class="label">Durée</div><div class="value" id="rDuration">0s</div></div>
+          <div class="readout"><div class="label">Vitesse de Molette</div><div class="value" id="rSpeed">0/s</div></div>
+          <div class="readout"><div class="label">Dernier DeltaY</div><div class="value" id="rLastDY">0</div></div>
+          <div class="readout"><div class="label">Défilement Vertical</div><div class="value" id="rVert">0</div></div>
+          <div class="readout"><div class="label">DeltaY Max</div><div class="value" id="rMax">0</div></div>
+          <div class="readout"><div class="label">DeltaY Min</div><div class="value" id="rMin">0</div></div>
+          <div class="readout"><div class="label">Mode Delta</div><div class="value" id="rMode">–</div></div>
+          <div class="readout"><div class="label">Événements Totaux</div><div class="value" id="rEvents">0</div></div>
+        </div>
+
+        <div class="wave-panel">
+          <div class="wave-panel-head">
+            <span class="wave-title">Signal de Molette — DeltaY dans le temps</span>
+            <span class="wave-legend"><span class="dot-legend"></span>tracé en direct</span>
+          </div>
+          <canvas id="waveCanvas" height="160"></canvas>
+        </div>
+
+        <div class="verdict" id="verdict" style="display:none;">
+          <span class="tag good" id="verdictTag">Normal</span>
+          <h3 id="verdictTitle" style="margin:.2em 0;">L'entrée de la molette semble stable</h3>
+          <p id="verdictBody" style="color:var(--muted); margin:0;"></p>
+        </div>
+      </div>
+
+      <div class="ad-slot">Publicité</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Ces outils pourraient aussi vous être utiles</h2>
+      <p class="lede">Tous les outils fonctionnent instantanément dans votre navigateur — sans installation, sans compte.</p>
+      <div class="tools-grid">
+        <a class="tool-link" href="../cps-test.html"><h3>Test de CPS</h3><p>Mesurez combien de clics par seconde vous pouvez soutenir sur des durées de 1s, 5s, 10s, 30s et 60s.</p></a>
+        <a class="tool-link" href="../mouse-test.html"><h3>Test de Souris</h3><p>Vérifiez les boutons gauche, droit, central et latéraux, ainsi que le clic de la molette, dans un seul panneau.</p></a>
+        <a class="tool-link" href="../keyboard-test.html"><h3>Test de Clavier</h3><p>Vérifiez que chaque touche de votre clavier est correctement détectée par votre navigateur.</p></a>
+        <a class="tool-link" href="../reaction-time-test.html"><h3>Test de Réaction</h3><p>Mesurez la rapidité de votre réaction à un signal visuel, en millisecondes.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>Comment fonctionne le test de défilement</h2>
+      <p class="lede">Trois étapes, aucun téléchargement, résultats en quelques secondes.</p>
+      <div class="steps">
+        <div class="step"><div class="num">01</div><h3>Choisissez une durée</h3><p>Choisissez entre 15 et 90 secondes. Des tests plus longs donnent à l'algorithme plus d'échantillons à analyser, ce qui rend le verdict final plus fiable.</p></div>
+        <div class="step"><div class="num">02</div><h3>Défilez dans un sens</h3><p>Gardez votre défilement dans une seule direction à l'intérieur de la zone. Changer de direction en cours de test est traité comme du bruit et peut masquer un vrai défaut.</p></div>
+        <div class="step"><div class="num">03</div><h3>Lisez le rapport</h3><p>À la fin du chronomètre, vous obtiendrez un verdict en langage simple ainsi que les données brutes en dessous, pour que vous puissiez vérifier vous-même.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Ce que signifient les chiffres du panneau</h2>
+      <p class="lede">Chaque statistique du panneau correspond à quelque chose de concret sur le comportement de votre molette — voici ce qu'il faut vraiment regarder.</p>
+      <div class="metric-grid">
+        <div class="metric-card"><h3>Vitesse de Molette</h3><p>Le nombre d'événements de défilement reçus par votre navigateur au cours de la dernière seconde. Un chiffre qui retombe sans cesse à zéro signifie généralement que la molette saute des étapes au lieu de les lire proprement.</p></div>
+        <div class="metric-card"><h3>Dernier DeltaY</h3><p>La dernière valeur de défilement vertical rapportée par le navigateur. Dans un test propre à sens unique, le signe de ce nombre ne devrait jamais s'inverser.</p></div>
+        <div class="metric-card"><h3>Défilement Vertical</h3><p>Le total cumulé du mouvement vertical pour cette session. Il devrait augmenter régulièrement ; un total qui progresse à peine malgré un défilement constant indique que la molette s'annule partiellement elle-même.</p></div>
+        <div class="metric-card"><h3>DeltaY Max / Min</h3><p>Le "tic" de défilement le plus fort observé dans chaque direction. Si vous ne défilez que vers le bas mais que la valeur Min continue d'augmenter, la molette déclenche des tics inverses indésirables.</p></div>
+        <div class="metric-card"><h3>Mode Delta</h3><p>Indique si le navigateur mesure en pixels, en lignes ou en pages. Ce n'est pas en soi un signe de défaut, mais cela change ce qui est considéré comme une valeur delta "normale".</p></div>
+        <div class="metric-card"><h3>Événements Totaux</h3><p>Le nombre d'événements de molette distincts déclenchés pendant le test. Comparez cela au nombre de fois où vous avez réellement tourné la molette — un grand écart suggère un double déclenchement ou une entrée perdue.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>Quand une molette saine compte vraiment</h2>
+      <p class="lede">C'est une petite pièce de la souris, mais elle est à la base de nombreuses tâches quotidiennes.</p>
+      <table class="use-table">
+        <tr><th>Tâche</th><th>Ce que fait une molette défectueuse</th></tr>
+        <tr><td>Lire de longues pages ou des PDF</td><td>Vous oblige à faire glisser la barre de défilement manuellement à chaque page, ce qui est plus lent et casse votre rythme de lecture.</td></tr>
+        <tr><td>Tableurs</td><td>Une molette qui saute des lignes de façon imprévisible facilite les erreurs de lecture ou l'écrasement de la mauvaise cellule.</td></tr>
+        <tr><td>Revue de code et de logs</td><td>Des lignes sautées ou dupliquées pendant le défilement rendent plus difficile de retrouver la ligne exacte recherchée.</td></tr>
+        <tr><td>Outils de design et de photo</td><td>Beaucoup d'applications lient la molette au zoom — une entrée erratique signifie un zoom erratique lors de la vérification des détails.</td></tr>
+        <tr><td>Jeux vidéo</td><td>Le changement d'arme ou d'objet lié à la molette devient peu fiable, ce qui compte surtout dans les moments rapides ou compétitifs.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Questions fréquentes</h2>
+      <div class="faq">
+        <details open>
+          <summary>Pourquoi le panneau ne se met-il pas à jour pendant que je défile ?</summary>
+          <p>L'outil n'enregistre les événements de la molette qu'après avoir cliqué sur "Démarrer le Test" (ou cliqué dans la zone une fois activée). Défiler avant le démarrage, ou en dehors de la zone, ne sera pas enregistré.</p>
+        </details>
+        <details>
+          <summary>Ma molette fonctionne bien la plupart du temps — pourquoi un événement inversé a-t-il été signalé ?</summary>
+          <p>Un seul événement signalé n'est généralement pas un signe d'alarme. La poussière, un léger contact ou un heurt accidentel peuvent tous se traduire par un tic inversé isolé. Ce qui compte le plus, c'est de savoir si des événements inversés continuent d'apparaître sur plusieurs essais.</p>
+        </details>
+        <details>
+          <summary>Cela fonctionne-t-il avec un trackpad au lieu d'une molette de souris ?</summary>
+          <p>Les trackpads et les molettes à "défilement infini" envoient un flux continu de petites valeurs plutôt que des clics discrets, donc le total de défilement vertical continuera de bouger, mais la détection des pics inversés est conçue pour les molettes mécaniques crantées.</p>
+        </details>
+        <details>
+          <summary>Que faire si la molette continue d'être signalée comme défectueuse ?</summary>
+          <p>Commencez par les solutions simples : remplacez la pile si elle est sans fil, et nettoyez autour de la molette avec un peu d'air comprimé. Si le problème persiste après cela, l'encodeur sous la molette est probablement usé.</p>
+        </details>
+        <details>
+          <summary>Mes données de défilement sont-elles envoyées quelque part ?</summary>
+          <p>Non. Tout sur cette page fonctionne localement dans votre navigateur grâce aux API standard d'événements de molette — rien de votre session de test n'est transmis ni stocké sur un serveur.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="siteFooter" data-lang="fr" data-base="../"></footer>
+
+<script src="../js/site.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/langswitch.js"></script>
+<script src="../js/footer.js"></script>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const stageTimer = document.getElementById('stageTimer');
+  const startBtn = document.getElementById('startBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const pills = document.querySelectorAll('.duration-pill');
+  let duration = 30, timeLeft = 30, running = false, timerId = null, speedId = null;
+  let events = [], eventsThisSecond = 0, lastDY = 0, vertical = 0, horizontal = 0;
+  let maxDY = 0, minDY = 0, deltaMode = null, reverseCount = 0, lastSign = 0;
+
+  pills.forEach(p => p.addEventListener('click', () => {
+    if (running) return;
+    pills.forEach(x => x.classList.remove('active'));
+    p.classList.add('active');
+    duration = parseInt(p.dataset.secs, 10);
+    timeLeft = duration;
+    stageTimer.textContent = timeLeft;
+  }));
+
+  function reset(){
+    running = false;
+    clearInterval(timerId); clearInterval(speedId);
+    timeLeft = duration;
+    events = []; eventsThisSecond = 0; lastDY = 0; vertical = 0; horizontal = 0;
+    maxDY = 0; minDY = 0; deltaMode = null; reverseCount = 0; lastSign = 0;
+    stage.classList.remove('active');
+    stageTimer.textContent = timeLeft;
+    document.getElementById('verdict').style.display = 'none';
+    updateReadouts();
+  }
+
+  function start(){
+    reset();
+    running = true;
+    stage.classList.add('active');
+    timerId = setInterval(() => {
+      timeLeft--;
+      stageTimer.textContent = timeLeft;
+      if (timeLeft <= 0) finish();
+    }, 1000);
+    speedId = setInterval(() => {
+      document.getElementById('rSpeed').textContent = eventsThisSecond + '/s';
+      eventsThisSecond = 0;
+    }, 1000);
+  }
+
+  function finish(){
+    running = false;
+    clearInterval(timerId); clearInterval(speedId);
+    stage.classList.remove('active');
+    const total = events.length;
+    const ratio = total ? reverseCount / total : 0;
+    const v = document.getElementById('verdict');
+    const tag = document.getElementById('verdictTag');
+    const title = document.getElementById('verdictTitle');
+    const body = document.getElementById('verdictBody');
+    v.style.display = 'block';
+    if (total === 0){
+      tag.className = 'tag warn'; tag.textContent = 'Aucune Donnée';
+      title.textContent = 'Aucune donnée de défilement collectée';
+      body.textContent = "Le test s'est terminé sans aucun événement de molette. Assurez-vous de défiler dans la zone pendant que le test est en cours.";
+    } else if (ratio === 0){
+      tag.className = 'tag good'; tag.textContent = 'Normal';
+      title.textContent = "L'entrée de la molette semble stable";
+      body.textContent = `Aucun pic de direction inversée trouvé sur ${total} événements. Cette session semble saine.`;
+    } else if (ratio < 0.03){
+      tag.className = 'tag warn'; tag.textContent = 'Bruit Mineur';
+      title.textContent = 'Un petit nombre de tics inversés détectés';
+      body.textContent = `${reverseCount} événements sur ${total} se sont déclenchés à l'opposé de votre sens de défilement. Cela peut être de la poussière ou un heurt accidentel — essayez un autre test pour confirmer.`;
+    } else {
+      tag.className = 'tag bad'; tag.textContent = 'Défaut Possible';
+      title.textContent = 'Tics inversés fréquents détectés';
+      body.textContent = `${reverseCount} événements sur ${total} (${Math.round(ratio*100)}%) se sont déclenchés à l'opposé de votre sens de défilement. Ce schéma correspond à un encodeur de molette usé ou sale.`;
+    }
+  }
+
+  function updateReadouts(){
+    document.getElementById('rDuration').textContent = (duration - timeLeft) + 's';
+    document.getElementById('rLastDY').textContent = lastDY.toFixed(0);
+    document.getElementById('rVert').textContent = vertical.toFixed(0);
+    document.getElementById('rMax').textContent = maxDY.toFixed(0);
+    document.getElementById('rMin').textContent = minDY.toFixed(0);
+    document.getElementById('rMode').textContent = deltaMode === null ? '–' : ['Pixel','Ligne','Page'][deltaMode] || deltaMode;
+    document.getElementById('rEvents').textContent = events.length;
+  }
+
+  stage.addEventListener('wheel', (e) => {
+    if (!running) return;
+    e.preventDefault();
+    const dy = e.deltaY;
+    const sign = Math.sign(dy);
+    events.push(dy);
+    eventsThisSecond++;
+    lastDY = dy;
+    vertical += dy;
+    horizontal += e.deltaX;
+    deltaMode = e.deltaMode;
+    if (dy > maxDY) maxDY = dy;
+    if (dy < minDY) minDY = dy;
+    if (lastSign !== 0 && sign !== 0 && sign !== lastSign) reverseCount++;
+    if (sign !== 0) lastSign = sign;
+    updateReadouts();
+  }, { passive:false });
+
+  stage.addEventListener('dblclick', () => { running ? finish() : start(); });
+  startBtn.addEventListener('click', () => { if(!running) start(); });
+  resetBtn.addEventListener('click', reset);
+
+  stageTimer.textContent = timeLeft;
+
+  (function(){
+    const canvas = document.getElementById('waveCanvas');
+    const ctx = canvas.getContext('2d');
+    const N = 160;
+    const buffer = new Array(N).fill(0);
+    let currentVal = 0;
+    let t = 0;
+    const MAX_RANGE = 120;
+
+    function resizeCanvas(){
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.round(rect.width * dpr);
+      canvas.height = Math.round(160 * dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    stage.addEventListener('wheel', (e) => {
+      const dy = Math.max(-MAX_RANGE, Math.min(MAX_RANGE, e.deltaY));
+      currentVal = dy;
+    }, { passive:true });
+
+    function drawFrame(){
+      t += 0.05;
+      currentVal *= 0.88;
+      const idle = Math.sin(t) * 3 + Math.sin(t*0.37) * 2;
+      const sample = currentVal + idle;
+
+      buffer.push(sample);
+      buffer.shift();
+
+      const w = canvas.getBoundingClientRect().width;
+      const h = 160;
+      const mid = h / 2;
+      ctx.clearRect(0, 0, w, h);
+
+      ctx.strokeStyle = 'rgba(124,244,203,0.08)';
+      ctx.lineWidth = 1;
+      for (let gy = 0; gy <= 4; gy++){
+        const y = (h / 4) * gy;
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+      }
+      ctx.strokeStyle = 'rgba(124,244,203,0.18)';
+      ctx.beginPath(); ctx.moveTo(0, mid); ctx.lineTo(w, mid); ctx.stroke();
+
+      const stepX = w / (N - 1);
+      const pts = buffer.map((v, i) => {
+        const y = mid - (v / MAX_RANGE) * (mid - 14);
+        return [i * stepX, Math.max(6, Math.min(h - 6, y))];
+      });
+
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0], mid);
+      ctx.lineTo(pts[0][0], pts[0][1]);
+      for (let i = 1; i < pts.length - 1; i++){
+        const xc = (pts[i][0] + pts[i+1][0]) / 2;
+        const yc = (pts[i][1] + pts[i+1][1]) / 2;
+        ctx.quadraticCurveTo(pts[i][0], pts[i][1], xc, yc);
+      }
+      ctx.lineTo(pts[pts.length-1][0], mid);
+      ctx.closePath();
+      const grad = ctx.createLinearGradient(0, 0, 0, h);
+      grad.addColorStop(0, 'rgba(124,244,203,0.22)');
+      grad.addColorStop(1, 'rgba(124,244,203,0.0)');
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0], pts[0][1]);
+      for (let i = 1; i < pts.length - 1; i++){
+        const xc = (pts[i][0] + pts[i+1][0]) / 2;
+        const yc = (pts[i][1] + pts[i+1][1]) / 2;
+        ctx.quadraticCurveTo(pts[i][0], pts[i][1], xc, yc);
+      }
+      ctx.strokeStyle = '#7CF4CB';
+      ctx.lineWidth = 2;
+      ctx.shadowColor = 'rgba(124,244,203,0.9)';
+      ctx.shadowBlur = 8;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      requestAnimationFrame(drawFrame);
+    }
+    requestAnimationFrame(drawFrame);
+  })();
+})();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Test de Défilement",
+      "url": "https://scrolltester.studio/fr/index.html",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (runs in browser)",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Test de molette de défilement gratuit en ligne. Mesurez la vitesse, détectez les sauts inversés, obtenez un diagnostic instantané."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Pourquoi le panneau ne se met-il pas à jour pendant que je défile ?", "acceptedAnswer": { "@type": "Answer", "text": "L'outil n'enregistre les événements qu'après avoir cliqué sur \"Démarrer le Test\". Défiler avant le démarrage ne sera pas enregistré." } },
+        { "@type": "Question", "name": "Ma molette fonctionne bien la plupart du temps — pourquoi un événement inversé a-t-il été signalé ?", "acceptedAnswer": { "@type": "Answer", "text": "Un seul événement isolé n'est généralement pas alarmant. Ce qui compte, c'est si les événements inversés reviennent sur plusieurs essais." } },
+        { "@type": "Question", "name": "Cela fonctionne-t-il avec un trackpad ?", "acceptedAnswer": { "@type": "Answer", "text": "Les trackpads envoient un flux continu de petites valeurs, donc la détection des pics inversés est conçue pour les molettes mécaniques crantées." } },
+        { "@type": "Question", "name": "Que faire si la molette continue d'être signalée comme défectueuse ?", "acceptedAnswer": { "@type": "Answer", "text": "Remplacez d'abord la pile (si sans fil) et nettoyez à l'air comprimé. Si le problème persiste, l'encodeur sous la molette est probablement usé." } },
+        { "@type": "Question", "name": "Mes données de défilement sont-elles envoyées quelque part ?", "acceptedAnswer": { "@type": "Answer", "text": "Non. Tout fonctionne localement dans votre navigateur — rien n'est transmis ni stocké." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>اختبار العجلة — افحص عجلة الفأرة أونلاين | ScrollTester.studio</title>
+<meta name="description" content="اختبار مجاني لعجلة التمرير عبر الإنترنت. مرّر في اتجاه واحد لقياس سرعة العجلة واكتشاف القفزات العكسية، واحصل على تقرير تشخيصي فوري لحالة عجلة فأرتك.">
+<link rel="canonical" href="https://scrolltester.studio/ar/index.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ScrollTester.studio">
+<meta property="og:title" content="اختبار العجلة — افحص عجلة الفأرة أونلاين | ScrollTester.studio">
+<meta property="og:description" content="اختبار مجاني لعجلة التمرير. قِس السرعة، اكتشف القفزات العكسية، واحصل على تشخيص فوري.">
+<meta property="og:url" content="https://scrolltester.studio/ar/index.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="اختبار العجلة — افحص عجلة الفأرة أونلاين | ScrollTester.studio">
+<meta name="twitter:description" content="اختبار مجاني لعجلة التمرير، مباشرة في المتصفح.">
+<link rel="alternate" hreflang="en" href="https://scrolltester.studio/">
+<link rel="alternate" hreflang="es" href="https://scrolltester.studio/es/index.html">
+<link rel="alternate" hreflang="de" href="https://scrolltester.studio/de/index.html">
+<link rel="alternate" hreflang="fr" href="https://scrolltester.studio/fr/index.html">
+<link rel="alternate" hreflang="pt" href="https://scrolltester.studio/pt/index.html">
+<link rel="alternate" hreflang="zh" href="https://scrolltester.studio/zh/index.html">
+<link rel="alternate" hreflang="hi" href="https://scrolltester.studio/hi/index.html">
+<link rel="alternate" hreflang="ar" href="https://scrolltester.studio/ar/index.html">
+<link rel="alternate" hreflang="id" href="https://scrolltester.studio/id/index.html">
+<link rel="alternate" hreflang="x-default" href="https://scrolltester.studio/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>body{ font-family:'Noto Kufi Arabic','Inter',system-ui,sans-serif; }</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><span class="dot"></span>ScrollTester.studio</a>
+    <nav class="nav-links" id="navLinks" data-lang="ar" data-page="index"></nav>    <div id="langSwitchMount" data-lang="ar" data-page="index" data-base="../"></div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">تشخيص الفأرة</div>
+      <h1>اختبار العجلة — تحقق من وجود قفزات عكسية في عجلة فأرتك</h1>
+      <p class="lede">مرّر داخل المربع أدناه في اتجاه واحد فقط. سنسجّل كل حركة للعجلة مباشرة وننفّذ فحصين لإخبارك ما إذا كانت عجلتك تعمل بشكل طبيعي أو تُظهر علامات تآكل.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="tool-card">
+        <div class="tool-controls">
+          <span style="color:var(--muted); font-size:.85rem; margin-left:4px;">المدة:</span>
+          <button class="duration-pill" data-secs="15">15s</button>
+          <button class="duration-pill active" data-secs="30">30s</button>
+          <button class="duration-pill" data-secs="60">60s</button>
+          <button class="duration-pill" data-secs="90">90s</button>
+          <button class="btn" id="startBtn">ابدأ الاختبار</button>
+          <button class="btn secondary" id="resetBtn">إعادة تعيين</button>
+        </div>
+
+        <div class="stage" id="stage" tabindex="0">
+          <div>
+            <div class="big" id="stageTimer">30</div>
+            <div class="stage-hint">اضغط "ابدأ الاختبار"، ثم مرّر هنا في اتجاه واحد. تغيير الاتجاه أثناء الاختبار يقلل من دقة النتيجة.</div>
+          </div>
+        </div>
+
+        <div class="readout-panel">
+          <div class="readout"><div class="label">المدة</div><div class="value" id="rDuration">0s</div></div>
+          <div class="readout"><div class="label">سرعة العجلة</div><div class="value" id="rSpeed">0/s</div></div>
+          <div class="readout"><div class="label">آخر DeltaY</div><div class="value" id="rLastDY">0</div></div>
+          <div class="readout"><div class="label">التمرير العمودي</div><div class="value" id="rVert">0</div></div>
+          <div class="readout"><div class="label">DeltaY الأقصى</div><div class="value" id="rMax">0</div></div>
+          <div class="readout"><div class="label">DeltaY الأدنى</div><div class="value" id="rMin">0</div></div>
+          <div class="readout"><div class="label">وضع Delta</div><div class="value" id="rMode">–</div></div>
+          <div class="readout"><div class="label">إجمالي الأحداث</div><div class="value" id="rEvents">0</div></div>
+        </div>
+
+        <div class="wave-panel">
+          <div class="wave-panel-head">
+            <span class="wave-title">إشارة العجلة — DeltaY عبر الزمن</span>
+            <span class="wave-legend"><span class="dot-legend"></span>تتبّع مباشر</span>
+          </div>
+          <canvas id="waveCanvas" height="160"></canvas>
+        </div>
+
+        <div class="verdict" id="verdict" style="display:none;">
+          <span class="tag good" id="verdictTag">طبيعي</span>
+          <h3 id="verdictTitle" style="margin:.2em 0;">إدخال العجلة يبدو مستقرًا</h3>
+          <p id="verdictBody" style="color:var(--muted); margin:0;"></p>
+        </div>
+      </div>
+
+      <div class="ad-slot">إعلان</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>قد تحتاج أيضًا إلى هذه الأدوات</h2>
+      <p class="lede">جميع الأدوات تعمل فورًا في متصفحك — بلا تثبيت وبلا حساب.</p>
+      <div class="tools-grid">
+        <a class="tool-link" href="../cps-test.html"><h3>اختبار CPS</h3><p>قِس عدد النقرات في الثانية التي يمكنك الحفاظ عليها عبر أوضاع 1 و5 و10 و30 و60 ثانية.</p></a>
+        <a class="tool-link" href="../mouse-test.html"><h3>اختبار الفأرة</h3><p>تحقق من الزر الأيسر والأيمن والأوسط والأزرار الجانبية، بالإضافة إلى نقرة العجلة، كلها في لوحة واحدة.</p></a>
+        <a class="tool-link" href="../keyboard-test.html"><h3>اختبار لوحة المفاتيح</h3><p>تأكد من أن كل مفتاح في لوحة مفاتيحك يتم اكتشافه بشكل صحيح في المتصفح.</p></a>
+        <a class="tool-link" href="../reaction-time-test.html"><h3>اختبار سرعة الاستجابة</h3><p>قِس مدى سرعة استجابتك لإشارة بصرية، بالميلي ثانية.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>كيف يعمل اختبار العجلة</h2>
+      <p class="lede">ثلاث خطوات، بلا تحميل، والنتيجة خلال ثوانٍ.</p>
+      <div class="steps">
+        <div class="step"><div class="num">01</div><h3>اختر المدة</h3><p>اختر بين 15 و90 ثانية. كلما طالت المدة، زادت العينات المتاحة للخوارزمية، مما يجعل النتيجة النهائية أكثر موثوقية.</p></div>
+        <div class="step"><div class="num">02</div><h3>مرّر في اتجاه واحد</h3><p>حافظ على التمرير داخل المربع في اتجاه واحد فقط. تغيير الاتجاه في منتصف الاختبار يُعامل كضوضاء وقد يخفي عطلاً حقيقيًا.</p></div>
+        <div class="step"><div class="num">03</div><h3>اقرأ التقرير</h3><p>عند انتهاء المؤقت، ستحصل على حكم بلغة بسيطة إلى جانب البيانات الخام أدناه، لتتمكن من التحقق بنفسك.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>ماذا تعني أرقام اللوحة</h2>
+      <p class="lede">كل إحصائية في لوحة القراءة تعبّر عن شيء ملموس حول سلوك عجلتك — إليك ما يجب مراقبته فعليًا.</p>
+      <div class="metric-grid">
+        <div class="metric-card"><h3>سرعة العجلة</h3><p>عدد أحداث التمرير التي استقبلها متصفحك في الثانية الأخيرة. الرقم الذي يستمر بالهبوط إلى صفر عادة ما يعني أن العجلة تتخطى خطوات بدلاً من قراءتها بوضوح.</p></div>
+        <div class="metric-card"><h3>آخر DeltaY</h3><p>آخر قيمة تمرير عمودي أبلغ عنها المتصفح. في اختبار نظيف باتجاه واحد، يجب ألا تتغير إشارة هذا الرقم (موجب أو سالب) أبدًا.</p></div>
+        <div class="metric-card"><h3>التمرير العمودي</h3><p>المجموع التراكمي للحركة العمودية في هذه الجلسة. يجب أن يرتفع باستمرار؛ مجموع بالكاد ينمو رغم التمرير المستمر يشير إلى أن العجلة تُلغي نفسها جزئيًا.</p></div>
+        <div class="metric-card"><h3>DeltaY الأقصى / الأدنى</h3><p>أقوى "نقرة" تمرير شوهدت في كل اتجاه. إذا كنت تمرر للأسفل فقط لكن القيمة الدنيا تستمر في النمو، فإن العجلة تُطلق نقرات عكسية غير مرغوبة.</p></div>
+        <div class="metric-card"><h3>وضع Delta</h3><p>يوضح ما إذا كان المتصفح يقيس بالبكسل أو الأسطر أو الصفحات. لا يشير بحد ذاته إلى عطل، لكنه يغيّر ما يُعتبر قيمة delta "طبيعية".</p></div>
+        <div class="metric-card"><h3>إجمالي الأحداث</h3><p>عدد أحداث العجلة المنفصلة التي أُطلقت أثناء الاختبار. قارن هذا بعدد المرات التي أدرت فيها العجلة فعليًا — أي فارق كبير يشير إلى إطلاق مزدوج أو فقدان إدخال.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>متى تكون عجلة سليمة مهمة فعلاً</h2>
+      <p class="lede">إنها قطعة صغيرة في الفأرة، لكنها أساس الكثير من المهام اليومية.</p>
+      <table class="use-table">
+        <tr><th>المهمة</th><th>ماذا تفعل العجلة المعطوبة بها</th></tr>
+        <tr><td>قراءة صفحات طويلة أو ملفات PDF</td><td>تضطر لسحب شريط التمرير يدويًا في كل صفحة، وهو أبطأ ويكسر إيقاع قراءتك.</td></tr>
+        <tr><td>جداول البيانات</td><td>عجلة تقفز صفوفًا بشكل عشوائي تسهّل قراءة أو الكتابة فوق الخلية الخاطئة.</td></tr>
+        <tr><td>مراجعة الكود والسجلات</td><td>الأسطر المتخطاة أو المكررة أثناء التمرير تصعّب إيجاد السطر المطلوب بالضبط.</td></tr>
+        <tr><td>أدوات التصميم والصور</td><td>تربط تطبيقات كثيرة العجلة بالتكبير — إدخال غير منتظم يعني تكبيرًا غير منتظم أثناء فحص التفاصيل الدقيقة.</td></tr>
+        <tr><td>الألعاب</td><td>يصبح تبديل السلاح أو العنصر المرتبط بالعجلة غير موثوق، وهو أمر يهم أكثر في اللحظات السريعة أو التنافسية.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>الأسئلة الشائعة</h2>
+      <div class="faq">
+        <details open>
+          <summary>لماذا لا تتحدث اللوحة أثناء التمرير؟</summary>
+          <p>تسجّل الأداة أحداث العجلة فقط بعد الضغط على "ابدأ الاختبار" (أو النقر داخل المربع بعد تفعيله). التمرير قبل البدء أو خارج المربع لن يُسجَّل.</p>
+        </details>
+        <details>
+          <summary>عجلتي تعمل بشكل جيد غالبًا — فلماذا ظهر حدث عكسي؟</summary>
+          <p>حدث واحد معزول ليس عادة سببًا للقلق. الغبار أو لمسة خفيفة أو حركة عرضية يمكن أن تُسجَّل كنقرة عكسية معزولة. الأهم هو ما إذا كانت الأحداث العكسية تتكرر عبر عدة محاولات.</p>
+        </details>
+        <details>
+          <summary>هل يعمل هذا مع لوحة اللمس بدلاً من عجلة الفأرة؟</summary>
+          <p>ترسل لوحات اللمس وعجلات "التمرير اللانهائي" تدفقًا مستمرًا من القيم الصغيرة بدلاً من نقرات منفصلة، لذا سيستمر إجمالي التمرير العمودي بالتحرك، لكن كشف القفزات العكسية مصمم للعجلات الميكانيكية ذات المسننات.</p>
+        </details>
+        <details>
+          <summary>ماذا أفعل إذا استمرت العجلة بالظهور كمعطوبة؟</summary>
+          <p>ابدأ بالحلول السهلة: استبدل البطارية إن كانت لاسلكية، ونظّف حول العجلة بقليل من الهواء المضغوط. إذا استمر العطل بعد ذلك، فمن المرجح أن يكون المشفّر تحت العجلة قد تآكل.</p>
+        </details>
+        <details>
+          <summary>هل تُرسَل بيانات التمرير الخاصة بي إلى أي مكان؟</summary>
+          <p>لا. كل شيء في هذه الصفحة يعمل محليًا في متصفحك باستخدام واجهات برمجة أحداث العجلة القياسية — لا يُرسَل أو يُحفظ أي شيء من جلسة اختبارك على خادم.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="siteFooter" data-lang="ar" data-base="../"></footer>
+
+<script src="../js/site.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/langswitch.js"></script>
+<script src="../js/footer.js"></script>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const stageTimer = document.getElementById('stageTimer');
+  const startBtn = document.getElementById('startBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const pills = document.querySelectorAll('.duration-pill');
+  let duration = 30, timeLeft = 30, running = false, timerId = null, speedId = null;
+  let events = [], eventsThisSecond = 0, lastDY = 0, vertical = 0, horizontal = 0;
+  let maxDY = 0, minDY = 0, deltaMode = null, reverseCount = 0, lastSign = 0;
+
+  pills.forEach(p => p.addEventListener('click', () => {
+    if (running) return;
+    pills.forEach(x => x.classList.remove('active'));
+    p.classList.add('active');
+    duration = parseInt(p.dataset.secs, 10);
+    timeLeft = duration;
+    stageTimer.textContent = timeLeft;
+  }));
+
+  function reset(){
+    running = false;
+    clearInterval(timerId); clearInterval(speedId);
+    timeLeft = duration;
+    events = []; eventsThisSecond = 0; lastDY = 0; vertical = 0; horizontal = 0;
+    maxDY = 0; minDY = 0; deltaMode = null; reverseCount = 0; lastSign = 0;
+    stage.classList.remove('active');
+    stageTimer.textContent = timeLeft;
+    document.getElementById('verdict').style.display = 'none';
+    updateReadouts();
+  }
+
+  function start(){
+    reset();
+    running = true;
+    stage.classList.add('active');
+    timerId = setInterval(() => {
+      timeLeft--;
+      stageTimer.textContent = timeLeft;
+      if (timeLeft <= 0) finish();
+    }, 1000);
+    speedId = setInterval(() => {
+      document.getElementById('rSpeed').textContent = eventsThisSecond + '/s';
+      eventsThisSecond = 0;
+    }, 1000);
+  }
+
+  function finish(){
+    running = false;
+    clearInterval(timerId); clearInterval(speedId);
+    stage.classList.remove('active');
+    const total = events.length;
+    const ratio = total ? reverseCount / total : 0;
+    const v = document.getElementById('verdict');
+    const tag = document.getElementById('verdictTag');
+    const title = document.getElementById('verdictTitle');
+    const body = document.getElementById('verdictBody');
+    v.style.display = 'block';
+    if (total === 0){
+      tag.className = 'tag warn'; tag.textContent = 'لا توجد بيانات';
+      title.textContent = 'لم يتم تسجيل بيانات تمرير';
+      body.textContent = 'انتهى الاختبار دون أي أحداث للعجلة. تأكد من التمرير داخل المربع أثناء تشغيل الاختبار.';
+    } else if (ratio === 0){
+      tag.className = 'tag good'; tag.textContent = 'طبيعي';
+      title.textContent = 'إدخال العجلة يبدو مستقرًا';
+      body.textContent = `لم يتم العثور على قفزات عكسية عبر ${total} حدثًا. هذه الجلسة تبدو سليمة.`;
+    } else if (ratio < 0.03){
+      tag.className = 'tag warn'; tag.textContent = 'ضوضاء طفيفة';
+      title.textContent = 'تم اكتشاف عدد قليل من النقرات العكسية';
+      body.textContent = `${reverseCount} من ${total} حدثًا كانت في الاتجاه المعاكس لتمريرك. قد يكون هذا غبارًا أو لمسة عرضية — جرّب محاولة أخرى للتأكيد.`;
+    } else {
+      tag.className = 'tag bad'; tag.textContent = 'عطل محتمل';
+      title.textContent = 'تم اكتشاف نقرات عكسية متكررة';
+      body.textContent = `${reverseCount} من ${total} حدثًا (${Math.round(ratio*100)}%) كانت في الاتجاه المعاكس لتمريرك. هذا النمط يتوافق مع مشفّر عجلة متآكل أو متسخ.`;
+    }
+  }
+
+  function updateReadouts(){
+    document.getElementById('rDuration').textContent = (duration - timeLeft) + 's';
+    document.getElementById('rLastDY').textContent = lastDY.toFixed(0);
+    document.getElementById('rVert').textContent = vertical.toFixed(0);
+    document.getElementById('rMax').textContent = maxDY.toFixed(0);
+    document.getElementById('rMin').textContent = minDY.toFixed(0);
+    document.getElementById('rMode').textContent = deltaMode === null ? '–' : ['بكسل','سطر','صفحة'][deltaMode] || deltaMode;
+    document.getElementById('rEvents').textContent = events.length;
+  }
+
+  stage.addEventListener('wheel', (e) => {
+    if (!running) return;
+    e.preventDefault();
+    const dy = e.deltaY;
+    const sign = Math.sign(dy);
+    events.push(dy);
+    eventsThisSecond++;
+    lastDY = dy;
+    vertical += dy;
+    horizontal += e.deltaX;
+    deltaMode = e.deltaMode;
+    if (dy > maxDY) maxDY = dy;
+    if (dy < minDY) minDY = dy;
+    if (lastSign !== 0 && sign !== 0 && sign !== lastSign) reverseCount++;
+    if (sign !== 0) lastSign = sign;
+    updateReadouts();
+  }, { passive:false });
+
+  stage.addEventListener('dblclick', () => { running ? finish() : start(); });
+  startBtn.addEventListener('click', () => { if(!running) start(); });
+  resetBtn.addEventListener('click', reset);
+
+  stageTimer.textContent = timeLeft;
+
+  (function(){
+    const canvas = document.getElementById('waveCanvas');
+    const ctx = canvas.getContext('2d');
+    const N = 160;
+    const buffer = new Array(N).fill(0);
+    let currentVal = 0;
+    let t = 0;
+    const MAX_RANGE = 120;
+
+    function resizeCanvas(){
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.round(rect.width * dpr);
+      canvas.height = Math.round(160 * dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    stage.addEventListener('wheel', (e) => {
+      const dy = Math.max(-MAX_RANGE, Math.min(MAX_RANGE, e.deltaY));
+      currentVal = dy;
+    }, { passive:true });
+
+    function drawFrame(){
+      t += 0.05;
+      currentVal *= 0.88;
+      const idle = Math.sin(t) * 3 + Math.sin(t*0.37) * 2;
+      const sample = currentVal + idle;
+
+      buffer.push(sample);
+      buffer.shift();
+
+      const w = canvas.getBoundingClientRect().width;
+      const h = 160;
+      const mid = h / 2;
+      ctx.clearRect(0, 0, w, h);
+
+      ctx.strokeStyle = 'rgba(124,244,203,0.08)';
+      ctx.lineWidth = 1;
+      for (let gy = 0; gy <= 4; gy++){
+        const y = (h / 4) * gy;
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+      }
+      ctx.strokeStyle = 'rgba(124,244,203,0.18)';
+      ctx.beginPath(); ctx.moveTo(0, mid); ctx.lineTo(w, mid); ctx.stroke();
+
+      const stepX = w / (N - 1);
+      const pts = buffer.map((v, i) => {
+        const y = mid - (v / MAX_RANGE) * (mid - 14);
+        return [i * stepX, Math.max(6, Math.min(h - 6, y))];
+      });
+
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0], mid);
+      ctx.lineTo(pts[0][0], pts[0][1]);
+      for (let i = 1; i < pts.length - 1; i++){
+        const xc = (pts[i][0] + pts[i+1][0]) / 2;
+        const yc = (pts[i][1] + pts[i+1][1]) / 2;
+        ctx.quadraticCurveTo(pts[i][0], pts[i][1], xc, yc);
+      }
+      ctx.lineTo(pts[pts.length-1][0], mid);
+      ctx.closePath();
+      const grad = ctx.createLinearGradient(0, 0, 0, h);
+      grad.addColorStop(0, 'rgba(124,244,203,0.22)');
+      grad.addColorStop(1, 'rgba(124,244,203,0.0)');
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0], pts[0][1]);
+      for (let i = 1; i < pts.length - 1; i++){
+        const xc = (pts[i][0] + pts[i+1][0]) / 2;
+        const yc = (pts[i][1] + pts[i+1][1]) / 2;
+        ctx.quadraticCurveTo(pts[i][0], pts[i][1], xc, yc);
+      }
+      ctx.strokeStyle = '#7CF4CB';
+      ctx.lineWidth = 2;
+      ctx.shadowColor = 'rgba(124,244,203,0.9)';
+      ctx.shadowBlur = 8;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      requestAnimationFrame(drawFrame);
+    }
+    requestAnimationFrame(drawFrame);
+  })();
+})();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "اختبار العجلة",
+      "url": "https://scrolltester.studio/ar/index.html",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (runs in browser)",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "اختبار مجاني لعجلة التمرير عبر الإنترنت. قِس السرعة، اكتشف القفزات العكسية، واحصل على تشخيص فوري."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "لماذا لا تتحدث اللوحة أثناء التمرير؟", "acceptedAnswer": { "@type": "Answer", "text": "تسجّل الأداة أحداث العجلة فقط بعد الضغط على \"ابدأ الاختبار\". التمرير قبل البدء أو خارج المربع لن يُسجَّل." } },
+        { "@type": "Question", "name": "عجلتي تعمل بشكل جيد غالبًا — فلماذا ظهر حدث عكسي؟", "acceptedAnswer": { "@type": "Answer", "text": "حدث واحد معزول ليس عادة سببًا للقلق. الأهم هو ما إذا كانت الأحداث العكسية تتكرر عبر عدة محاولات." } },
+        { "@type": "Question", "name": "هل يعمل هذا مع لوحة اللمس؟", "acceptedAnswer": { "@type": "Answer", "text": "ترسل لوحات اللمس تدفقًا مستمرًا من القيم الصغيرة، لذا كشف القفزات العكسية مصمم للعجلات الميكانيكية ذات المسننات." } },
+        { "@type": "Question", "name": "ماذا أفعل إذا استمرت العجلة بالظهور كمعطوبة؟", "acceptedAnswer": { "@type": "Answer", "text": "ابدأ باستبدال البطارية (للفأرة اللاسلكية) والتنظيف بالهواء المضغوط. إذا استمر العطل، فقد يكون المشفّر تحت العجلة متآكلاً." } },
+        { "@type": "Question", "name": "هل تُرسَل بيانات التمرير الخاصة بي إلى أي مكان؟", "acceptedAnswer": { "@type": "Answer", "text": "لا. كل شيء يعمل محليًا في متصفحك — لا يُرسَل أو يُحفظ أي شيء." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

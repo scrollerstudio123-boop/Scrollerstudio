@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mouse Test — Check Every Button Online | ScrollTester.studio</title>
+<meta name="description" content="Test your mouse's left, right, middle, and side buttons plus the scroll wheel, all in real time in your browser.">
+<link rel="canonical" href="https://scrolltester.studio/mouse-test.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ScrollTester.studio">
+<meta property="og:title" content="Mouse Test — Check Every Button Online | ScrollTester.studio">
+<meta property="og:description" content="Test your mouse's left, right, middle, and side buttons plus the scroll wheel, all in real time in your browser.">
+<meta property="og:url" content="https://scrolltester.studio/mouse-test.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mouse Test — Check Every Button Online | ScrollTester.studio">
+<meta name="twitter:description" content="Test your mouse's left, right, middle, and side buttons plus the scroll wheel, all in real time in your browser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="alternate" hreflang="en" href="https://scrolltester.studio/mouse-test.html">
+<link rel="alternate" hreflang="es" href="https://scrolltester.studio/es/mouse-test.html">
+<link rel="alternate" hreflang="de" href="https://scrolltester.studio/de/mouse-test.html">
+<link rel="alternate" hreflang="fr" href="https://scrolltester.studio/fr/mouse-test.html">
+<link rel="alternate" hreflang="x-default" href="https://scrolltester.studio/mouse-test.html">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><span class="dot"></span>ScrollTester.studio</a>
+        <nav class="nav-links" id="navLinks" data-lang="en" data-page="mouse-test"></nav>
+    <div id="langSwitchMount" data-lang="en" data-page="mouse-test" data-base=""></div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Mouse Diagnostics</div>
+      <p style="margin:0 0 10px;"><a href="mouse.html" style="color:var(--muted); font-size:.85rem;">&#8592; Mouse Tools</a></p>
+      <h1>Mouse Test — check every button in one place</h1>
+      <p class="lede">Click each button on your mouse and watch it light up below. If a button doesn't register, that's a strong sign of a hardware or driver issue.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="tool-card">
+        <div class="stage" id="stage" style="min-height:180px;">
+          <div>
+            <div class="stage-hint">Click anywhere in this box with each mouse button (left, right, middle/wheel, and side buttons if you have them).</div>
+          </div>
+        </div>
+
+        <div class="readout-panel" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));">
+          <div class="readout"><div class="label">Left Button</div><div class="value" id="bLeft">–</div></div>
+          <div class="readout"><div class="label">Right Button</div><div class="value" id="bRight">–</div></div>
+          <div class="readout"><div class="label">Middle / Wheel</div><div class="value" id="bMiddle">–</div></div>
+          <div class="readout"><div class="label">Back (Side 1)</div><div class="value" id="bBack">–</div></div>
+          <div class="readout"><div class="label">Forward (Side 2)</div><div class="value" id="bForward">–</div></div>
+          <div class="readout"><div class="label">Scroll Wheel</div><div class="value" id="bScroll">–</div></div>
+        </div>
+
+        <div class="tool-controls" style="margin-top:14px; margin-bottom:0;">
+          <button class="btn secondary" id="resetBtn">Reset</button>
+        </div>
+      </div>
+
+      <div class="ad-slot">Advertisement</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>You may also need these tools</h2>
+      <p class="lede">All tools run instantly in your browser — no installs, no accounts.</p>
+      <div class="tools-grid">
+        <a class="tool-link" href="index.html"><h3>Scroll Test</h3><p>Check your mouse wheel for reverse-scroll jumps and jitter with a live diagnostic report.</p></a>
+        <a class="tool-link" href="cps-test.html"><h3>CPS Test</h3><p>Measure how many clicks per second you can sustain across multiple durations.</p></a>
+        <a class="tool-link" href="keyboard-test.html"><h3>Keyboard Test</h3><p>Verify every key on your keyboard is being detected correctly by your browser.</p></a>
+        <a class="tool-link" href="reaction-time-test.html"><h3>Reaction Time Test</h3><p>Measure how fast you react to a visual cue, in milliseconds.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>What each button result tells you</h2>
+      <div class="metric-grid">
+        <div class="metric-card"><h3>Left / Right button</h3><p>These see the most wear of any part on the mouse. If clicks register as doubled or missed, the micro-switch underneath is usually the cause.</p></div>
+        <div class="metric-card"><h3>Middle button</h3><p>Often the same physical switch as the scroll wheel's click. A middle button that fails to register can mean the wheel assembly itself needs cleaning.</p></div>
+        <div class="metric-card"><h3>Side buttons</h3><p>Not every mouse has these, and browsers map them inconsistently. If yours has side buttons but they don't register here, check your mouse's driver software for a remapping conflict first.</p></div>
+        <div class="metric-card"><h3>Scroll wheel</h3><p>This panel confirms the wheel is producing input at all. For a deeper check of reverse-scroll jumps and wheel health, use the full Scroll Test.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Frequently asked questions</h2>
+      <div class="faq">
+        <details open>
+          <summary>My side buttons don't do anything when I click them.</summary>
+          <p>Some mice ship with side buttons mapped to system shortcuts (like "back" and "forward" in a browser) by the manufacturer's software rather than sending a raw button event. Check your mouse's configuration app to confirm the buttons are set to a standard mapping.</p>
+        </details>
+        <details>
+          <summary>Why does clicking register twice from one click?</summary>
+          <p>This is a classic sign of "double-clicking" caused by a worn micro-switch losing contact briefly mid-press. It's one of the most common mouse hardware failures and usually isn't fixable without replacing the switch.</p>
+        </details>
+        <details>
+          <summary>Does this test work with a trackpad?</summary>
+          <p>Left and right click will generally register through trackpad taps or physical clicks, but middle-click and side-button results depend on your trackpad's gesture configuration.</p>
+        </details>
+        <details>
+          <summary>Is this test accurate for wireless mice?</summary>
+          <p>Yes, as long as the mouse is connected and has sufficient battery. A low battery can cause the same symptoms as a hardware fault — dropped or delayed clicks — so it's worth ruling that out first.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="siteFooter"></footer>
+
+<script src="js/site.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/langswitch.js"></script>
+<script src="js/footer.js"></script>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const map = { 0:'bLeft', 1:'bMiddle', 2:'bRight', 3:'bBack', 4:'bForward' };
+  function mark(id, label){
+    const el = document.getElementById(id);
+    el.textContent = label;
+    el.style.color = 'var(--panel-fg)';
+  }
+  stage.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    const id = map[e.button];
+    if (id) mark(id, 'Detected ✓');
+  });
+  stage.addEventListener('contextmenu', (e) => e.preventDefault());
+  stage.addEventListener('wheel', (e) => {
+    mark('bScroll', 'Detected ✓');
+  }, { passive:true });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    ['bLeft','bRight','bMiddle','bBack','bForward','bScroll'].forEach(id => {
+      const el = document.getElementById(id);
+      el.textContent = '–';
+      el.style.color = '';
+    });
+  });
+})();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Mouse Test",
+      "url": "https://scrolltester.studio/mouse-test.html",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (runs in browser)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Test your mouse's left, right, middle, and side buttons plus the scroll wheel, all in real time in your browser."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "My side buttons don't do anything when I click them.",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Some mice ship with side buttons mapped to system shortcuts by the manufacturer's software rather than sending a raw button event. Check your mouse's configuration app to confirm the buttons are set to a standard mapping."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does clicking register twice from one click?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "This is a classic sign of double-clicking caused by a worn micro-switch losing contact briefly mid-press. It's one of the most common mouse hardware failures."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does this test work with a trackpad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Left and right click will generally register through trackpad taps, but middle-click and side-button results depend on your trackpad's gesture configuration."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this test accurate for wireless mice?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, as long as the mouse is connected and has sufficient battery. A low battery can cause the same symptoms as a hardware fault."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

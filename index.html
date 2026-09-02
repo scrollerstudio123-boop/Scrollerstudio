@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scroll Test — Check Your Mouse Scroll Wheel Online | ScrollTester.studio</title>
+<meta name="description" content="Free online scroll wheel test. Scroll in one direction to measure wheel speed, detect reverse-scroll jumps, and get an instant diagnostic report on your mouse wheel's health.">
+<link rel="canonical" href="https://scrolltester.studio/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ScrollTester.studio">
+<meta property="og:title" content="Scroll Test — Check Your Mouse Scroll Wheel Online | ScrollTester.studio">
+<meta property="og:description" content="Free online scroll wheel test. Scroll in one direction to measure wheel speed, detect reverse-scroll jumps, and get an instant diagnostic report on your mouse wheel's health.">
+<meta property="og:url" content="https://scrolltester.studio/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Scroll Test — Check Your Mouse Scroll Wheel Online | ScrollTester.studio">
+<meta name="twitter:description" content="Free online scroll wheel test. Scroll in one direction to measure wheel speed, detect reverse-scroll jumps, and get an instant diagnostic report on your mouse wheel's health.">
+<link rel="alternate" hreflang="en" href="https://scrolltester.studio/">
+<link rel="alternate" hreflang="es" href="https://scrolltester.studio/es/index.html">
+<link rel="alternate" hreflang="de" href="https://scrolltester.studio/de/index.html">
+<link rel="alternate" hreflang="fr" href="https://scrolltester.studio/fr/index.html">
+<link rel="alternate" hreflang="pt" href="https://scrolltester.studio/pt/index.html">
+<link rel="alternate" hreflang="zh" href="https://scrolltester.studio/zh/index.html">
+<link rel="alternate" hreflang="hi" href="https://scrolltester.studio/hi/index.html">
+<link rel="alternate" hreflang="ar" href="https://scrolltester.studio/ar/index.html">
+<link rel="alternate" hreflang="id" href="https://scrolltester.studio/id/index.html">
+<link rel="alternate" hreflang="x-default" href="https://scrolltester.studio/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><span class="dot"></span>ScrollTester.studio</a>
+        <nav class="nav-links" id="navLinks" data-lang="en" data-page="index"></nav>    <div id="langSwitchMount" data-lang="en" data-page="index" data-base=""></div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Mouse Diagnostics</div>
+      <h1>Scroll Test — check your mouse wheel for reverse jumps and jitter</h1>
+      <p class="lede">Scroll in one direction inside the box below. We'll log every wheel event live and run two detection passes to tell you whether your scroll wheel is behaving normally or showing signs of wear.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="tool-card">
+        <div class="tool-controls">
+          <span style="color:var(--muted); font-size:.85rem; margin-right:4px;">Duration:</span>
+          <button class="duration-pill" data-secs="15">15s</button>
+          <button class="duration-pill active" data-secs="30">30s</button>
+          <button class="duration-pill" data-secs="60">60s</button>
+          <button class="duration-pill" data-secs="90">90s</button>
+          <button class="btn" id="startBtn" style="margin-left:auto;">Start Test</button>
+          <button class="btn secondary" id="resetBtn">Reset</button>
+        </div>
+
+        <div class="stage" id="stage" tabindex="0">
+          <div>
+            <div class="big" id="stageTimer">30</div>
+            <div class="stage-hint">Click "Start Test", then scroll the wheel here in one direction. Reversing direction mid-test lowers accuracy.</div>
+          </div>
+        </div>
+
+        <div class="readout-panel">
+          <div class="readout"><div class="label">Duration</div><div class="value" id="rDuration">0s</div></div>
+          <div class="readout"><div class="label">Wheel Speed</div><div class="value" id="rSpeed">0/s</div></div>
+          <div class="readout"><div class="label">Last DeltaY</div><div class="value" id="rLastDY">0</div></div>
+          <div class="readout"><div class="label">Vertical Scroll</div><div class="value" id="rVert">0</div></div>
+          <div class="readout"><div class="label">DeltaY Max</div><div class="value" id="rMax">0</div></div>
+          <div class="readout"><div class="label">DeltaY Min</div><div class="value" id="rMin">0</div></div>
+          <div class="readout"><div class="label">DeltaMode</div><div class="value" id="rMode">–</div></div>
+          <div class="readout"><div class="label">Total Events</div><div class="value" id="rEvents">0</div></div>
+        </div>
+
+        <div class="wave-panel">
+          <div class="wave-panel-head">
+            <span class="wave-title">Wheel Signal — DeltaY over time</span>
+            <span class="wave-legend"><span class="dot-legend"></span>live trace</span>
+          </div>
+          <canvas id="waveCanvas" height="160"></canvas>
+        </div>
+
+        <div class="verdict" id="verdict" style="display:none;">
+          <span class="tag good" id="verdictTag">Normal</span>
+          <h3 id="verdictTitle" style="margin:.2em 0;">Wheel input looks stable</h3>
+          <p id="verdictBody" style="color:var(--muted); margin:0;"></p>
+        </div>
+      </div>
+
+      <div class="ad-slot">Advertisement</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>You may also need these tools</h2>
+      <p class="lede">All tools run instantly in your browser — no installs, no accounts.</p>
+      <div class="tools-grid">
+        <a class="tool-link" href="cps-test.html"><h3>CPS Test</h3><p>Measure how many clicks per second you can sustain across 1s, 5s, 10s, 30s, and 60s modes.</p></a>
+        <a class="tool-link" href="mouse-test.html"><h3>Mouse Test</h3><p>Check left, right, middle, and side buttons, plus wheel click, all in one panel.</p></a>
+        <a class="tool-link" href="keyboard-test.html"><h3>Keyboard Test</h3><p>Verify every key on your keyboard is being detected correctly by your browser.</p></a>
+        <a class="tool-link" href="reaction-time-test.html"><h3>Reaction Time Test</h3><p>Measure how fast you react to a visual cue, in milliseconds.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>How the scroll test works</h2>
+      <p class="lede">Three steps, no downloads, results in seconds.</p>
+      <div class="steps">
+        <div class="step"><div class="num">01</div><h3>Choose a duration</h3><p>Pick 15–90 seconds. Longer runs give the detection algorithm more samples to work with, which makes the final verdict more reliable.</p></div>
+        <div class="step"><div class="num">02</div><h3>Scroll one way</h3><p>Keep your scrolling in a single direction inside the box. Switching direction mid-run is treated as noise and can mask a real fault.</p></div>
+        <div class="step"><div class="num">03</div><h3>Read the report</h3><p>When the timer ends, you'll get a plain-language verdict plus the raw event data underneath it, so you can double-check the call yourself.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>What the dashboard numbers mean</h2>
+      <p class="lede">Every stat on the readout panel maps to something concrete about how your wheel is behaving — here's what to actually look at.</p>
+      <div class="metric-grid">
+        <div class="metric-card"><h3>Wheel Speed</h3><p>How many scroll events your browser received in the last second. A number that keeps dropping to zero mid-scroll usually means the wheel is skipping steps rather than reading them cleanly.</p></div>
+        <div class="metric-card"><h3>Last DeltaY</h3><p>The most recent vertical scroll amount reported by the browser. In a clean one-direction test this number's sign (positive or negative) should never flip.</p></div>
+        <div class="metric-card"><h3>Vertical Scroll</h3><p>The running total of vertical movement for this session. It should climb steadily; a total that barely grows despite constant scrolling points to the wheel partly cancelling itself out.</p></div>
+        <div class="metric-card"><h3>DeltaY Max / Min</h3><p>The strongest scroll "tick" seen in each direction. If you're only scrolling down but the Min value keeps growing, the wheel is firing unwanted reverse ticks.</p></div>
+        <div class="metric-card"><h3>DeltaMode</h3><p>Tells you whether the browser is measuring in pixels, lines, or pages. It doesn't indicate a fault by itself, but it changes how big a "normal" delta value should look.</p></div>
+        <div class="metric-card"><h3>Total Events</h3><p>How many discrete wheel events fired during the run. Compare this against how many times you physically turned the wheel — a big mismatch suggests double-firing or dropped input.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>When a healthy scroll wheel actually matters</h2>
+      <p class="lede">It's a small part on the mouse, but it sits underneath a lot of everyday tasks.</p>
+      <table class="use-table">
+        <tr><th>Task</th><th>What a faulty wheel does to it</th></tr>
+        <tr><td>Reading long pages or PDFs</td><td>Forces you to drag the scrollbar manually for every page turn, which is slower and breaks your reading rhythm.</td></tr>
+        <tr><td>Spreadsheets</td><td>A wheel that jumps rows unpredictably makes it easy to misread or overwrite the wrong cell.</td></tr>
+        <tr><td>Code and log review</td><td>Skipped or doubled lines during a scroll make it harder to spot the exact line you were looking for.</td></tr>
+        <tr><td>Design and photo tools</td><td>Many apps bind the wheel to zoom — erratic input means erratic zoom levels while you're trying to check fine detail.</td></tr>
+        <tr><td>Gaming</td><td>Wheel-bound weapon or item switching becomes unreliable, which matters most in fast-paced or competitive moments.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Frequently asked questions</h2>
+      <div class="faq">
+        <details open>
+          <summary>Why isn't the dashboard updating while I scroll?</summary>
+          <p>The tool only records wheel events after you press "Start Test" (or click into the box once it's active). Scrolling before starting the test, or scrolling outside the box, won't register.</p>
+        </details>
+        <details>
+          <summary>My wheel scrolls fine most of the time — why did this flag a reverse event?</summary>
+          <p>A single flagged event usually isn't a red flag on its own. Dust, a light touch on the wheel, or an accidental nudge can all register as one isolated reverse tick. What matters more is whether reverse events keep showing up across multiple runs — that pattern is what points to a wearing encoder rather than a one-off.</p>
+        </details>
+        <details>
+          <summary>Does this work with a trackpad instead of a mouse wheel?</summary>
+          <p>Trackpads and "infinite scroll" wheels send a continuous stream of small values instead of discrete clicks, so the vertical scroll total will still move, but the reverse-spike detection is tuned for notched mechanical wheels and will be less meaningful on a trackpad.</p>
+        </details>
+        <details>
+          <summary>What should I do if the wheel keeps testing as faulty?</summary>
+          <p>Start with the easy fixes: replace the battery if it's wireless, and clean around the wheel with a little compressed air, since dust build-up is one of the more common causes of skipping or reverse ticks. If it still fails after that, the encoder underneath the wheel is likely worn, which usually means a repair or replacement.</p>
+        </details>
+        <details>
+          <summary>Is my scroll data sent anywhere?</summary>
+          <p>No. Everything on this page runs locally in your browser using standard wheel-event APIs — nothing about your test session is transmitted or stored on a server.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="siteFooter" data-lang="en" data-base=""></footer>
+
+<script src="js/site.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/langswitch.js"></script>
+<script src="js/footer.js"></script>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const stageTimer = document.getElementById('stageTimer');
+  const startBtn = document.getElementById('startBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const pills = document.querySelectorAll('.duration-pill');
+  let duration = 30, timeLeft = 30, running = false, timerId = null, speedId = null;
+  let events = [], eventsThisSecond = 0, lastDY = 0, vertical = 0, horizontal = 0;
+  let maxDY = 0, minDY = 0, deltaMode = null, reverseCount = 0, lastSign = 0;
+
+  pills.forEach(p => p.addEventListener('click', () => {
+    if (running) return;
+    pills.forEach(x => x.classList.remove('active'));
+    p.classList.add('active');
+    duration = parseInt(p.dataset.secs, 10);
+    timeLeft = duration;
+    stageTimer.textContent = timeLeft;
+  }));
+
+  function reset(){
+    running = false;
+    clearInterval(timerId); clearInterval(speedId);
+    timeLeft = duration;
+    events = []; eventsThisSecond = 0; lastDY = 0; vertical = 0; horizontal = 0;
+    maxDY = 0; minDY = 0; deltaMode = null; reverseCount = 0; lastSign = 0;
+    stage.classList.remove('active');
+    stageTimer.textContent = timeLeft;
+    document.getElementById('verdict').style.display = 'none';
+    updateReadouts();
+  }
+
+  function start(){
+    reset();
+    running = true;
+    stage.classList.add('active');
+    timerId = setInterval(() => {
+      timeLeft--;
+      stageTimer.textContent = timeLeft;
+      if (timeLeft <= 0) finish();
+    }, 1000);
+    speedId = setInterval(() => {
+      document.getElementById('rSpeed').textContent = eventsThisSecond + '/s';
+      eventsThisSecond = 0;
+    }, 1000);
+  }
+
+  function finish(){
+    running = false;
+    clearInterval(timerId); clearInterval(speedId);
+    stage.classList.remove('active');
+    const total = events.length;
+    const ratio = total ? reverseCount / total : 0;
+    const v = document.getElementById('verdict');
+    const tag = document.getElementById('verdictTag');
+    const title = document.getElementById('verdictTitle');
+    const body = document.getElementById('verdictBody');
+    v.style.display = 'block';
+    if (total === 0){
+      tag.className = 'tag warn'; tag.textContent = 'No Data';
+      title.textContent = 'No scroll data collected';
+      body.textContent = 'The test ended without any wheel events. Make sure you scrolled inside the box while the test was running.';
+    } else if (ratio === 0){
+      tag.className = 'tag good'; tag.textContent = 'Normal';
+      title.textContent = 'Wheel input looks stable';
+      body.textContent = `No reverse-direction spikes were found across ${total} events. This session looks healthy.`;
+    } else if (ratio < 0.03){
+      tag.className = 'tag warn'; tag.textContent = 'Minor Noise';
+      title.textContent = 'A small number of reverse ticks were detected';
+      body.textContent = `${reverseCount} of ${total} events fired opposite to your scroll direction. This can be dust or an accidental nudge — try another run to confirm.`;
+    } else {
+      tag.className = 'tag bad'; tag.textContent = 'Possible Fault';
+      title.textContent = 'Frequent reverse ticks detected';
+      body.textContent = `${reverseCount} of ${total} events (${Math.round(ratio*100)}%) fired opposite to your scroll direction. This pattern is consistent with a worn or dirty wheel encoder.`;
+    }
+  }
+
+  function updateReadouts(){
+    document.getElementById('rDuration').textContent = (duration - timeLeft) + 's';
+    document.getElementById('rLastDY').textContent = lastDY.toFixed(0);
+    document.getElementById('rVert').textContent = vertical.toFixed(0);
+    document.getElementById('rMax').textContent = maxDY.toFixed(0);
+    document.getElementById('rMin').textContent = minDY.toFixed(0);
+    document.getElementById('rMode').textContent = deltaMode === null ? '–' : ['Pixel','Line','Page'][deltaMode] || deltaMode;
+    document.getElementById('rEvents').textContent = events.length;
+  }
+
+  stage.addEventListener('wheel', (e) => {
+    if (!running) return;
+    e.preventDefault();
+    const dy = e.deltaY;
+    const sign = Math.sign(dy);
+    events.push(dy);
+    eventsThisSecond++;
+    lastDY = dy;
+    vertical += dy;
+    horizontal += e.deltaX;
+    deltaMode = e.deltaMode;
+    if (dy > maxDY) maxDY = dy;
+    if (dy < minDY) minDY = dy;
+    if (lastSign !== 0 && sign !== 0 && sign !== lastSign) reverseCount++;
+    if (sign !== 0) lastSign = sign;
+    updateReadouts();
+  }, { passive:false });
+
+  stage.addEventListener('dblclick', () => { running ? finish() : start(); });
+  startBtn.addEventListener('click', () => { if(!running) start(); });
+  resetBtn.addEventListener('click', reset);
+
+  stageTimer.textContent = timeLeft;
+
+  /* ---------------- Wave graph: live oscilloscope-style trace of deltaY ---------------- */
+  (function(){
+    const canvas = document.getElementById('waveCanvas');
+    const ctx = canvas.getContext('2d');
+    const N = 160;             // points across the width
+    const buffer = new Array(N).fill(0);
+    let currentVal = 0;        // current instantaneous signal
+    let t = 0;                 // idle wobble clock
+    const MAX_RANGE = 120;     // deltaY clamp range for scaling
+
+    function resizeCanvas(){
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.round(rect.width * dpr);
+      canvas.height = Math.round(160 * dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // hook into the existing wheel listener's data via a lightweight second listener
+    stage.addEventListener('wheel', (e) => {
+      const dy = Math.max(-MAX_RANGE, Math.min(MAX_RANGE, e.deltaY));
+      currentVal = dy;
+    }, { passive:true });
+
+    function drawFrame(){
+      t += 0.05;
+      // decay the spike back toward a gentle idle wobble
+      currentVal *= 0.88;
+      const idle = Math.sin(t) * 3 + Math.sin(t*0.37) * 2;
+      const sample = currentVal + idle;
+
+      buffer.push(sample);
+      buffer.shift();
+
+      const w = canvas.getBoundingClientRect().width;
+      const h = 160;
+      const mid = h / 2;
+      ctx.clearRect(0, 0, w, h);
+
+      // faint grid lines
+      ctx.strokeStyle = 'rgba(124,244,203,0.08)';
+      ctx.lineWidth = 1;
+      for (let gy = 0; gy <= 4; gy++){
+        const y = (h / 4) * gy;
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+      }
+      // center zero line
+      ctx.strokeStyle = 'rgba(124,244,203,0.18)';
+      ctx.beginPath(); ctx.moveTo(0, mid); ctx.lineTo(w, mid); ctx.stroke();
+
+      // build smooth path through buffer
+      const stepX = w / (N - 1);
+      const pts = buffer.map((v, i) => {
+        const y = mid - (v / MAX_RANGE) * (mid - 14);
+        return [i * stepX, Math.max(6, Math.min(h - 6, y))];
+      });
+
+      // glowing area fill under the curve
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0], mid);
+      ctx.lineTo(pts[0][0], pts[0][1]);
+      for (let i = 1; i < pts.length - 1; i++){
+        const xc = (pts[i][0] + pts[i+1][0]) / 2;
+        const yc = (pts[i][1] + pts[i+1][1]) / 2;
+        ctx.quadraticCurveTo(pts[i][0], pts[i][1], xc, yc);
+      }
+      ctx.lineTo(pts[pts.length-1][0], mid);
+      ctx.closePath();
+      const grad = ctx.createLinearGradient(0, 0, 0, h);
+      grad.addColorStop(0, 'rgba(124,244,203,0.22)');
+      grad.addColorStop(1, 'rgba(124,244,203,0.0)');
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      // glowing stroke line
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0], pts[0][1]);
+      for (let i = 1; i < pts.length - 1; i++){
+        const xc = (pts[i][0] + pts[i+1][0]) / 2;
+        const yc = (pts[i][1] + pts[i+1][1]) / 2;
+        ctx.quadraticCurveTo(pts[i][0], pts[i][1], xc, yc);
+      }
+      ctx.strokeStyle = '#7CF4CB';
+      ctx.lineWidth = 2;
+      ctx.shadowColor = 'rgba(124,244,203,0.9)';
+      ctx.shadowBlur = 8;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      requestAnimationFrame(drawFrame);
+    }
+    requestAnimationFrame(drawFrame);
+  })();
+})();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Scroll Test",
+      "url": "https://scrolltester.studio/",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (runs in browser)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Free online scroll wheel test. Scroll in one direction to measure wheel speed, detect reverse-scroll jumps, and get an instant diagnostic report on your mouse wheel's health."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why isn't the dashboard updating while I scroll?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The tool only records wheel events after you press \"Start Test\" (or click into the box once it's active). Scrolling before starting the test, or scrolling outside the box, won't register."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "My wheel scrolls fine most of the time \u2014 why did this flag a reverse event?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A single flagged event usually isn't a red flag on its own. Dust, a light touch on the wheel, or an accidental nudge can all register as one isolated reverse tick. What matters more is whether reverse events keep showing up across multiple runs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does this work with a trackpad instead of a mouse wheel?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Trackpads and infinite-scroll wheels send a continuous stream of small values instead of discrete clicks, so the vertical scroll total will still move, but the reverse-spike detection is tuned for notched mechanical wheels."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What should I do if the wheel keeps testing as faulty?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Start with the easy fixes: replace the battery if it's wireless, and clean around the wheel with a little compressed air. If it still fails after that, the encoder underneath the wheel is likely worn."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my scroll data sent anywhere?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Everything on this page runs locally in your browser using standard wheel-event APIs \u2014 nothing about your test session is transmitted or stored on a server."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

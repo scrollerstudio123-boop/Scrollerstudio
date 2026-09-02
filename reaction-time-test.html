@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reaction Time Test — Measure Your Reflexes | ScrollTester.studio</title>
+<meta name="description" content="Free online reaction time test. Click as soon as the screen changes color and get your reaction speed in milliseconds.">
+<link rel="canonical" href="https://scrolltester.studio/reaction-time-test.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ScrollTester.studio">
+<meta property="og:title" content="Reaction Time Test — Measure Your Reflexes | ScrollTester.studio">
+<meta property="og:description" content="Free online reaction time test. Click as soon as the screen changes color and get your reaction speed in milliseconds.">
+<meta property="og:url" content="https://scrolltester.studio/reaction-time-test.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Reaction Time Test — Measure Your Reflexes | ScrollTester.studio">
+<meta name="twitter:description" content="Free online reaction time test. Click as soon as the screen changes color and get your reaction speed in milliseconds.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="alternate" hreflang="en" href="https://scrolltester.studio/reaction-time-test.html">
+<link rel="alternate" hreflang="es" href="https://scrolltester.studio/es/reaction-time-test.html">
+<link rel="alternate" hreflang="de" href="https://scrolltester.studio/de/reaction-time-test.html">
+<link rel="alternate" hreflang="fr" href="https://scrolltester.studio/fr/reaction-time-test.html">
+<link rel="alternate" hreflang="x-default" href="https://scrolltester.studio/reaction-time-test.html">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><span class="dot"></span>ScrollTester.studio</a>
+        <nav class="nav-links" id="navLinks" data-lang="en" data-page="reaction-time-test"></nav>
+    <div id="langSwitchMount" data-lang="en" data-page="reaction-time-test" data-base=""></div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Reflex Diagnostics</div>
+      <p style="margin:0 0 10px;"><a href="mouse.html" style="color:var(--muted); font-size:.85rem;">&#8592; Mouse Tools</a></p>
+      <h1>Reaction Time Test — how fast are your reflexes?</h1>
+      <p class="lede">Wait for the box to turn green, then click as fast as you can. Click too early and you'll have to start over.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="tool-card">
+        <div class="stage" id="stage" style="min-height:220px; background:var(--bg);">
+          <div>
+            <div class="big" id="stageMsg" style="font-size:1.3rem;">Click to start</div>
+            <div class="stage-hint" id="stageHint">Wait for green, then click as fast as you can.</div>
+          </div>
+        </div>
+
+        <div class="readout-panel" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));">
+          <div class="readout"><div class="label">Last Reaction</div><div class="value" id="rLast">–</div></div>
+          <div class="readout"><div class="label">Best (session)</div><div class="value" id="rBest">–</div></div>
+          <div class="readout"><div class="label">Average</div><div class="value" id="rAvg">–</div></div>
+          <div class="readout"><div class="label">Attempts</div><div class="value" id="rAttempts">0</div></div>
+        </div>
+
+        <div class="tool-controls" style="margin-top:14px; margin-bottom:0;">
+          <button class="btn secondary" id="resetBtn">Reset session</button>
+        </div>
+      </div>
+
+      <div class="ad-slot">Advertisement</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>You may also need these tools</h2>
+      <p class="lede">All tools run instantly in your browser — no installs, no accounts.</p>
+      <div class="tools-grid">
+        <a class="tool-link" href="index.html"><h3>Scroll Test</h3><p>Check your mouse wheel for reverse-scroll jumps and jitter with a live diagnostic report.</p></a>
+        <a class="tool-link" href="cps-test.html"><h3>CPS Test</h3><p>Measure how many clicks per second you can sustain across multiple durations.</p></a>
+        <a class="tool-link" href="mouse-test.html"><h3>Mouse Test</h3><p>Check left, right, middle, and side buttons, plus wheel click, all in one panel.</p></a>
+        <a class="tool-link" href="keyboard-test.html"><h3>Keyboard Test</h3><p>Verify every key on your keyboard is being detected correctly by your browser.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>How to read your reaction time</h2>
+      <table class="use-table">
+        <tr><th>Range</th><th>What it typically means</th></tr>
+        <tr><td>Under 200ms</td><td>Elite reaction speed — faster than the vast majority of results reported on tests like this.</td></tr>
+        <tr><td>200–250ms</td><td>Solid, above-average reaction time, common among practiced gamers.</td></tr>
+        <tr><td>250–300ms</td><td>A typical, healthy adult reaction time under normal conditions.</td></tr>
+        <tr><td>300ms+</td><td>Still normal, but can be pulled higher by tiredness, distraction, or an input device with extra lag.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>What actually affects this number</h2>
+      <div class="metric-grid">
+        <div class="metric-card"><h3>Display lag</h3><p>The time between the color actually changing and it appearing on your screen adds directly to your measured reaction time, and varies by monitor.</p></div>
+        <div class="metric-card"><h3>Mouse and browser lag</h3><p>Wireless mice, low polling rates, and background browser tabs can all add a few extra milliseconds before your click registers.</p></div>
+        <div class="metric-card"><h3>Anticipation vs. reaction</h3><p>Clicking based on a guessed rhythm rather than the actual color change will occasionally produce false, too-fast "reactions" that don't reflect real reflexes — the test resets if you click too early to guard against this.</p></div>
+        <div class="metric-card"><h3>Fatigue and focus</h3><p>Reaction time reliably gets worse with tiredness and distraction, which is why testing across several attempts gives a more honest picture than a single click.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Frequently asked questions</h2>
+      <div class="faq">
+        <details open>
+          <summary>Why did my test reset when I clicked?</summary>
+          <p>You clicked before the box turned green. This is treated as a false start and doesn't count as a valid attempt, since it wouldn't reflect a genuine reaction.</p>
+        </details>
+        <details>
+          <summary>Is this an accurate, lab-grade measurement?</summary>
+          <p>It's accurate enough for casual comparison and tracking your own trend over time, but browser timing, display refresh rate, and input lag all add small amounts of noise that a dedicated lab setup would control for.</p>
+        </details>
+        <details>
+          <summary>Why does my reaction time vary so much between attempts?</summary>
+          <p>Natural variation of 30–80ms between attempts is normal. Look at your average across several tries rather than your single best result for a more realistic number.</p>
+        </details>
+        <details>
+          <summary>Does screen size or resolution affect the result?</summary>
+          <p>Not directly, but a lower refresh-rate monitor can add a few extra milliseconds before the color change is actually visible, which will show up in your recorded time.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="siteFooter"></footer>
+
+<script src="js/site.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/langswitch.js"></script>
+<script src="js/footer.js"></script>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const msg = document.getElementById('stageMsg');
+  const hint = document.getElementById('stageHint');
+  let state = 'idle'; // idle -> waiting -> ready -> done
+  let timeoutId = null, startTs = 0;
+  let attempts = 0, total = 0, best = null;
+
+  function toIdle(){
+    state = 'idle';
+    stage.style.background = 'var(--bg)';
+    msg.textContent = 'Click to start';
+    hint.textContent = 'Wait for green, then click as fast as you can.';
+  }
+  function toWaiting(){
+    state = 'waiting';
+    stage.style.background = '#FDEAEA';
+    msg.textContent = 'Wait for green...';
+    hint.textContent = "Don't click yet.";
+    const delay = 1200 + Math.random() * 2500;
+    timeoutId = setTimeout(toReady, delay);
+  }
+  function toReady(){
+    state = 'ready';
+    stage.style.background = '#E7F8EE';
+    msg.textContent = 'Click now!';
+    hint.textContent = '';
+    startTs = performance.now();
+  }
+  function toFalseStart(){
+    clearTimeout(timeoutId);
+    state = 'idle';
+    stage.style.background = '#FDEAEA';
+    msg.textContent = 'Too soon!';
+    hint.textContent = 'Click to try again.';
+  }
+  function toResult(ms){
+    state = 'idle';
+    stage.style.background = 'var(--bg)';
+    msg.textContent = ms + ' ms';
+    hint.textContent = 'Click to try again.';
+    attempts++; total += ms;
+    if (best === null || ms < best) best = ms;
+    document.getElementById('rLast').textContent = ms + ' ms';
+    document.getElementById('rBest').textContent = best + ' ms';
+    document.getElementById('rAvg').textContent = Math.round(total / attempts) + ' ms';
+    document.getElementById('rAttempts').textContent = attempts;
+  }
+
+  stage.addEventListener('click', () => {
+    if (state === 'idle') toWaiting();
+    else if (state === 'waiting') toFalseStart();
+    else if (state === 'ready') toResult(Math.round(performance.now() - startTs));
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    attempts = 0; total = 0; best = null;
+    document.getElementById('rLast').textContent = '–';
+    document.getElementById('rBest').textContent = '–';
+    document.getElementById('rAvg').textContent = '–';
+    document.getElementById('rAttempts').textContent = 0;
+    toIdle();
+  });
+
+  toIdle();
+})();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Reaction Time Test",
+      "url": "https://scrolltester.studio/reaction-time-test.html",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (runs in browser)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Free online reaction time test. Click as soon as the screen changes color and get your reaction speed in milliseconds."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why did my test reset when I clicked?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You clicked before the box turned green. This is treated as a false start and doesn't count as a valid attempt."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this an accurate, lab-grade measurement?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It's accurate enough for casual comparison and tracking your own trend over time, but browser timing and display refresh rate add small amounts of noise a dedicated lab setup would control for."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does my reaction time vary so much between attempts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Natural variation of 30\u201380ms between attempts is normal. Look at your average across several tries rather than your single best result."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does screen size or resolution affect the result?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not directly, but a lower refresh-rate monitor can add a few extra milliseconds before the color change is actually visible."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

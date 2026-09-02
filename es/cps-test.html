@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test de CPS — Test de Clics Por Segundo | ScrollTester.studio</title>
+<meta name="description" content="Test de CPS gratis online. Haz clic lo más rápido que puedas en modos de 1, 5, 10, 30 o 60 segundos y obtén tu puntuación de clics por segundo al instante.">
+<link rel="canonical" href="https://scrolltester.studio/es/cps-test.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ScrollTester.studio">
+<meta property="og:title" content="Test de CPS — Test de Clics Por Segundo | ScrollTester.studio">
+<meta property="og:description" content="Test de CPS gratis online. Haz clic lo más rápido que puedas y obtén tu puntuación al instante.">
+<meta property="og:url" content="https://scrolltester.studio/es/cps-test.html">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" hreflang="en" href="https://scrolltester.studio/cps-test.html">
+<link rel="alternate" hreflang="es" href="https://scrolltester.studio/es/cps-test.html">
+<link rel="alternate" hreflang="de" href="https://scrolltester.studio/de/cps-test.html">
+<link rel="alternate" hreflang="fr" href="https://scrolltester.studio/fr/cps-test.html">
+<link rel="alternate" hreflang="hi" href="https://scrolltester.studio/hi/cps-test.html">
+<link rel="alternate" hreflang="ar" href="https://scrolltester.studio/ar/cps-test.html">
+<link rel="alternate" hreflang="id" href="https://scrolltester.studio/id/cps-test.html">
+<link rel="alternate" hreflang="x-default" href="https://scrolltester.studio/cps-test.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><span class="dot"></span>ScrollTester.studio</a>
+    <nav class="nav-links" id="navLinks" data-lang="es" data-page="cps-test"></nav>    <div id="langSwitchMount" data-lang="es" data-page="cps-test" data-base="../"></div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Diagnóstico de Ratón</div>
+      <p style="margin:0 0 10px;"><a href="mouse.html" style="color:var(--muted); font-size:.85rem;">← Herramientas de Ratón</a></p>
+      <h1>Test de CPS — ¿cuántos clics por segundo puedes hacer?</h1>
+      <p class="lede">Elige una duración y haz clic dentro del recuadro lo más rápido posible. Registraremos cada clic y te mostraremos tu promedio de clics por segundo en cuanto termine el tiempo.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="tool-card">
+        <div class="tool-controls">
+          <span style="color:var(--muted); font-size:.85rem; margin-right:4px;">Duración:</span>
+          <button class="duration-pill" data-secs="1">1s</button>
+          <button class="duration-pill" data-secs="5">5s</button>
+          <button class="duration-pill active" data-secs="10">10s</button>
+          <button class="duration-pill" data-secs="30">30s</button>
+          <button class="duration-pill" data-secs="60">60s</button>
+          <button class="btn secondary" id="resetBtn" style="margin-left:auto;">Reiniciar</button>
+        </div>
+
+        <div class="stage" id="stage" tabindex="0">
+          <div>
+            <div class="big" id="stageCount">0</div>
+            <div class="stage-hint">Haz clic aquí para empezar. Sigue haciendo clic hasta que el tiempo llegue a cero.</div>
+          </div>
+        </div>
+
+        <div class="readout-panel">
+          <div class="readout"><div class="label">Tiempo Restante</div><div class="value" id="rTime">10.0s</div></div>
+          <div class="readout"><div class="label">Clics Totales</div><div class="value" id="rClicks">0</div></div>
+          <div class="readout"><div class="label">CPS Actual</div><div class="value" id="rCPS">0.0</div></div>
+          <div class="readout"><div class="label">Mejor CPS (sesión)</div><div class="value" id="rBest">0.0</div></div>
+        </div>
+
+        <div class="wave-panel">
+          <div class="wave-panel-head">
+            <span class="wave-title">Señal de Clic — pulso en el tiempo</span>
+            <span class="wave-legend"><span class="dot-legend"></span>trazo en vivo</span>
+          </div>
+          <canvas id="waveCanvas" height="160"></canvas>
+        </div>
+
+        <div class="verdict" id="verdict" style="display:none;">
+          <span class="tag good" id="verdictTag">Resultado</span>
+          <h3 id="verdictTitle" style="margin:.2em 0;"></h3>
+          <p id="verdictBody" style="color:var(--muted); margin:0;"></p>
+        </div>
+      </div>
+
+      <div class="ad-slot">Publicidad</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>También puede que necesites estas herramientas</h2>
+      <p class="lede">Todas las herramientas funcionan al instante en tu navegador — sin instalaciones, sin cuentas.</p>
+      <div class="tools-grid">
+        <a class="tool-link" href="index.html"><h3>Test de Scroll</h3><p>Detecta saltos de scroll inverso y vibraciones en tu rueda con un informe de diagnóstico en vivo.</p></a>
+        <a class="tool-link" href="mouse-test.html"><h3>Test de Ratón</h3><p>Comprueba los botones izquierdo, derecho, central y laterales, más el clic de la rueda, todo en un panel.</p></a>
+        <a class="tool-link" href="keyboard-test.html"><h3>Test de Teclado</h3><p>Verifica que cada tecla de tu teclado se detecta correctamente en tu navegador.</p></a>
+        <a class="tool-link" href="reaction-time-test.html"><h3>Test de Reacción</h3><p>Mide lo rápido que reaccionas a un estímulo visual, en milisegundos.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>Cómo se calcula realmente el CPS</h2>
+      <p class="lede">Clics por segundo suena simple, pero el número que ves depende de exactamente cuándo empiezas a contar.</p>
+      <div class="metric-grid">
+        <div class="metric-card"><h3>CPS Promedio</h3><p>Clics totales divididos entre la duración completa del test. Es el número que muestran la mayoría de los tests de CPS, y el que aparece al final de tu ronda aquí.</p></div>
+        <div class="metric-card"><h3>CPS de Ráfaga</h3><p>Tu tramo más rápido de clics, en vez del promedio de todo el test. Las duraciones cortas (1s, 5s) se acercan más a medir la velocidad de ráfaga.</p></div>
+        <div class="metric-card"><h3>CPS Sostenido</h3><p>Qué tan bien mantienes el ritmo en una ventana más larga. Los modos de 30s y 60s son mejores para esto, ya que la fatiga empieza a notarse en los números.</p></div>
+        <div class="metric-card"><h3>Técnica de clic</h3><p>El jitter click y el drag click pueden elevar tu CPS registrado frente a un clic normal con un solo dedo, porque dependen de la vibración o la fricción en vez de una pulsación y soltada completa por clic.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>¿Qué se considera un buen CPS?</h2>
+      <table class="use-table">
+        <tr><th>Rango</th><th>Qué suele significar</th></tr>
+        <tr><td>Menos de 4 CPS</td><td>Un ritmo normal y relajado con un solo dedo para la mayoría de las personas.</td></tr>
+        <tr><td>4–7 CPS</td><td>Un ritmo sólido y practicado — común entre jugadores habituales.</td></tr>
+        <tr><td>7–10 CPS</td><td>Clic rápido, normalmente con algo de técnica de jitter click.</td></tr>
+        <tr><td>10+ CPS</td><td>Suele requerir drag click o un ratón con un switch muy ligero, ya que un clic sostenido con un solo dedo rara vez llega a ese ritmo.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq">
+        <details open>
+          <summary>¿Por qué mi puntuación de CPS cambia cada vez que hago el test?</summary>
+          <p>La velocidad de clic varía naturalmente entre rondas según la fatiga de la mano, el agarre y la concentración. Haz varias rondas seguidas y fíjate en el promedio en vez de tratar una sola puntuación como definitiva.</p>
+        </details>
+        <details>
+          <summary>¿La latencia de clic de mi ratón afecta el resultado?</summary>
+          <p>Sí. Un ratón con un switch más lento o una conexión con más lag puede no contar clics muy juntos entre sí, lo que reduce tu CPS medido sin importar lo rápido que hagas clic físicamente.</p>
+        </details>
+        <details>
+          <summary>¿Se permite el drag click?</summary>
+          <p>El test no restringe la técnica — solo cuenta eventos de clic. Si quieres una comparación justa frente a un clic "normal", haz una ronda con clic estándar y otra con drag click para compararlas directamente.</p>
+        </details>
+        <details>
+          <summary>¿Por qué el modo de 1 segundo da una puntuación mucho más alta que 60 segundos?</summary>
+          <p>Las ventanas cortas capturan tu velocidad máxima de ráfaga, mientras que las ventanas largas promedian la ralentización que trae la fatiga. Ambos números son "correctos" — solo miden cosas distintas.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="siteFooter" data-lang="es" data-base="../"></footer>
+
+<script src="../js/site.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/langswitch.js"></script>
+<script src="../js/footer.js"></script>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const stageCount = document.getElementById('stageCount');
+  const resetBtn = document.getElementById('resetBtn');
+  const pills = document.querySelectorAll('.duration-pill');
+  let duration = 10, timeLeft = 10, running = false, clicks = 0, timerId = null, bestCPS = 0, startTime = 0;
+
+  pills.forEach(p => p.addEventListener('click', () => {
+    if (running) return;
+    pills.forEach(x => x.classList.remove('active'));
+    p.classList.add('active');
+    duration = parseFloat(p.dataset.secs);
+    reset();
+  }));
+
+  function reset(){
+    running = false;
+    clearInterval(timerId);
+    timeLeft = duration; clicks = 0;
+    stageCount.textContent = 0;
+    document.getElementById('rTime').textContent = timeLeft.toFixed(1) + 's';
+    document.getElementById('rClicks').textContent = 0;
+    document.getElementById('rCPS').textContent = '0.0';
+    document.getElementById('verdict').style.display = 'none';
+    stage.classList.remove('active');
+  }
+
+  function start(){
+    running = true;
+    startTime = performance.now();
+    stage.classList.add('active');
+    timerId = setInterval(() => {
+      const elapsed = (performance.now() - startTime) / 1000;
+      timeLeft = Math.max(0, duration - elapsed);
+      document.getElementById('rTime').textContent = timeLeft.toFixed(1) + 's';
+      document.getElementById('rCPS').textContent = (clicks / (duration - timeLeft || 1)).toFixed(1);
+      if (timeLeft <= 0) finish();
+    }, 50);
+  }
+
+  function finish(){
+    running = false;
+    clearInterval(timerId);
+    stage.classList.remove('active');
+    const cps = clicks / duration;
+    if (cps > bestCPS){ bestCPS = cps; document.getElementById('rBest').textContent = bestCPS.toFixed(1); }
+    const v = document.getElementById('verdict');
+    v.style.display = 'block';
+    let rank = 'Clicker casual';
+    if (cps >= 10) rank = 'Élite — probablemente drag/jitter click';
+    else if (cps >= 7) rank = 'Rápido — jitter click practicado';
+    else if (cps >= 4) rank = 'Sólido — ritmo de jugador habitual';
+    document.getElementById('verdictTag').textContent = cps.toFixed(1) + ' CPS';
+    document.getElementById('verdictTitle').textContent = rank;
+    document.getElementById('verdictBody').textContent = `${clicks} clics en ${duration}s.`;
+  }
+
+  stage.addEventListener('mousedown', (e) => {
+    if (e.button !== 0) return;
+    if (!running) start();
+    if (timeLeft <= 0) return;
+    clicks++;
+    stageCount.textContent = clicks;
+    document.getElementById('rClicks').textContent = clicks;
+  });
+
+  resetBtn.addEventListener('click', reset);
+  reset();
+
+  (function(){
+    const canvas = document.getElementById('waveCanvas');
+    const ctx = canvas.getContext('2d');
+    const N = 160;
+    const buffer = new Array(N).fill(0);
+    let currentVal = 0;
+    let t = 0;
+    const MAX_RANGE = 100;
+
+    function resizeCanvas(){
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.round(rect.width * dpr);
+      canvas.height = Math.round(160 * dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    stage.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return;
+      currentVal = MAX_RANGE;
+    });
+
+    function drawFrame(){
+      t += 0.05;
+      currentVal *= 0.80;
+      const idle = Math.sin(t) * 3 + Math.sin(t*0.37) * 2;
+      const sample = currentVal + idle;
+
+      buffer.push(sample);
+      buffer.shift();
+
+      const w = canvas.getBoundingClientRect().width;
+      const h = 160;
+      const base = h - 20;
+      ctx.clearRect(0, 0, w, h);
+
+      ctx.strokeStyle = 'rgba(124,244,203,0.08)';
+      ctx.lineWidth = 1;
+      for (let gy = 0; gy <= 4; gy++){
+        const y = (h / 4) * gy;
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+      }
+      ctx.strokeStyle = 'rgba(124,244,203,0.18)';
+      ctx.beginPath(); ctx.moveTo(0, base); ctx.lineTo(w, base); ctx.stroke();
+
+      const stepX = w / (N - 1);
+      const pts = buffer.map((v, i) => {
+        const y = base - (v / MAX_RANGE) * (base - 14);
+        return [i * stepX, Math.max(6, Math.min(h - 6, y))];
+      });
+
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0], base);
+      ctx.lineTo(pts[0][0], pts[0][1]);
+      for (let i = 1; i < pts.length - 1; i++){
+        const xc = (pts[i][0] + pts[i+1][0]) / 2;
+        const yc = (pts[i][1] + pts[i+1][1]) / 2;
+        ctx.quadraticCurveTo(pts[i][0], pts[i][1], xc, yc);
+      }
+      ctx.lineTo(pts[pts.length-1][0], base);
+      ctx.closePath();
+      const grad = ctx.createLinearGradient(0, 0, 0, h);
+      grad.addColorStop(0, 'rgba(124,244,203,0.22)');
+      grad.addColorStop(1, 'rgba(124,244,203,0.0)');
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0], pts[0][1]);
+      for (let i = 1; i < pts.length - 1; i++){
+        const xc = (pts[i][0] + pts[i+1][0]) / 2;
+        const yc = (pts[i][1] + pts[i+1][1]) / 2;
+        ctx.quadraticCurveTo(pts[i][0], pts[i][1], xc, yc);
+      }
+      ctx.strokeStyle = '#7CF4CB';
+      ctx.lineWidth = 2;
+      ctx.shadowColor = 'rgba(124,244,203,0.9)';
+      ctx.shadowBlur = 8;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      requestAnimationFrame(drawFrame);
+    }
+    requestAnimationFrame(drawFrame);
+  })();
+})();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Test de CPS",
+      "url": "https://scrolltester.studio/es/cps-test.html",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (runs in browser)",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Test de CPS gratis online. Haz clic lo más rápido que puedas y obtén tu puntuación de clics por segundo al instante."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "¿Por qué mi puntuación de CPS cambia cada vez que hago el test?", "acceptedAnswer": { "@type": "Answer", "text": "La velocidad de clic varía naturalmente según la fatiga, el agarre y la concentración. Fíjate en el promedio de varias rondas en vez de una sola puntuación." } },
+        { "@type": "Question", "name": "¿La latencia de clic de mi ratón afecta el resultado?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, un switch más lento o una conexión con lag puede no contar clics muy juntos entre sí, reduciendo tu CPS medido." } },
+        { "@type": "Question", "name": "¿Se permite el drag click?", "acceptedAnswer": { "@type": "Answer", "text": "El test no restringe la técnica, solo cuenta eventos de clic. Compara una ronda normal con una de drag click para ver la diferencia." } },
+        { "@type": "Question", "name": "¿Por qué el modo de 1 segundo da una puntuación más alta que 60 segundos?", "acceptedAnswer": { "@type": "Answer", "text": "Las ventanas cortas capturan tu velocidad de ráfaga, mientras que las largas promedian la fatiga." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

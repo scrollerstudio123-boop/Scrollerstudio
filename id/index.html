@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tes Scroll — Cek Roda Mouse Kamu Online | ScrollTester.studio</title>
+<meta name="description" content="Tes roda scroll gratis online. Scroll ke satu arah untuk mengukur kecepatan roda, mendeteksi lompatan scroll terbalik, dan dapatkan laporan diagnostik instan untuk kondisi roda mouse kamu.">
+<link rel="canonical" href="https://scrolltester.studio/id/index.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ScrollTester.studio">
+<meta property="og:title" content="Tes Scroll — Cek Roda Mouse Kamu Online | ScrollTester.studio">
+<meta property="og:description" content="Tes roda scroll gratis online. Ukur kecepatan, deteksi lompatan terbalik, dapatkan diagnosis instan.">
+<meta property="og:url" content="https://scrolltester.studio/id/index.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tes Scroll — Cek Roda Mouse Kamu Online | ScrollTester.studio">
+<meta name="twitter:description" content="Tes roda scroll gratis, langsung di browser.">
+<link rel="alternate" hreflang="en" href="https://scrolltester.studio/">
+<link rel="alternate" hreflang="es" href="https://scrolltester.studio/es/index.html">
+<link rel="alternate" hreflang="de" href="https://scrolltester.studio/de/index.html">
+<link rel="alternate" hreflang="fr" href="https://scrolltester.studio/fr/index.html">
+<link rel="alternate" hreflang="pt" href="https://scrolltester.studio/pt/index.html">
+<link rel="alternate" hreflang="zh" href="https://scrolltester.studio/zh/index.html">
+<link rel="alternate" hreflang="hi" href="https://scrolltester.studio/hi/index.html">
+<link rel="alternate" hreflang="ar" href="https://scrolltester.studio/ar/index.html">
+<link rel="alternate" hreflang="id" href="https://scrolltester.studio/id/index.html">
+<link rel="alternate" hreflang="x-default" href="https://scrolltester.studio/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><span class="dot"></span>ScrollTester.studio</a>
+    <nav class="nav-links" id="navLinks" data-lang="id" data-page="index"></nav>    <div id="langSwitchMount" data-lang="id" data-page="index" data-base="../"></div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Diagnostik Mouse</div>
+      <h1>Tes Scroll — cek apakah roda mouse kamu ada lompatan terbalik</h1>
+      <p class="lede">Scroll ke satu arah saja di dalam kotak di bawah. Kami akan mencatat setiap gerakan roda secara langsung dan menjalankan dua tahap deteksi untuk memberi tahu apakah roda mouse kamu masih normal atau sudah menunjukkan tanda-tanda aus.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="tool-card">
+        <div class="tool-controls">
+          <span style="color:var(--muted); font-size:.85rem; margin-right:4px;">Durasi:</span>
+          <button class="duration-pill" data-secs="15">15d</button>
+          <button class="duration-pill active" data-secs="30">30d</button>
+          <button class="duration-pill" data-secs="60">60d</button>
+          <button class="duration-pill" data-secs="90">90d</button>
+          <button class="btn" id="startBtn" style="margin-left:auto;">Mulai Tes</button>
+          <button class="btn secondary" id="resetBtn">Reset</button>
+        </div>
+
+        <div class="stage" id="stage" tabindex="0">
+          <div>
+            <div class="big" id="stageTimer">30</div>
+            <div class="stage-hint">Klik "Mulai Tes", lalu scroll roda mouse di sini ke satu arah. Mengganti arah di tengah tes akan mengurangi akurasi.</div>
+          </div>
+        </div>
+
+        <div class="readout-panel">
+          <div class="readout"><div class="label">Durasi</div><div class="value" id="rDuration">0d</div></div>
+          <div class="readout"><div class="label">Kecepatan Roda</div><div class="value" id="rSpeed">0/d</div></div>
+          <div class="readout"><div class="label">DeltaY Terakhir</div><div class="value" id="rLastDY">0</div></div>
+          <div class="readout"><div class="label">Scroll Vertikal</div><div class="value" id="rVert">0</div></div>
+          <div class="readout"><div class="label">DeltaY Maks</div><div class="value" id="rMax">0</div></div>
+          <div class="readout"><div class="label">DeltaY Min</div><div class="value" id="rMin">0</div></div>
+          <div class="readout"><div class="label">Mode Delta</div><div class="value" id="rMode">–</div></div>
+          <div class="readout"><div class="label">Total Event</div><div class="value" id="rEvents">0</div></div>
+        </div>
+
+        <div class="wave-panel">
+          <div class="wave-panel-head">
+            <span class="wave-title">Sinyal Roda — DeltaY dari waktu ke waktu</span>
+            <span class="wave-legend"><span class="dot-legend"></span>trace langsung</span>
+          </div>
+          <canvas id="waveCanvas" height="160"></canvas>
+        </div>
+
+        <div class="verdict" id="verdict" style="display:none;">
+          <span class="tag good" id="verdictTag">Normal</span>
+          <h3 id="verdictTitle" style="margin:.2em 0;">Input roda terlihat stabil</h3>
+          <p id="verdictBody" style="color:var(--muted); margin:0;"></p>
+        </div>
+      </div>
+
+      <div class="ad-slot">Iklan</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Kamu mungkin juga butuh tool ini</h2>
+      <p class="lede">Semua tool langsung berjalan di browser — tanpa instal, tanpa akun.</p>
+      <div class="tools-grid">
+        <a class="tool-link" href="../cps-test.html"><h3>Tes CPS</h3><p>Ukur berapa klik per detik yang bisa kamu pertahankan dalam mode 1d, 5d, 10d, 30d, dan 60d.</p></a>
+        <a class="tool-link" href="../mouse-test.html"><h3>Tes Mouse</h3><p>Cek tombol kiri, kanan, tengah, dan samping, plus klik roda, semuanya dalam satu panel.</p></a>
+        <a class="tool-link" href="../keyboard-test.html"><h3>Tes Keyboard</h3><p>Pastikan setiap tombol di keyboard kamu terdeteksi dengan benar oleh browser.</p></a>
+        <a class="tool-link" href="../reaction-time-test.html"><h3>Tes Waktu Reaksi</h3><p>Ukur seberapa cepat kamu bereaksi terhadap sinyal visual, dalam milidetik.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>Cara kerja tes scroll</h2>
+      <p class="lede">Tiga langkah, tanpa download, hasil dalam hitungan detik.</p>
+      <div class="steps">
+        <div class="step"><div class="num">01</div><h3>Pilih durasi</h3><p>Pilih 15–90 detik. Durasi yang lebih lama memberi algoritma lebih banyak sampel untuk dianalisis, sehingga hasil akhirnya lebih bisa diandalkan.</p></div>
+        <div class="step"><div class="num">02</div><h3>Scroll satu arah</h3><p>Jaga agar scroll kamu tetap satu arah di dalam kotak. Mengganti arah di tengah tes dianggap sebagai noise dan bisa menutupi masalah yang sebenarnya.</p></div>
+        <div class="step"><div class="num">03</div><h3>Baca laporannya</h3><p>Saat timer habis, kamu akan mendapat kesimpulan dalam bahasa yang mudah dipahami, plus data mentah di bawahnya supaya kamu bisa mengeceknya sendiri.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Arti angka-angka di panel</h2>
+      <p class="lede">Setiap statistik di panel readout menunjukkan sesuatu yang konkret tentang perilaku roda kamu — inilah yang sebenarnya perlu diperhatikan.</p>
+      <div class="metric-grid">
+        <div class="metric-card"><h3>Kecepatan Roda</h3><p>Berapa banyak event scroll yang diterima browser kamu dalam satu detik terakhir. Angka yang terus turun ke nol biasanya berarti roda melompati langkah alih-alih membacanya dengan bersih.</p></div>
+        <div class="metric-card"><h3>DeltaY Terakhir</h3><p>Jumlah scroll vertikal terbaru yang dilaporkan browser. Dalam tes satu arah yang bersih, tanda angka ini (positif atau negatif) seharusnya tidak pernah berbalik.</p></div>
+        <div class="metric-card"><h3>Scroll Vertikal</h3><p>Total pergerakan vertikal yang berjalan selama sesi ini. Seharusnya terus naik; total yang nyaris tidak bertambah meski terus di-scroll menandakan roda sebagian membatalkan dirinya sendiri.</p></div>
+        <div class="metric-card"><h3>DeltaY Maks / Min</h3><p>"Tick" scroll terkuat yang terdeteksi di tiap arah. Kalau kamu hanya scroll ke bawah tapi nilai Min terus bertambah, roda sedang memicu tick terbalik yang tidak diinginkan.</p></div>
+        <div class="metric-card"><h3>Mode Delta</h3><p>Menunjukkan apakah browser mengukur dalam piksel, baris, atau halaman. Ini bukan indikasi masalah dengan sendirinya, tapi mengubah seberapa besar nilai delta yang dianggap "normal".</p></div>
+        <div class="metric-card"><h3>Total Event</h3><p>Berapa banyak event roda yang terpisah terpicu selama tes. Bandingkan dengan berapa kali kamu benar-benar memutar roda — perbedaan besar menandakan double-fire atau input yang hilang.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>Kapan roda yang sehat benar-benar penting</h2>
+      <p class="lede">Ini komponen kecil di mouse, tapi menjadi dasar banyak aktivitas sehari-hari.</p>
+      <table class="use-table">
+        <tr><th>Aktivitas</th><th>Dampak roda yang bermasalah</th></tr>
+        <tr><td>Membaca halaman panjang atau PDF</td><td>Kamu terpaksa menyeret scrollbar secara manual di setiap halaman, yang lebih lambat dan memutus ritme membaca.</td></tr>
+        <tr><td>Spreadsheet</td><td>Roda yang melompati baris secara acak membuatmu mudah salah baca atau menimpa sel yang salah.</td></tr>
+        <tr><td>Review kode dan log</td><td>Baris yang terlewat atau terduplikasi saat scroll membuat lebih sulit menemukan baris yang kamu cari.</td></tr>
+        <tr><td>Tool desain dan foto</td><td>Banyak aplikasi menghubungkan roda dengan zoom — input yang tidak stabil berarti level zoom yang tidak stabil saat memeriksa detail.</td></tr>
+        <tr><td>Gaming</td><td>Ganti senjata atau item yang terikat ke roda jadi tidak bisa diandalkan, yang paling terasa di momen cepat atau kompetitif.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Pertanyaan yang sering diajukan</h2>
+      <div class="faq">
+        <details open>
+          <summary>Kenapa panelnya tidak update saat aku scroll?</summary>
+          <p>Tool ini hanya mencatat event roda setelah kamu menekan "Mulai Tes" (atau klik di dalam kotak setelah aktif). Scroll sebelum tes dimulai, atau di luar kotak, tidak akan tercatat.</p>
+        </details>
+        <details>
+          <summary>Roda mouseku biasanya lancar-lancar saja — kenapa terdeteksi event terbalik?</summary>
+          <p>Satu event yang terdeteksi biasanya bukan tanda bahaya. Debu, sentuhan ringan, atau senggolan tidak sengaja bisa tercatat sebagai satu tick terbalik yang terisolasi. Yang lebih penting adalah apakah event terbalik terus muncul di banyak percobaan.</p>
+        </details>
+        <details>
+          <summary>Apakah ini berfungsi dengan trackpad, bukan roda mouse?</summary>
+          <p>Trackpad dan roda "scroll tanpa batas" mengirim aliran nilai kecil yang terus-menerus alih-alih klik diskret, jadi total scroll vertikal tetap akan bergerak, tapi deteksi lonjakan terbalik dirancang untuk roda mekanis bernotch.</p>
+        </details>
+        <details>
+          <summary>Apa yang harus dilakukan kalau roda terus terdeteksi bermasalah?</summary>
+          <p>Mulai dari yang mudah dulu: ganti baterai kalau nirkabel, dan bersihkan sekitar roda dengan udara bertekanan. Kalau masih gagal setelah itu, kemungkinan besar encoder di bawah roda sudah aus.</p>
+        </details>
+        <details>
+          <summary>Apakah data scroll-ku dikirim ke suatu tempat?</summary>
+          <p>Tidak. Semua di halaman ini berjalan secara lokal di browser kamu menggunakan API wheel-event standar — tidak ada apa pun dari sesi tesmu yang dikirim atau disimpan di server.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="siteFooter" data-lang="id" data-base="../"></footer>
+
+<script src="../js/site.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/langswitch.js"></script>
+<script src="../js/footer.js"></script>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const stageTimer = document.getElementById('stageTimer');
+  const startBtn = document.getElementById('startBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const pills = document.querySelectorAll('.duration-pill');
+  let duration = 30, timeLeft = 30, running = false, timerId = null, speedId = null;
+  let events = [], eventsThisSecond = 0, lastDY = 0, vertical = 0, horizontal = 0;
+  let maxDY = 0, minDY = 0, deltaMode = null, reverseCount = 0, lastSign = 0;
+
+  pills.forEach(p => p.addEventListener('click', () => {
+    if (running) return;
+    pills.forEach(x => x.classList.remove('active'));
+    p.classList.add('active');
+    duration = parseInt(p.dataset.secs, 10);
+    timeLeft = duration;
+    stageTimer.textContent = timeLeft;
+  }));
+
+  function reset(){
+    running = false;
+    clearInterval(timerId); clearInterval(speedId);
+    timeLeft = duration;
+    events = []; eventsThisSecond = 0; lastDY = 0; vertical = 0; horizontal = 0;
+    maxDY = 0; minDY = 0; deltaMode = null; reverseCount = 0; lastSign = 0;
+    stage.classList.remove('active');
+    stageTimer.textContent = timeLeft;
+    document.getElementById('verdict').style.display = 'none';
+    updateReadouts();
+  }
+
+  function start(){
+    reset();
+    running = true;
+    stage.classList.add('active');
+    timerId = setInterval(() => {
+      timeLeft--;
+      stageTimer.textContent = timeLeft;
+      if (timeLeft <= 0) finish();
+    }, 1000);
+    speedId = setInterval(() => {
+      document.getElementById('rSpeed').textContent = eventsThisSecond + '/d';
+      eventsThisSecond = 0;
+    }, 1000);
+  }
+
+  function finish(){
+    running = false;
+    clearInterval(timerId); clearInterval(speedId);
+    stage.classList.remove('active');
+    const total = events.length;
+    const ratio = total ? reverseCount / total : 0;
+    const v = document.getElementById('verdict');
+    const tag = document.getElementById('verdictTag');
+    const title = document.getElementById('verdictTitle');
+    const body = document.getElementById('verdictBody');
+    v.style.display = 'block';
+    if (total === 0){
+      tag.className = 'tag warn'; tag.textContent = 'Tanpa Data';
+      title.textContent = 'Tidak ada data scroll yang terkumpul';
+      body.textContent = 'Tes berakhir tanpa event roda. Pastikan kamu scroll di dalam kotak selama tes berjalan.';
+    } else if (ratio === 0){
+      tag.className = 'tag good'; tag.textContent = 'Normal';
+      title.textContent = 'Input roda terlihat stabil';
+      body.textContent = `Tidak ditemukan lonjakan arah terbalik dari ${total} event. Sesi ini terlihat sehat.`;
+    } else if (ratio < 0.03){
+      tag.className = 'tag warn'; tag.textContent = 'Noise Kecil';
+      title.textContent = 'Terdeteksi sejumlah kecil tick terbalik';
+      body.textContent = `${reverseCount} dari ${total} event terpicu berlawanan dengan arah scroll kamu. Ini bisa jadi debu atau senggolan tidak sengaja — coba tes ulang untuk konfirmasi.`;
+    } else {
+      tag.className = 'tag bad'; tag.textContent = 'Kemungkinan Bermasalah';
+      title.textContent = 'Terdeteksi tick terbalik yang sering';
+      body.textContent = `${reverseCount} dari ${total} event (${Math.round(ratio*100)}%) terpicu berlawanan dengan arah scroll kamu. Pola ini konsisten dengan encoder roda yang aus atau kotor.`;
+    }
+  }
+
+  function updateReadouts(){
+    document.getElementById('rDuration').textContent = (duration - timeLeft) + 'd';
+    document.getElementById('rLastDY').textContent = lastDY.toFixed(0);
+    document.getElementById('rVert').textContent = vertical.toFixed(0);
+    document.getElementById('rMax').textContent = maxDY.toFixed(0);
+    document.getElementById('rMin').textContent = minDY.toFixed(0);
+    document.getElementById('rMode').textContent = deltaMode === null ? '–' : ['Piksel','Baris','Halaman'][deltaMode] || deltaMode;
+    document.getElementById('rEvents').textContent = events.length;
+  }
+
+  stage.addEventListener('wheel', (e) => {
+    if (!running) return;
+    e.preventDefault();
+    const dy = e.deltaY;
+    const sign = Math.sign(dy);
+    events.push(dy);
+    eventsThisSecond++;
+    lastDY = dy;
+    vertical += dy;
+    horizontal += e.deltaX;
+    deltaMode = e.deltaMode;
+    if (dy > maxDY) maxDY = dy;
+    if (dy < minDY) minDY = dy;
+    if (lastSign !== 0 && sign !== 0 && sign !== lastSign) reverseCount++;
+    if (sign !== 0) lastSign = sign;
+    updateReadouts();
+  }, { passive:false });
+
+  stage.addEventListener('dblclick', () => { running ? finish() : start(); });
+  startBtn.addEventListener('click', () => { if(!running) start(); });
+  resetBtn.addEventListener('click', reset);
+
+  stageTimer.textContent = timeLeft;
+
+  (function(){
+    const canvas = document.getElementById('waveCanvas');
+    const ctx = canvas.getContext('2d');
+    const N = 160;
+    const buffer = new Array(N).fill(0);
+    let currentVal = 0;
+    let t = 0;
+    const MAX_RANGE = 120;
+
+    function resizeCanvas(){
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.round(rect.width * dpr);
+      canvas.height = Math.round(160 * dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    stage.addEventListener('wheel', (e) => {
+      const dy = Math.max(-MAX_RANGE, Math.min(MAX_RANGE, e.deltaY));
+      currentVal = dy;
+    }, { passive:true });
+
+    function drawFrame(){
+      t += 0.05;
+      currentVal *= 0.88;
+      const idle = Math.sin(t) * 3 + Math.sin(t*0.37) * 2;
+      const sample = currentVal + idle;
+
+      buffer.push(sample);
+      buffer.shift();
+
+      const w = canvas.getBoundingClientRect().width;
+      const h = 160;
+      const mid = h / 2;
+      ctx.clearRect(0, 0, w, h);
+
+      ctx.strokeStyle = 'rgba(124,244,203,0.08)';
+      ctx.lineWidth = 1;
+      for (let gy = 0; gy <= 4; gy++){
+        const y = (h / 4) * gy;
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+      }
+      ctx.strokeStyle = 'rgba(124,244,203,0.18)';
+      ctx.beginPath(); ctx.moveTo(0, mid); ctx.lineTo(w, mid); ctx.stroke();
+
+      const stepX = w / (N - 1);
+      const pts = buffer.map((v, i) => {
+        const y = mid - (v / MAX_RANGE) * (mid - 14);
+        return [i * stepX, Math.max(6, Math.min(h - 6, y))];
+      });
+
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0], mid);
+      ctx.lineTo(pts[0][0], pts[0][1]);
+      for (let i = 1; i < pts.length - 1; i++){
+        const xc = (pts[i][0] + pts[i+1][0]) / 2;
+        const yc = (pts[i][1] + pts[i+1][1]) / 2;
+        ctx.quadraticCurveTo(pts[i][0], pts[i][1], xc, yc);
+      }
+      ctx.lineTo(pts[pts.length-1][0], mid);
+      ctx.closePath();
+      const grad = ctx.createLinearGradient(0, 0, 0, h);
+      grad.addColorStop(0, 'rgba(124,244,203,0.22)');
+      grad.addColorStop(1, 'rgba(124,244,203,0.0)');
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0], pts[0][1]);
+      for (let i = 1; i < pts.length - 1; i++){
+        const xc = (pts[i][0] + pts[i+1][0]) / 2;
+        const yc = (pts[i][1] + pts[i+1][1]) / 2;
+        ctx.quadraticCurveTo(pts[i][0], pts[i][1], xc, yc);
+      }
+      ctx.strokeStyle = '#7CF4CB';
+      ctx.lineWidth = 2;
+      ctx.shadowColor = 'rgba(124,244,203,0.9)';
+      ctx.shadowBlur = 8;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      requestAnimationFrame(drawFrame);
+    }
+    requestAnimationFrame(drawFrame);
+  })();
+})();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Tes Scroll",
+      "url": "https://scrolltester.studio/id/index.html",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (runs in browser)",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Tes roda scroll gratis online. Ukur kecepatan, deteksi lompatan terbalik, dapatkan diagnosis instan."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Kenapa panelnya tidak update saat aku scroll?", "acceptedAnswer": { "@type": "Answer", "text": "Tool ini hanya mencatat event roda setelah kamu menekan \"Mulai Tes\". Scroll sebelum tes dimulai tidak akan tercatat." } },
+        { "@type": "Question", "name": "Roda mouseku biasanya lancar — kenapa terdeteksi event terbalik?", "acceptedAnswer": { "@type": "Answer", "text": "Satu event yang terdeteksi biasanya bukan tanda bahaya. Yang penting apakah event terbalik terus muncul di banyak percobaan." } },
+        { "@type": "Question", "name": "Apakah ini berfungsi dengan trackpad?", "acceptedAnswer": { "@type": "Answer", "text": "Trackpad mengirim aliran nilai kecil terus-menerus, jadi deteksi lonjakan terbalik dirancang untuk roda mekanis bernotch." } },
+        { "@type": "Question", "name": "Apa yang harus dilakukan kalau roda terus bermasalah?", "acceptedAnswer": { "@type": "Answer", "text": "Ganti baterai (kalau nirkabel) dan bersihkan dengan udara bertekanan. Kalau masih gagal, encoder di bawah roda mungkin sudah aus." } },
+        { "@type": "Question", "name": "Apakah data scroll-ku dikirim ke suatu tempat?", "acceptedAnswer": { "@type": "Answer", "text": "Tidak. Semua berjalan secara lokal di browser kamu — tidak ada yang dikirim atau disimpan." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

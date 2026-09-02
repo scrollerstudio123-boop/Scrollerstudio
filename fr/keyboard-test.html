@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test de Clavier — Vérifie Chaque Touche en Ligne | ScrollTester.studio</title>
+<meta name="description" content="Teste ton clavier en ligne. Appuie sur n'importe quelle touche pour confirmer que ton navigateur et ton matériel la détectent correctement, y compris les touches de modification et de fonction.">
+<link rel="canonical" href="https://scrolltester.studio/fr/keyboard-test.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ScrollTester.studio">
+<meta property="og:title" content="Test de Clavier — Vérifie Chaque Touche en Ligne | ScrollTester.studio">
+<meta property="og:description" content="Teste ton clavier en ligne. Appuie sur n'importe quelle touche pour vérifier sa détection.">
+<meta property="og:url" content="https://scrolltester.studio/fr/keyboard-test.html">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  #kbGrid{ display:flex; flex-wrap:wrap; gap:6px; margin-top:16px; }
+  .key{
+    border:1px solid var(--border); border-radius:6px; background:var(--surface);
+    padding:8px 10px; font-size:.78rem; font-family:'JetBrains Mono',monospace;
+    color:var(--muted); min-width:36px; text-align:center;
+  }
+  .key.hit{ background: var(--accent); border-color: var(--accent); color:#fff; }
+</style>
+<link rel="alternate" hreflang="en" href="https://scrolltester.studio/keyboard-test.html">
+<link rel="alternate" hreflang="es" href="https://scrolltester.studio/es/keyboard-test.html">
+<link rel="alternate" hreflang="de" href="https://scrolltester.studio/de/keyboard-test.html">
+<link rel="alternate" hreflang="fr" href="https://scrolltester.studio/fr/keyboard-test.html">
+<link rel="alternate" hreflang="x-default" href="https://scrolltester.studio/keyboard-test.html">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><span class="dot"></span>ScrollTester.studio</a>
+    <nav class="nav-links" id="navLinks" data-lang="fr" data-page="keyboard-test"></nav>
+    <div id="langSwitchMount" data-lang="fr" data-page="keyboard-test" data-base="../"></div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Diagnostic Clavier</div>
+      <p style="margin:0 0 10px;"><a href="keyboard.html" style="color:var(--muted); font-size:.85rem;">← Outils Clavier</a></p>
+      <h1>Test de Clavier — vérifie que chaque touche est détectée</h1>
+      <p class="lede">Appuie sur n'importe quelle touche de ton clavier. Les touches s'allument ci-dessous dès que ton navigateur les détecte, pour repérer rapidement une touche bloquée, qui ne répond pas, ou en double-frappe.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="tool-card">
+        <div class="stage" id="stage" style="min-height:120px;" tabindex="0">
+          <div><div class="stage-hint">Clique ici, puis commence à appuyer sur des touches.</div></div>
+        </div>
+
+        <div class="readout-panel" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));">
+          <div class="readout"><div class="label">Dernière touche</div><div class="value" id="rLastKey">–</div></div>
+          <div class="readout"><div class="label">Code de touche</div><div class="value" id="rKeyCode">–</div></div>
+          <div class="readout"><div class="label">Touches pressées</div><div class="value" id="rCount">0</div></div>
+          <div class="readout"><div class="label">Répétitions détectées</div><div class="value" id="rRepeats">0</div></div>
+        </div>
+
+        <div id="kbGrid"></div>
+
+        <div class="tool-controls" style="margin-top:14px; margin-bottom:0;">
+          <button class="btn secondary" id="resetBtn">Réinitialiser</button>
+        </div>
+      </div>
+
+      <div class="ad-slot">Publicité</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Ces outils pourraient aussi t'intéresser</h2>
+      <p class="lede">Tous les outils fonctionnent instantanément dans le navigateur — pas d'installation, pas de compte.</p>
+      <div class="tools-grid">
+        <a class="tool-link" href="index.html"><h3>Test de Scroll</h3><p>Vérifie la molette de ta souris pour détecter les sauts de scroll inversé et les à-coups grâce à un rapport de diagnostic en direct.</p></a>
+        <a class="tool-link" href="cps-test.html"><h3>Test de CPS</h3><p>Mesure combien de clics par seconde tu peux soutenir sur plusieurs durées.</p></a>
+        <a class="tool-link" href="mouse-test.html"><h3>Test de Souris</h3><p>Vérifie les boutons gauche, droit, central et latéraux, plus le clic de molette, tout dans un seul panneau.</p></a>
+        <a class="tool-link" href="reaction-time-test.html"><h3>Test de Réaction</h3><p>Mesure ta vitesse de réaction à un signal visuel, en millisecondes.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>Problèmes courants de clavier que ce test peut détecter</h2>
+      <table class="use-table">
+        <tr><th>Symptôme</th><th>Cause probable</th></tr>
+        <tr><td>Une touche ne s'allume jamais, quelle que soit la pression exercée</td><td>Switch usé, débris sous la touche, ou contact de membrane endommagé en dessous.</td></tr>
+        <tr><td>Une touche est détectée deux fois pour une seule pression</td><td>Rebond de switch — le contact se coupe et se refait brièvement pendant une seule pression, que le navigateur lit comme deux appuis.</td></tr>
+        <tr><td>Une touche reste « bloquée » et se répète toute seule</td><td>Soit une touche physiquement bloquée, soit une combinaison de modificateur maintenue par une autre application — essaie d'appuyer à nouveau fermement pour la relâcher.</td></tr>
+        <tr><td>Plusieurs touches cessent de fonctionner uniquement quand elles sont pressées ensemble</td><td>Généralement une limitation de ghosting/rollover — la plupart des claviers ne peuvent détecter de façon fiable qu'un certain nombre de touches simultanées.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Questions fréquentes</h2>
+      <div class="faq">
+        <details open>
+          <summary>Pourquoi certaines touches (comme les raccourcis du navigateur) ne sont-elles pas détectées ?</summary>
+          <p>Certaines combinaisons, comme Ctrl+W ou Ctrl+T, sont interceptées par le navigateur lui-même pour la gestion des onglets et fenêtres avant même que la page ne les reçoive. C'est une restriction au niveau du navigateur, pas un défaut de ton clavier.</p>
+        </details>
+        <details>
+          <summary>Que signifie « répétitions détectées » ?</summary>
+          <p>Cela compte les événements de touche enfoncée déclenchés en maintenant une touche plutôt qu'une véritable seconde pression. Un petit nombre est normal — les navigateurs répètent automatiquement une touche maintenue après un court délai. Des répétitions qui apparaissent sans que tu maintiennes rien vaut la peine d'être examinées.</p>
+        </details>
+        <details>
+          <summary>Ce test fonctionne-t-il avec un clavier virtuel ou à l'écran ?</summary>
+          <p>Oui, tant que le clavier virtuel envoie des événements de touche standard au navigateur, mais la disposition sur cette page est construite autour des positions de touches d'un clavier physique, donc la grille visuelle peut ne pas correspondre exactement à une disposition virtuelle.</p>
+        </details>
+        <details>
+          <summary>Les touches de fonction de mon ordinateur portable se comportent différemment de ce qui est attendu.</summary>
+          <p>De nombreux ordinateurs portables nécessitent une combinaison avec la touche Fn pour envoyer un signal de touche de fonction standard plutôt qu'un raccourci matériel (luminosité, volume, etc.). Vérifie les paramètres de clavier de ton système si les touches F ne sont pas détectées comme prévu.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="siteFooter" data-lang="fr" data-base="../"></footer>
+
+<script src="../js/site.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/langswitch.js"></script>
+<script src="../js/footer.js"></script>
+<script>
+(function(){
+  const rows = [
+    ['Esc','1','2','3','4','5','6','7','8','9','0','-','=','Backspace'],
+    ['Tab','Q','W','E','R','T','Y','U','I','O','P','[',']','\\'],
+    ['CapsLock','A','S','D','F','G','H','J','K','L',';',"'",'Enter'],
+    ['ShiftLeft','Z','X','C','V','B','N','M',',','.','/','ShiftRight'],
+    ['ControlLeft','AltLeft','Space','AltRight','ControlRight']
+  ];
+  const grid = document.getElementById('kbGrid');
+  const els = {};
+  rows.forEach(row => {
+    row.forEach(label => {
+      const d = document.createElement('div');
+      d.className = 'key';
+      d.textContent = label === 'Space' ? 'Space' : label.replace('Left','').replace('Right','');
+      grid.appendChild(d);
+      els[label] = els[label] || [];
+      els[label].push(d);
+    });
+  });
+
+  let count = 0, repeats = 0;
+  const stage = document.getElementById('stage');
+
+  function codeToLabel(code){
+    if (code.startsWith('Key')) return code.slice(3);
+    if (code.startsWith('Digit')) return code.slice(5);
+    const map = {
+      Backquote:'`', Minus:'-', Equal:'=', BracketLeft:'[', BracketRight:']',
+      Backslash:'\\', Semicolon:';', Quote:"'", Comma:',', Period:'.', Slash:'/',
+      Space:'Space', Enter:'Enter', Tab:'Tab', CapsLock:'CapsLock', Escape:'Esc',
+      Backspace:'Backspace', ShiftLeft:'ShiftLeft', ShiftRight:'ShiftRight',
+      ControlLeft:'ControlLeft', ControlRight:'ControlRight',
+      AltLeft:'AltLeft', AltRight:'AltRight'
+    };
+    return map[code] || code;
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (document.activeElement !== stage) return;
+    e.preventDefault();
+    if (e.repeat) repeats++;
+    else count++;
+    document.getElementById('rLastKey').textContent = e.key === ' ' ? 'Space' : e.key;
+    document.getElementById('rKeyCode').textContent = e.code;
+    document.getElementById('rCount').textContent = count;
+    document.getElementById('rRepeats').textContent = repeats;
+    const label = codeToLabel(e.code);
+    (els[label] || []).forEach(el => el.classList.add('hit'));
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    count = 0; repeats = 0;
+    document.getElementById('rLastKey').textContent = '–';
+    document.getElementById('rKeyCode').textContent = '–';
+    document.getElementById('rCount').textContent = 0;
+    document.getElementById('rRepeats').textContent = 0;
+    document.querySelectorAll('.key.hit').forEach(el => el.classList.remove('hit'));
+  });
+
+  stage.addEventListener('click', () => stage.focus());
+})();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Test de Clavier",
+      "url": "https://scrolltester.studio/fr/keyboard-test.html",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (runs in browser)",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Teste ton clavier en ligne. Appuie sur n'importe quelle touche pour confirmer sa détection correcte, y compris les touches de modification et de fonction."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Pourquoi certaines touches (comme les raccourcis du navigateur) ne sont-elles pas détectées ?", "acceptedAnswer": { "@type": "Answer", "text": "Certaines combinaisons comme Ctrl+W ou Ctrl+T sont interceptées par le navigateur avant que la page ne les reçoive." } },
+        { "@type": "Question", "name": "Que signifie « répétitions détectées » ?", "acceptedAnswer": { "@type": "Answer", "text": "Cela compte les événements déclenchés en maintenant une touche. Des répétitions sans que tu maintiennes rien mérite d'être examiné." } },
+        { "@type": "Question", "name": "Ce test fonctionne-t-il avec un clavier virtuel ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, tant qu'il envoie des événements de touche standard, mais la grille visuelle suit la disposition d'un clavier physique." } },
+        { "@type": "Question", "name": "Les touches de fonction de mon ordinateur portable se comportent différemment.", "acceptedAnswer": { "@type": "Answer", "text": "De nombreux portables nécessitent Fn pour envoyer un signal de fonction standard plutôt qu'un raccourci matériel." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

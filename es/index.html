@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test de Scroll — Comprueba la Rueda de tu Ratón Online | ScrollTester.studio</title>
+<meta name="description" content="Test de rueda de scroll gratis online. Desplázate en una dirección para medir la velocidad de la rueda, detectar saltos de scroll inverso y obtener un informe de diagnóstico instantáneo del estado de tu rueda.">
+<link rel="canonical" href="https://scrolltester.studio/es/index.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ScrollTester.studio">
+<meta property="og:title" content="Test de Scroll — Comprueba la Rueda de tu Ratón Online | ScrollTester.studio">
+<meta property="og:description" content="Test de rueda de scroll gratis online. Desplázate en una dirección para medir la velocidad de la rueda, detectar saltos de scroll inverso y obtener un informe de diagnóstico instantáneo.">
+<meta property="og:url" content="https://scrolltester.studio/es/index.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Test de Scroll — Comprueba la Rueda de tu Ratón Online | ScrollTester.studio">
+<meta name="twitter:description" content="Test de rueda de scroll gratis online. Mide la velocidad, detecta saltos de scroll inverso y obtén un diagnóstico instantáneo.">
+<link rel="alternate" hreflang="en" href="https://scrolltester.studio/">
+<link rel="alternate" hreflang="es" href="https://scrolltester.studio/es/index.html">
+<link rel="alternate" hreflang="de" href="https://scrolltester.studio/de/index.html">
+<link rel="alternate" hreflang="fr" href="https://scrolltester.studio/fr/index.html">
+<link rel="alternate" hreflang="pt" href="https://scrolltester.studio/pt/index.html">
+<link rel="alternate" hreflang="zh" href="https://scrolltester.studio/zh/index.html">
+<link rel="alternate" hreflang="hi" href="https://scrolltester.studio/hi/index.html">
+<link rel="alternate" hreflang="ar" href="https://scrolltester.studio/ar/index.html">
+<link rel="alternate" hreflang="id" href="https://scrolltester.studio/id/index.html">
+<link rel="alternate" hreflang="x-default" href="https://scrolltester.studio/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><span class="dot"></span>ScrollTester.studio</a>
+    <nav class="nav-links" id="navLinks" data-lang="es" data-page="index"></nav>    <div id="langSwitchMount" data-lang="es" data-page="index" data-base="../"></div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Diagnóstico de Ratón</div>
+      <h1>Test de Scroll — comprueba si tu rueda tiene saltos inversos</h1>
+      <p class="lede">Desplázate en una sola dirección dentro del recuadro. Registraremos cada evento de la rueda en vivo y ejecutaremos dos pasadas de detección para decirte si tu rueda funciona con normalidad o muestra signos de desgaste.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="tool-card">
+        <div class="tool-controls">
+          <span style="color:var(--muted); font-size:.85rem; margin-right:4px;">Duración:</span>
+          <button class="duration-pill" data-secs="15">15s</button>
+          <button class="duration-pill active" data-secs="30">30s</button>
+          <button class="duration-pill" data-secs="60">60s</button>
+          <button class="duration-pill" data-secs="90">90s</button>
+          <button class="btn" id="startBtn" style="margin-left:auto;">Iniciar Test</button>
+          <button class="btn secondary" id="resetBtn">Reiniciar</button>
+        </div>
+
+        <div class="stage" id="stage" tabindex="0">
+          <div>
+            <div class="big" id="stageTimer">30</div>
+            <div class="stage-hint">Haz clic en "Iniciar Test" y luego desplaza la rueda aquí en una sola dirección. Cambiar de dirección durante el test reduce la precisión.</div>
+          </div>
+        </div>
+
+        <div class="readout-panel">
+          <div class="readout"><div class="label">Duración</div><div class="value" id="rDuration">0s</div></div>
+          <div class="readout"><div class="label">Velocidad de Rueda</div><div class="value" id="rSpeed">0/s</div></div>
+          <div class="readout"><div class="label">Último DeltaY</div><div class="value" id="rLastDY">0</div></div>
+          <div class="readout"><div class="label">Scroll Vertical</div><div class="value" id="rVert">0</div></div>
+          <div class="readout"><div class="label">DeltaY Máx</div><div class="value" id="rMax">0</div></div>
+          <div class="readout"><div class="label">DeltaY Mín</div><div class="value" id="rMin">0</div></div>
+          <div class="readout"><div class="label">Modo Delta</div><div class="value" id="rMode">–</div></div>
+          <div class="readout"><div class="label">Eventos Totales</div><div class="value" id="rEvents">0</div></div>
+        </div>
+
+        <div class="wave-panel">
+          <div class="wave-panel-head">
+            <span class="wave-title">Señal de Rueda — DeltaY en el tiempo</span>
+            <span class="wave-legend"><span class="dot-legend"></span>trazo en vivo</span>
+          </div>
+          <canvas id="waveCanvas" height="160"></canvas>
+        </div>
+
+        <div class="verdict" id="verdict" style="display:none;">
+          <span class="tag good" id="verdictTag">Normal</span>
+          <h3 id="verdictTitle" style="margin:.2em 0;">La entrada de la rueda parece estable</h3>
+          <p id="verdictBody" style="color:var(--muted); margin:0;"></p>
+        </div>
+      </div>
+
+      <div class="ad-slot">Publicidad</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>También puede que necesites estas herramientas</h2>
+      <p class="lede">Todas las herramientas funcionan al instante en tu navegador — sin instalaciones, sin cuentas.</p>
+      <div class="tools-grid">
+        <a class="tool-link" href="../cps-test.html"><h3>Test de CPS</h3><p>Mide cuántos clics por segundo puedes sostener en modos de 1s, 5s, 10s, 30s y 60s.</p></a>
+        <a class="tool-link" href="mouse-test.html"><h3>Test de Ratón</h3><p>Comprueba los botones izquierdo, derecho, central y laterales, más el clic de la rueda, todo en un panel.</p></a>
+        <a class="tool-link" href="keyboard-test.html"><h3>Test de Teclado</h3><p>Verifica que cada tecla de tu teclado se detecta correctamente en tu navegador.</p></a>
+        <a class="tool-link" href="reaction-time-test.html"><h3>Test de Reacción</h3><p>Mide lo rápido que reaccionas a un estímulo visual, en milisegundos.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>Cómo funciona el test de scroll</h2>
+      <p class="lede">Tres pasos, sin descargas, resultados en segundos.</p>
+      <div class="steps">
+        <div class="step"><div class="num">01</div><h3>Elige una duración</h3><p>Elige entre 15 y 90 segundos. Las pruebas más largas dan al algoritmo más muestras con las que trabajar, lo que hace el veredicto final más fiable.</p></div>
+        <div class="step"><div class="num">02</div><h3>Desplázate en un sentido</h3><p>Mantén tu scroll en una sola dirección dentro del recuadro. Cambiar de dirección a mitad de la prueba se trata como ruido y puede ocultar un fallo real.</p></div>
+        <div class="step"><div class="num">03</div><h3>Lee el informe</h3><p>Cuando termine el cronómetro, obtendrás un veredicto en lenguaje sencillo además de los datos brutos debajo, para que puedas verificarlo tú mismo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Qué significan los números del panel</h2>
+      <p class="lede">Cada estadística del panel corresponde a algo concreto sobre cómo se comporta tu rueda — esto es lo que hay que mirar.</p>
+      <div class="metric-grid">
+        <div class="metric-card"><h3>Velocidad de Rueda</h3><p>Cuántos eventos de scroll recibió tu navegador en el último segundo. Un número que cae a cero repetidamente suele significar que la rueda salta pasos en vez de leerlos con limpieza.</p></div>
+        <div class="metric-card"><h3>Último DeltaY</h3><p>La última cantidad de scroll vertical reportada por el navegador. En un test de una sola dirección limpio, el signo de este número nunca debería cambiar.</p></div>
+        <div class="metric-card"><h3>Scroll Vertical</h3><p>El total acumulado de movimiento vertical en esta sesión. Debería subir de forma constante; un total que apenas crece pese a un scroll continuo indica que la rueda se está cancelando parcialmente a sí misma.</p></div>
+        <div class="metric-card"><h3>DeltaY Máx / Mín</h3><p>El "tic" de scroll más fuerte visto en cada dirección. Si solo te desplazas hacia abajo pero el valor Mín sigue creciendo, la rueda está disparando tics inversos no deseados.</p></div>
+        <div class="metric-card"><h3>Modo Delta</h3><p>Indica si el navegador mide en píxeles, líneas o páginas. No indica un fallo por sí mismo, pero cambia cómo debería verse un valor delta "normal".</p></div>
+        <div class="metric-card"><h3>Eventos Totales</h3><p>Cuántos eventos discretos de la rueda se dispararon durante la prueba. Compáralo con las veces que giraste físicamente la rueda — una gran diferencia sugiere doble disparo o entrada perdida.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>Cuándo importa realmente una rueda sana</h2>
+      <p class="lede">Es una pieza pequeña del ratón, pero está debajo de muchas tareas cotidianas.</p>
+      <table class="use-table">
+        <tr><th>Tarea</th><th>Qué le hace una rueda defectuosa</th></tr>
+        <tr><td>Leer páginas largas o PDFs</td><td>Te obliga a arrastrar la barra de scroll manualmente en cada página, lo que es más lento y rompe tu ritmo de lectura.</td></tr>
+        <tr><td>Hojas de cálculo</td><td>Una rueda que salta filas de forma impredecible facilita leer mal o sobrescribir la celda equivocada.</td></tr>
+        <tr><td>Revisión de código y logs</td><td>Líneas saltadas o duplicadas durante el scroll dificultan encontrar la línea exacta que buscabas.</td></tr>
+        <tr><td>Herramientas de diseño y foto</td><td>Muchas apps vinculan la rueda al zoom — una entrada errática significa niveles de zoom erráticos mientras revisas el detalle.</td></tr>
+        <tr><td>Videojuegos</td><td>El cambio de arma u objeto vinculado a la rueda se vuelve poco fiable, algo que importa más en momentos rápidos o competitivos.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq">
+        <details open>
+          <summary>¿Por qué no se actualiza el panel mientras hago scroll?</summary>
+          <p>La herramienta solo registra eventos de la rueda después de pulsar "Iniciar Test" (o hacer clic dentro del recuadro una vez activo). Desplazarte antes de iniciar, o fuera del recuadro, no se registrará.</p>
+        </details>
+        <details>
+          <summary>Mi rueda funciona bien casi siempre — ¿por qué marcó un evento inverso?</summary>
+          <p>Un solo evento marcado normalmente no es motivo de alarma. El polvo, un roce ligero o un golpe accidental pueden registrarse como un tic inverso aislado. Lo que importa más es si los eventos inversos siguen apareciendo en varias pruebas.</p>
+        </details>
+        <details>
+          <summary>¿Funciona con un trackpad en vez de una rueda de ratón?</summary>
+          <p>Los trackpads y las ruedas de "scroll infinito" envían un flujo continuo de valores pequeños en vez de clics discretos, así que el total de scroll vertical seguirá moviéndose, pero la detección de picos inversos está ajustada para ruedas mecánicas con muescas.</p>
+        </details>
+        <details>
+          <summary>¿Qué debo hacer si la rueda sigue marcando fallo?</summary>
+          <p>Empieza por lo fácil: cambia la pila si es inalámbrico, y limpia alrededor de la rueda con un poco de aire comprimido. Si sigue fallando después, es probable que el encoder bajo la rueda esté desgastado.</p>
+        </details>
+        <details>
+          <summary>¿Se envían mis datos de scroll a algún sitio?</summary>
+          <p>No. Todo en esta página se ejecuta localmente en tu navegador usando las APIs estándar de eventos de rueda — nada de tu sesión de prueba se transmite ni se guarda en un servidor.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="siteFooter" data-lang="es" data-base="../"></footer>
+
+<script src="../js/site.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/langswitch.js"></script>
+<script src="../js/footer.js"></script>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const stageTimer = document.getElementById('stageTimer');
+  const startBtn = document.getElementById('startBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const pills = document.querySelectorAll('.duration-pill');
+  let duration = 30, timeLeft = 30, running = false, timerId = null, speedId = null;
+  let events = [], eventsThisSecond = 0, lastDY = 0, vertical = 0, horizontal = 0;
+  let maxDY = 0, minDY = 0, deltaMode = null, reverseCount = 0, lastSign = 0;
+
+  pills.forEach(p => p.addEventListener('click', () => {
+    if (running) return;
+    pills.forEach(x => x.classList.remove('active'));
+    p.classList.add('active');
+    duration = parseInt(p.dataset.secs, 10);
+    timeLeft = duration;
+    stageTimer.textContent = timeLeft;
+  }));
+
+  function reset(){
+    running = false;
+    clearInterval(timerId); clearInterval(speedId);
+    timeLeft = duration;
+    events = []; eventsThisSecond = 0; lastDY = 0; vertical = 0; horizontal = 0;
+    maxDY = 0; minDY = 0; deltaMode = null; reverseCount = 0; lastSign = 0;
+    stage.classList.remove('active');
+    stageTimer.textContent = timeLeft;
+    document.getElementById('verdict').style.display = 'none';
+    updateReadouts();
+  }
+
+  function start(){
+    reset();
+    running = true;
+    stage.classList.add('active');
+    timerId = setInterval(() => {
+      timeLeft--;
+      stageTimer.textContent = timeLeft;
+      if (timeLeft <= 0) finish();
+    }, 1000);
+    speedId = setInterval(() => {
+      document.getElementById('rSpeed').textContent = eventsThisSecond + '/s';
+      eventsThisSecond = 0;
+    }, 1000);
+  }
+
+  function finish(){
+    running = false;
+    clearInterval(timerId); clearInterval(speedId);
+    stage.classList.remove('active');
+    const total = events.length;
+    const ratio = total ? reverseCount / total : 0;
+    const v = document.getElementById('verdict');
+    const tag = document.getElementById('verdictTag');
+    const title = document.getElementById('verdictTitle');
+    const body = document.getElementById('verdictBody');
+    v.style.display = 'block';
+    if (total === 0){
+      tag.className = 'tag warn'; tag.textContent = 'Sin Datos';
+      title.textContent = 'No se recogieron datos de scroll';
+      body.textContent = 'El test terminó sin eventos de rueda. Asegúrate de desplazarte dentro del recuadro mientras la prueba estaba activa.';
+    } else if (ratio === 0){
+      tag.className = 'tag good'; tag.textContent = 'Normal';
+      title.textContent = 'La entrada de la rueda parece estable';
+      body.textContent = `No se encontraron picos de dirección inversa en ${total} eventos. Esta sesión se ve saludable.`;
+    } else if (ratio < 0.03){
+      tag.className = 'tag warn'; tag.textContent = 'Ruido Menor';
+      title.textContent = 'Se detectó un pequeño número de tics inversos';
+      body.textContent = `${reverseCount} de ${total} eventos se dispararon en dirección opuesta a tu scroll. Puede ser polvo o un golpe accidental — prueba otra vez para confirmar.`;
+    } else {
+      tag.className = 'tag bad'; tag.textContent = 'Posible Fallo';
+      title.textContent = 'Se detectaron tics inversos frecuentes';
+      body.textContent = `${reverseCount} de ${total} eventos (${Math.round(ratio*100)}%) se dispararon en dirección opuesta a tu scroll. Este patrón es consistente con un encoder de rueda desgastado o sucio.`;
+    }
+  }
+
+  function updateReadouts(){
+    document.getElementById('rDuration').textContent = (duration - timeLeft) + 's';
+    document.getElementById('rLastDY').textContent = lastDY.toFixed(0);
+    document.getElementById('rVert').textContent = vertical.toFixed(0);
+    document.getElementById('rMax').textContent = maxDY.toFixed(0);
+    document.getElementById('rMin').textContent = minDY.toFixed(0);
+    document.getElementById('rMode').textContent = deltaMode === null ? '–' : ['Píxel','Línea','Página'][deltaMode] || deltaMode;
+    document.getElementById('rEvents').textContent = events.length;
+  }
+
+  stage.addEventListener('wheel', (e) => {
+    if (!running) return;
+    e.preventDefault();
+    const dy = e.deltaY;
+    const sign = Math.sign(dy);
+    events.push(dy);
+    eventsThisSecond++;
+    lastDY = dy;
+    vertical += dy;
+    horizontal += e.deltaX;
+    deltaMode = e.deltaMode;
+    if (dy > maxDY) maxDY = dy;
+    if (dy < minDY) minDY = dy;
+    if (lastSign !== 0 && sign !== 0 && sign !== lastSign) reverseCount++;
+    if (sign !== 0) lastSign = sign;
+    updateReadouts();
+  }, { passive:false });
+
+  stage.addEventListener('dblclick', () => { running ? finish() : start(); });
+  startBtn.addEventListener('click', () => { if(!running) start(); });
+  resetBtn.addEventListener('click', reset);
+
+  stageTimer.textContent = timeLeft;
+
+  (function(){
+    const canvas = document.getElementById('waveCanvas');
+    const ctx = canvas.getContext('2d');
+    const N = 160;
+    const buffer = new Array(N).fill(0);
+    let currentVal = 0;
+    let t = 0;
+    const MAX_RANGE = 120;
+
+    function resizeCanvas(){
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.round(rect.width * dpr);
+      canvas.height = Math.round(160 * dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    stage.addEventListener('wheel', (e) => {
+      const dy = Math.max(-MAX_RANGE, Math.min(MAX_RANGE, e.deltaY));
+      currentVal = dy;
+    }, { passive:true });
+
+    function drawFrame(){
+      t += 0.05;
+      currentVal *= 0.88;
+      const idle = Math.sin(t) * 3 + Math.sin(t*0.37) * 2;
+      const sample = currentVal + idle;
+
+      buffer.push(sample);
+      buffer.shift();
+
+      const w = canvas.getBoundingClientRect().width;
+      const h = 160;
+      const mid = h / 2;
+      ctx.clearRect(0, 0, w, h);
+
+      ctx.strokeStyle = 'rgba(124,244,203,0.08)';
+      ctx.lineWidth = 1;
+      for (let gy = 0; gy <= 4; gy++){
+        const y = (h / 4) * gy;
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+      }
+      ctx.strokeStyle = 'rgba(124,244,203,0.18)';
+      ctx.beginPath(); ctx.moveTo(0, mid); ctx.lineTo(w, mid); ctx.stroke();
+
+      const stepX = w / (N - 1);
+      const pts = buffer.map((v, i) => {
+        const y = mid - (v / MAX_RANGE) * (mid - 14);
+        return [i * stepX, Math.max(6, Math.min(h - 6, y))];
+      });
+
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0], mid);
+      ctx.lineTo(pts[0][0], pts[0][1]);
+      for (let i = 1; i < pts.length - 1; i++){
+        const xc = (pts[i][0] + pts[i+1][0]) / 2;
+        const yc = (pts[i][1] + pts[i+1][1]) / 2;
+        ctx.quadraticCurveTo(pts[i][0], pts[i][1], xc, yc);
+      }
+      ctx.lineTo(pts[pts.length-1][0], mid);
+      ctx.closePath();
+      const grad = ctx.createLinearGradient(0, 0, 0, h);
+      grad.addColorStop(0, 'rgba(124,244,203,0.22)');
+      grad.addColorStop(1, 'rgba(124,244,203,0.0)');
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0], pts[0][1]);
+      for (let i = 1; i < pts.length - 1; i++){
+        const xc = (pts[i][0] + pts[i+1][0]) / 2;
+        const yc = (pts[i][1] + pts[i+1][1]) / 2;
+        ctx.quadraticCurveTo(pts[i][0], pts[i][1], xc, yc);
+      }
+      ctx.strokeStyle = '#7CF4CB';
+      ctx.lineWidth = 2;
+      ctx.shadowColor = 'rgba(124,244,203,0.9)';
+      ctx.shadowBlur = 8;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      requestAnimationFrame(drawFrame);
+    }
+    requestAnimationFrame(drawFrame);
+  })();
+})();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Test de Scroll",
+      "url": "https://scrolltester.studio/es/index.html",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (runs in browser)",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Test de rueda de scroll gratis online. Desplázate en una dirección para medir la velocidad de la rueda, detectar saltos de scroll inverso y obtener un informe de diagnóstico instantáneo."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "¿Por qué no se actualiza el panel mientras hago scroll?", "acceptedAnswer": { "@type": "Answer", "text": "La herramienta solo registra eventos de la rueda después de pulsar \"Iniciar Test\". Desplazarte antes de iniciar, o fuera del recuadro, no se registrará." } },
+        { "@type": "Question", "name": "Mi rueda funciona bien casi siempre — ¿por qué marcó un evento inverso?", "acceptedAnswer": { "@type": "Answer", "text": "Un solo evento marcado normalmente no es motivo de alarma. Lo que importa más es si los eventos inversos siguen apareciendo en varias pruebas." } },
+        { "@type": "Question", "name": "¿Funciona con un trackpad en vez de una rueda de ratón?", "acceptedAnswer": { "@type": "Answer", "text": "Los trackpads envían un flujo continuo de valores pequeños en vez de clics discretos, así que la detección de picos inversos está ajustada para ruedas mecánicas con muescas." } },
+        { "@type": "Question", "name": "¿Qué debo hacer si la rueda sigue marcando fallo?", "acceptedAnswer": { "@type": "Answer", "text": "Empieza por cambiar la pila si es inalámbrico y limpiar alrededor de la rueda con aire comprimido. Si sigue fallando, el encoder bajo la rueda probablemente esté desgastado." } },
+        { "@type": "Question", "name": "¿Se envían mis datos de scroll a algún sitio?", "acceptedAnswer": { "@type": "Answer", "text": "No. Todo se ejecuta localmente en tu navegador — nada de tu sesión se transmite ni se guarda en un servidor." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

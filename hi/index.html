@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>स्क्रॉल टेस्ट — अपने माउस व्हील की जांच करें | ScrollTester.studio</title>
+<meta name="description" content="मुफ़्त ऑनलाइन स्क्रॉल व्हील टेस्ट। एक दिशा में स्क्रॉल करें और अपने माउस व्हील की स्पीड, उलटी हरकतें (रिवर्स जंप) पता करें, और तुरंत डायग्नोस्टिक रिपोर्ट पाएं।">
+<link rel="canonical" href="https://scrolltester.studio/hi/index.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ScrollTester.studio">
+<meta property="og:title" content="स्क्रॉल टेस्ट — अपने माउस व्हील की जांच करें | ScrollTester.studio">
+<meta property="og:description" content="मुफ़्त ऑनलाइन स्क्रॉल व्हील टेस्ट। स्पीड मापें, रिवर्स जंप पकड़ें, तुरंत डायग्नोस्टिक रिपोर्ट पाएं।">
+<meta property="og:url" content="https://scrolltester.studio/hi/index.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="स्क्रॉल टेस्ट — अपने माउस व्हील की जांच करें | ScrollTester.studio">
+<meta name="twitter:description" content="मुफ़्त ऑनलाइन स्क्रॉल व्हील टेस्ट, सीधे ब्राउज़र में।">
+<link rel="alternate" hreflang="en" href="https://scrolltester.studio/">
+<link rel="alternate" hreflang="es" href="https://scrolltester.studio/es/index.html">
+<link rel="alternate" hreflang="de" href="https://scrolltester.studio/de/index.html">
+<link rel="alternate" hreflang="fr" href="https://scrolltester.studio/fr/index.html">
+<link rel="alternate" hreflang="pt" href="https://scrolltester.studio/pt/index.html">
+<link rel="alternate" hreflang="zh" href="https://scrolltester.studio/zh/index.html">
+<link rel="alternate" hreflang="hi" href="https://scrolltester.studio/hi/index.html">
+<link rel="alternate" hreflang="ar" href="https://scrolltester.studio/ar/index.html">
+<link rel="alternate" hreflang="id" href="https://scrolltester.studio/id/index.html">
+<link rel="alternate" hreflang="x-default" href="https://scrolltester.studio/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>body{ font-family:'Noto Sans Devanagari','Inter',system-ui,sans-serif; }</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><span class="dot"></span>ScrollTester.studio</a>
+    <nav class="nav-links" id="navLinks" data-lang="hi" data-page="index"></nav>    <div id="langSwitchMount" data-lang="hi" data-page="index" data-base="../"></div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">माउस डायग्नोस्टिक्स</div>
+      <h1>स्क्रॉल टेस्ट — जानें आपके माउस व्हील में कोई खराबी तो नहीं</h1>
+      <p class="lede">नीचे दिए बॉक्स में एक ही दिशा में स्क्रॉल करें। हम हर व्हील मूवमेंट को लाइव रिकॉर्ड करेंगे और दो तरह की जांच करके बताएंगे कि आपका माउस व्हील सामान्य है या उसमें घिसावट के संकेत दिख रहे हैं।</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="tool-card">
+        <div class="tool-controls">
+          <span style="color:var(--muted); font-size:.85rem; margin-right:4px;">अवधि:</span>
+          <button class="duration-pill" data-secs="15">15s</button>
+          <button class="duration-pill active" data-secs="30">30s</button>
+          <button class="duration-pill" data-secs="60">60s</button>
+          <button class="duration-pill" data-secs="90">90s</button>
+          <button class="btn" id="startBtn" style="margin-left:auto;">टेस्ट शुरू करें</button>
+          <button class="btn secondary" id="resetBtn">रीसेट करें</button>
+        </div>
+
+        <div class="stage" id="stage" tabindex="0">
+          <div>
+            <div class="big" id="stageTimer">30</div>
+            <div class="stage-hint">"टेस्ट शुरू करें" पर क्लिक करें, फिर यहाँ एक ही दिशा में स्क्रॉल करें। बीच में दिशा बदलने से नतीजा कम सटीक हो जाता है।</div>
+          </div>
+        </div>
+
+        <div class="readout-panel">
+          <div class="readout"><div class="label">अवधि</div><div class="value" id="rDuration">0s</div></div>
+          <div class="readout"><div class="label">व्हील स्पीड</div><div class="value" id="rSpeed">0/s</div></div>
+          <div class="readout"><div class="label">आखिरी DeltaY</div><div class="value" id="rLastDY">0</div></div>
+          <div class="readout"><div class="label">वर्टिकल स्क्रॉल</div><div class="value" id="rVert">0</div></div>
+          <div class="readout"><div class="label">DeltaY अधिकतम</div><div class="value" id="rMax">0</div></div>
+          <div class="readout"><div class="label">DeltaY न्यूनतम</div><div class="value" id="rMin">0</div></div>
+          <div class="readout"><div class="label">डेल्टा मोड</div><div class="value" id="rMode">–</div></div>
+          <div class="readout"><div class="label">कुल इवेंट्स</div><div class="value" id="rEvents">0</div></div>
+        </div>
+
+        <div class="wave-panel">
+          <div class="wave-panel-head">
+            <span class="wave-title">व्हील सिग्नल — समय के साथ DeltaY</span>
+            <span class="wave-legend"><span class="dot-legend"></span>लाइव ट्रेस</span>
+          </div>
+          <canvas id="waveCanvas" height="160"></canvas>
+        </div>
+
+        <div class="verdict" id="verdict" style="display:none;">
+          <span class="tag good" id="verdictTag">सामान्य</span>
+          <h3 id="verdictTitle" style="margin:.2em 0;">व्हील इनपुट स्थिर लग रहा है</h3>
+          <p id="verdictBody" style="color:var(--muted); margin:0;"></p>
+        </div>
+      </div>
+
+      <div class="ad-slot">विज्ञापन</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>आपको ये टूल्स भी काम आ सकते हैं</h2>
+      <p class="lede">सभी टूल्स ब्राउज़र में तुरंत चलते हैं — न कोई इंस्टॉल, न कोई अकाउंट।</p>
+      <div class="tools-grid">
+        <a class="tool-link" href="../cps-test.html"><h3>CPS टेस्ट</h3><p>1, 5, 10, 30 और 60 सेकंड के मोड में अपनी क्लिक स्पीड (क्लिक्स प्रति सेकंड) मापें।</p></a>
+        <a class="tool-link" href="../mouse-test.html"><h3>माउस टेस्ट</h3><p>लेफ्ट, राइट, मिडिल और साइड बटन के साथ व्हील क्लिक भी एक ही पैनल में जांचें।</p></a>
+        <a class="tool-link" href="../keyboard-test.html"><h3>कीबोर्ड टेस्ट</h3><p>जांचें कि आपके कीबोर्ड की हर की (key) ब्राउज़र में सही तरीके से डिटेक्ट हो रही है या नहीं।</p></a>
+        <a class="tool-link" href="../reaction-time-test.html"><h3>रिएक्शन टाइम टेस्ट</h3><p>किसी विज़ुअल संकेत पर आपकी प्रतिक्रिया कितनी तेज़ है, मिलीसेकंड में मापें।</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>स्क्रॉल टेस्ट कैसे काम करता है</h2>
+      <p class="lede">तीन आसान स्टेप, कोई डाउनलोड नहीं, नतीजा सेकंडों में।</p>
+      <div class="steps">
+        <div class="step"><div class="num">01</div><h3>अवधि चुनें</h3><p>15 से 90 सेकंड के बीच चुनें। जितना लंबा टेस्ट चलेगा, एल्गोरिदम को उतने ही ज़्यादा सैंपल मिलेंगे — जिससे अंतिम नतीजा और भरोसेमंद बनता है।</p></div>
+        <div class="step"><div class="num">02</div><h3>एक ही दिशा में स्क्रॉल करें</h3><p>बॉक्स के अंदर स्क्रॉलिंग को एक ही दिशा में रखें। बीच में दिशा बदलना शोर (noise) माना जाता है और असली खराबी को छुपा सकता है।</p></div>
+        <div class="step"><div class="num">03</div><h3>रिपोर्ट पढ़ें</h3><p>टाइमर खत्म होते ही आपको आसान भाषा में नतीजा मिलेगा, साथ ही नीचे रॉ डेटा भी दिया जाएगा ताकि आप खुद जाँच सकें।</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>पैनल के आंकड़ों का मतलब</h2>
+      <p class="lede">रीडआउट पैनल का हर आंकड़ा आपके व्हील के व्यवहार के बारे में कुछ ठोस बताता है — असल में देखना क्या है, यह समझिए।</p>
+      <div class="metric-grid">
+        <div class="metric-card"><h3>व्हील स्पीड</h3><p>पिछले एक सेकंड में आपके ब्राउज़र को कितने स्क्रॉल इवेंट मिले। बार-बार जीरो पर गिरने वाला आंकड़ा आमतौर पर बताता है कि व्हील स्टेप्स को सही से नहीं पढ़ पा रहा और स्किप कर रहा है।</p></div>
+        <div class="metric-card"><h3>आखिरी DeltaY</h3><p>ब्राउज़र द्वारा रिपोर्ट किया गया सबसे हालिया वर्टिकल स्क्रॉल मान। एक साफ, एक-दिशा वाले टेस्ट में इस नंबर का साइन (+ या −) कभी नहीं बदलना चाहिए।</p></div>
+        <div class="metric-card"><h3>वर्टिकल स्क्रॉल</h3><p>इस सेशन में कुल वर्टिकल मूवमेंट। यह लगातार बढ़ना चाहिए; अगर लगातार स्क्रॉल करने के बावजूद यह मुश्किल से बढ़े, तो इसका मतलब व्हील खुद को आंशिक रूप से कैंसिल कर रहा है।</p></div>
+        <div class="metric-card"><h3>DeltaY अधिकतम / न्यूनतम</h3><p>हर दिशा में देखा गया सबसे तेज़ "टिक"। अगर आप सिर्फ नीचे स्क्रॉल कर रहे हैं फिर भी न्यूनतम मान बढ़ता जाए, तो व्हील अनचाही उलटी टिक्स भेज रहा है।</p></div>
+        <div class="metric-card"><h3>डेल्टा मोड</h3><p>बताता है कि ब्राउज़र पिक्सल, लाइन या पेज में माप रहा है। यह खुद खराबी का संकेत नहीं है, लेकिन यह तय करता है कि "सामान्य" डेल्टा मान कितना बड़ा दिखना चाहिए।</p></div>
+        <div class="metric-card"><h3>कुल इवेंट्स</h3><p>टेस्ट के दौरान कुल कितने अलग-अलग व्हील इवेंट फायर हुए। इसकी तुलना करें कि आपने असल में व्हील कितनी बार घुमाया — बड़ा अंतर डबल-फायरिंग या मिस्ड इनपुट की तरफ इशारा करता है।</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>सही माउस व्हील असल में कब मायने रखता है</h2>
+      <p class="lede">यह माउस का एक छोटा-सा पुर्ज़ा है, पर रोज़मर्रा के कई कामों की नींव यही है।</p>
+      <table class="use-table">
+        <tr><th>काम</th><th>खराब व्हील से क्या दिक्कत होती है</th></tr>
+        <tr><td>लंबे पेज या PDF पढ़ना</td><td>हर बार स्क्रॉलबार को हाथ से खींचना पड़ता है, जो धीमा है और पढ़ने की लय तोड़ देता है।</td></tr>
+        <tr><td>स्प्रेडशीट</td><td>अगर व्हील अनियमित तरीके से रो (row) छोड़ता है, तो गलत सेल पढ़ने या ओवरराइट होने का खतरा बढ़ जाता है।</td></tr>
+        <tr><td>कोड और लॉग रिव्यू</td><td>स्क्रॉल के दौरान लाइनें छूट जाना या दोबारा आना, सही लाइन ढूंढना मुश्किल बना देता है।</td></tr>
+        <tr><td>डिज़ाइन और फोटो टूल्स</td><td>कई ऐप्स व्हील को ज़ूम से जोड़ते हैं — अस्थिर इनपुट का मतलब है बारीक डिटेल देखते वक्त अस्थिर ज़ूम।</td></tr>
+        <tr><td>गेमिंग</td><td>व्हील से जुड़ा वेपन या आइटम स्विच अविश्वसनीय हो जाता है, जो तेज़ या कॉम्पिटिटिव पलों में सबसे ज़्यादा मायने रखता है।</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>अक्सर पूछे जाने वाले सवाल</h2>
+      <div class="faq">
+        <details open>
+          <summary>स्क्रॉल करते समय पैनल अपडेट क्यों नहीं हो रहा?</summary>
+          <p>यह टूल तभी व्हील इवेंट रिकॉर्ड करता है जब आप "टेस्ट शुरू करें" दबाते हैं (या एक्टिव बॉक्स में क्लिक करते हैं)। टेस्ट शुरू होने से पहले या बॉक्स के बाहर स्क्रॉल करना रिकॉर्ड नहीं होगा।</p>
+        </details>
+        <details>
+          <summary>मेरा व्हील ज़्यादातर ठीक चलता है — फिर रिवर्स इवेंट क्यों दिखा?</summary>
+          <p>अकेला एक इवेंट आमतौर पर चिंता की बात नहीं है। धूल, हल्का-सा छूना, या गलती से हाथ लग जाना भी एक अलग-थलग रिवर्स टिक की तरह दर्ज हो सकता है। असली बात यह है कि क्या रिवर्स इवेंट बार-बार, कई टेस्ट में दिखते रहते हैं।</p>
+        </details>
+        <details>
+          <summary>क्या यह टचपैड पर भी काम करता है?</summary>
+          <p>टचपैड और "इनफिनिट स्क्रॉल" वाले व्हील अलग-अलग क्लिक्स की जगह छोटे-छोटे मानों की लगातार धारा भेजते हैं, तो वर्टिकल स्क्रॉल टोटल तो बढ़ता रहेगा, लेकिन रिवर्स-स्पाइक डिटेक्शन मैकेनिकल, नॉच वाले व्हील्स के लिए बनाया गया है।</p>
+        </details>
+        <details>
+          <summary>अगर व्हील बार-बार खराब दिखे तो क्या करें?</summary>
+          <p>पहले आसान चीज़ें आज़माएं: अगर वायरलेस है तो बैटरी बदलें, और व्हील के आसपास थोड़ी कंप्रेस्ड एयर से सफाई करें। इसके बाद भी दिक्कत रहे तो व्हील के नीचे का एनकोडर घिस चुका होगा।</p>
+        </details>
+        <details>
+          <summary>क्या मेरा स्क्रॉल डेटा कहीं भेजा जाता है?</summary>
+          <p>नहीं। इस पेज पर सब कुछ आपके ब्राउज़र में लोकली, स्टैंडर्ड व्हील-इवेंट API की मदद से चलता है — आपके टेस्ट सेशन का कोई डेटा कहीं भेजा या सेव नहीं होता।</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="siteFooter" data-lang="hi" data-base="../"></footer>
+
+<script src="../js/site.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/langswitch.js"></script>
+<script src="../js/footer.js"></script>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const stageTimer = document.getElementById('stageTimer');
+  const startBtn = document.getElementById('startBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const pills = document.querySelectorAll('.duration-pill');
+  let duration = 30, timeLeft = 30, running = false, timerId = null, speedId = null;
+  let events = [], eventsThisSecond = 0, lastDY = 0, vertical = 0, horizontal = 0;
+  let maxDY = 0, minDY = 0, deltaMode = null, reverseCount = 0, lastSign = 0;
+
+  pills.forEach(p => p.addEventListener('click', () => {
+    if (running) return;
+    pills.forEach(x => x.classList.remove('active'));
+    p.classList.add('active');
+    duration = parseInt(p.dataset.secs, 10);
+    timeLeft = duration;
+    stageTimer.textContent = timeLeft;
+  }));
+
+  function reset(){
+    running = false;
+    clearInterval(timerId); clearInterval(speedId);
+    timeLeft = duration;
+    events = []; eventsThisSecond = 0; lastDY = 0; vertical = 0; horizontal = 0;
+    maxDY = 0; minDY = 0; deltaMode = null; reverseCount = 0; lastSign = 0;
+    stage.classList.remove('active');
+    stageTimer.textContent = timeLeft;
+    document.getElementById('verdict').style.display = 'none';
+    updateReadouts();
+  }
+
+  function start(){
+    reset();
+    running = true;
+    stage.classList.add('active');
+    timerId = setInterval(() => {
+      timeLeft--;
+      stageTimer.textContent = timeLeft;
+      if (timeLeft <= 0) finish();
+    }, 1000);
+    speedId = setInterval(() => {
+      document.getElementById('rSpeed').textContent = eventsThisSecond + '/s';
+      eventsThisSecond = 0;
+    }, 1000);
+  }
+
+  function finish(){
+    running = false;
+    clearInterval(timerId); clearInterval(speedId);
+    stage.classList.remove('active');
+    const total = events.length;
+    const ratio = total ? reverseCount / total : 0;
+    const v = document.getElementById('verdict');
+    const tag = document.getElementById('verdictTag');
+    const title = document.getElementById('verdictTitle');
+    const body = document.getElementById('verdictBody');
+    v.style.display = 'block';
+    if (total === 0){
+      tag.className = 'tag warn'; tag.textContent = 'डेटा नहीं मिला';
+      title.textContent = 'कोई स्क्रॉल डेटा रिकॉर्ड नहीं हुआ';
+      body.textContent = 'टेस्ट बिना किसी व्हील इवेंट के खत्म हो गया। ध्यान दें कि टेस्ट चलने के दौरान बॉक्स के अंदर ही स्क्रॉल करें।';
+    } else if (ratio === 0){
+      tag.className = 'tag good'; tag.textContent = 'सामान्य';
+      title.textContent = 'व्हील इनपुट स्थिर लग रहा है';
+      body.textContent = `${total} इवेंट्स में कोई रिवर्स-डायरेक्शन स्पाइक नहीं मिला। यह सेशन स्वस्थ दिख रहा है।`;
+    } else if (ratio < 0.03){
+      tag.className = 'tag warn'; tag.textContent = 'हल्का शोर';
+      title.textContent = 'कुछ रिवर्स टिक्स मिले';
+      body.textContent = `${total} में से ${reverseCount} इवेंट्स आपकी स्क्रॉल दिशा के उलट दर्ज हुए। यह धूल या गलती से छू जाना हो सकता है — पुष्टि के लिए दोबारा टेस्ट करें।`;
+    } else {
+      tag.className = 'tag bad'; tag.textContent = 'संभावित खराबी';
+      title.textContent = 'बार-बार रिवर्स टिक्स मिले';
+      body.textContent = `${total} में से ${reverseCount} इवेंट्स (${Math.round(ratio*100)}%) आपकी स्क्रॉल दिशा के उलट दर्ज हुए। यह पैटर्न घिसे हुए या गंदे व्हील एनकोडर की तरफ इशारा करता है।`;
+    }
+  }
+
+  function updateReadouts(){
+    document.getElementById('rDuration').textContent = (duration - timeLeft) + 's';
+    document.getElementById('rLastDY').textContent = lastDY.toFixed(0);
+    document.getElementById('rVert').textContent = vertical.toFixed(0);
+    document.getElementById('rMax').textContent = maxDY.toFixed(0);
+    document.getElementById('rMin').textContent = minDY.toFixed(0);
+    document.getElementById('rMode').textContent = deltaMode === null ? '–' : ['पिक्सल','लाइन','पेज'][deltaMode] || deltaMode;
+    document.getElementById('rEvents').textContent = events.length;
+  }
+
+  stage.addEventListener('wheel', (e) => {
+    if (!running) return;
+    e.preventDefault();
+    const dy = e.deltaY;
+    const sign = Math.sign(dy);
+    events.push(dy);
+    eventsThisSecond++;
+    lastDY = dy;
+    vertical += dy;
+    horizontal += e.deltaX;
+    deltaMode = e.deltaMode;
+    if (dy > maxDY) maxDY = dy;
+    if (dy < minDY) minDY = dy;
+    if (lastSign !== 0 && sign !== 0 && sign !== lastSign) reverseCount++;
+    if (sign !== 0) lastSign = sign;
+    updateReadouts();
+  }, { passive:false });
+
+  stage.addEventListener('dblclick', () => { running ? finish() : start(); });
+  startBtn.addEventListener('click', () => { if(!running) start(); });
+  resetBtn.addEventListener('click', reset);
+
+  stageTimer.textContent = timeLeft;
+
+  (function(){
+    const canvas = document.getElementById('waveCanvas');
+    const ctx = canvas.getContext('2d');
+    const N = 160;
+    const buffer = new Array(N).fill(0);
+    let currentVal = 0;
+    let t = 0;
+    const MAX_RANGE = 120;
+
+    function resizeCanvas(){
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.round(rect.width * dpr);
+      canvas.height = Math.round(160 * dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    stage.addEventListener('wheel', (e) => {
+      const dy = Math.max(-MAX_RANGE, Math.min(MAX_RANGE, e.deltaY));
+      currentVal = dy;
+    }, { passive:true });
+
+    function drawFrame(){
+      t += 0.05;
+      currentVal *= 0.88;
+      const idle = Math.sin(t) * 3 + Math.sin(t*0.37) * 2;
+      const sample = currentVal + idle;
+
+      buffer.push(sample);
+      buffer.shift();
+
+      const w = canvas.getBoundingClientRect().width;
+      const h = 160;
+      const mid = h / 2;
+      ctx.clearRect(0, 0, w, h);
+
+      ctx.strokeStyle = 'rgba(124,244,203,0.08)';
+      ctx.lineWidth = 1;
+      for (let gy = 0; gy <= 4; gy++){
+        const y = (h / 4) * gy;
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+      }
+      ctx.strokeStyle = 'rgba(124,244,203,0.18)';
+      ctx.beginPath(); ctx.moveTo(0, mid); ctx.lineTo(w, mid); ctx.stroke();
+
+      const stepX = w / (N - 1);
+      const pts = buffer.map((v, i) => {
+        const y = mid - (v / MAX_RANGE) * (mid - 14);
+        return [i * stepX, Math.max(6, Math.min(h - 6, y))];
+      });
+
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0], mid);
+      ctx.lineTo(pts[0][0], pts[0][1]);
+      for (let i = 1; i < pts.length - 1; i++){
+        const xc = (pts[i][0] + pts[i+1][0]) / 2;
+        const yc = (pts[i][1] + pts[i+1][1]) / 2;
+        ctx.quadraticCurveTo(pts[i][0], pts[i][1], xc, yc);
+      }
+      ctx.lineTo(pts[pts.length-1][0], mid);
+      ctx.closePath();
+      const grad = ctx.createLinearGradient(0, 0, 0, h);
+      grad.addColorStop(0, 'rgba(124,244,203,0.22)');
+      grad.addColorStop(1, 'rgba(124,244,203,0.0)');
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0], pts[0][1]);
+      for (let i = 1; i < pts.length - 1; i++){
+        const xc = (pts[i][0] + pts[i+1][0]) / 2;
+        const yc = (pts[i][1] + pts[i+1][1]) / 2;
+        ctx.quadraticCurveTo(pts[i][0], pts[i][1], xc, yc);
+      }
+      ctx.strokeStyle = '#7CF4CB';
+      ctx.lineWidth = 2;
+      ctx.shadowColor = 'rgba(124,244,203,0.9)';
+      ctx.shadowBlur = 8;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      requestAnimationFrame(drawFrame);
+    }
+    requestAnimationFrame(drawFrame);
+  })();
+})();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "स्क्रॉल टेस्ट",
+      "url": "https://scrolltester.studio/hi/index.html",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (runs in browser)",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "मुफ़्त ऑनलाइन स्क्रॉल व्हील टेस्ट। स्पीड मापें, रिवर्स जंप पकड़ें, तुरंत डायग्नोस्टिक रिपोर्ट पाएं।"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "स्क्रॉल करते समय पैनल अपडेट क्यों नहीं हो रहा?", "acceptedAnswer": { "@type": "Answer", "text": "यह टूल तभी व्हील इवेंट रिकॉर्ड करता है जब आप \"टेस्ट शुरू करें\" दबाते हैं। शुरू होने से पहले या बॉक्स के बाहर स्क्रॉल करना रिकॉर्ड नहीं होगा।" } },
+        { "@type": "Question", "name": "मेरा व्हील ज़्यादातर ठीक चलता है — फिर रिवर्स इवेंट क्यों दिखा?", "acceptedAnswer": { "@type": "Answer", "text": "अकेला एक इवेंट आमतौर पर चिंता की बात नहीं है। असली बात यह है कि क्या रिवर्स इवेंट बार-बार दिखते रहते हैं।" } },
+        { "@type": "Question", "name": "क्या यह टचपैड पर भी काम करता है?", "acceptedAnswer": { "@type": "Answer", "text": "टचपैड छोटे मानों की लगातार धारा भेजते हैं, इसलिए रिवर्स-स्पाइक डिटेक्शन मैकेनिकल, नॉच वाले व्हील्स के लिए बनाया गया है।" } },
+        { "@type": "Question", "name": "अगर व्हील बार-बार खराब दिखे तो क्या करें?", "acceptedAnswer": { "@type": "Answer", "text": "पहले बैटरी बदलें (वायरलेस माउस में) और कंप्रेस्ड एयर से सफाई करें। इसके बाद भी दिक्कत रहे तो एनकोडर घिस चुका हो सकता है।" } },
+        { "@type": "Question", "name": "क्या मेरा स्क्रॉल डेटा कहीं भेजा जाता है?", "acceptedAnswer": { "@type": "Answer", "text": "नहीं। सब कुछ आपके ब्राउज़र में लोकली चलता है — कोई डेटा भेजा या सेव नहीं होता।" } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

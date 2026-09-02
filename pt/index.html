@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teste de Rolagem — Verifique a Roda do seu Mouse Online | ScrollTester.studio</title>
+<meta name="description" content="Teste gratuito de roda de rolagem online. Role em uma direção para medir a velocidade da roda, detectar saltos reversos e obter um relatório de diagnóstico instantâneo.">
+<link rel="canonical" href="https://scrolltester.studio/pt/index.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ScrollTester.studio">
+<meta property="og:title" content="Teste de Rolagem — Verifique a Roda do seu Mouse Online | ScrollTester.studio">
+<meta property="og:description" content="Teste de roda de rolagem gratuito. Meça a velocidade, detecte saltos reversos, obtenha um diagnóstico instantâneo.">
+<meta property="og:url" content="https://scrolltester.studio/pt/index.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Teste de Rolagem — Verifique a Roda do seu Mouse Online | ScrollTester.studio">
+<meta name="twitter:description" content="Teste de roda de rolagem gratuito, direto no navegador.">
+<link rel="alternate" hreflang="en" href="https://scrolltester.studio/">
+<link rel="alternate" hreflang="es" href="https://scrolltester.studio/es/index.html">
+<link rel="alternate" hreflang="fr" href="https://scrolltester.studio/fr/index.html">
+<link rel="alternate" hreflang="de" href="https://scrolltester.studio/de/index.html">
+<link rel="alternate" hreflang="pt" href="https://scrolltester.studio/pt/index.html">
+<link rel="alternate" hreflang="zh" href="https://scrolltester.studio/zh/index.html">
+<link rel="alternate" hreflang="hi" href="https://scrolltester.studio/hi/index.html">
+<link rel="alternate" hreflang="ar" href="https://scrolltester.studio/ar/index.html">
+<link rel="alternate" hreflang="id" href="https://scrolltester.studio/id/index.html">
+<link rel="alternate" hreflang="x-default" href="https://scrolltester.studio/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><span class="dot"></span>ScrollTester.studio</a>
+    <nav class="nav-links" id="navLinks" data-lang="pt" data-page="index"></nav>
+    <div id="langSwitchMount" data-lang="pt" data-page="index" data-base="../"></div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Diagnóstico de Mouse</div>
+      <h1>Teste de Rolagem — a roda do seu mouse está com saltos reversos?</h1>
+      <p class="lede">Role em uma única direção dentro da caixa abaixo. Vamos registrar cada movimento da roda ao vivo e rodar duas passagens de detecção para dizer se a roda do seu mouse está funcionando normalmente ou mostrando sinais de desgaste.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="tool-card">
+        <div class="tool-controls">
+          <span style="color:var(--muted); font-size:.85rem; margin-right:4px;">Duração:</span>
+          <button class="duration-pill" data-secs="15">15s</button>
+          <button class="duration-pill active" data-secs="30">30s</button>
+          <button class="duration-pill" data-secs="60">60s</button>
+          <button class="duration-pill" data-secs="90">90s</button>
+          <button class="btn" id="startBtn" style="margin-left:auto;">Iniciar Teste</button>
+          <button class="btn secondary" id="resetBtn">Reiniciar</button>
+        </div>
+
+        <div class="stage" id="stage" tabindex="0">
+          <div>
+            <div class="big" id="stageTimer">30</div>
+            <div class="stage-hint">Clique em "Iniciar Teste" e depois role aqui em uma única direção. Trocar de direção durante o teste reduz a precisão.</div>
+          </div>
+        </div>
+
+        <div class="readout-panel">
+          <div class="readout"><div class="label">Duração</div><div class="value" id="rDuration">0s</div></div>
+          <div class="readout"><div class="label">Velocidade da Roda</div><div class="value" id="rSpeed">0/s</div></div>
+          <div class="readout"><div class="label">Último DeltaY</div><div class="value" id="rLastDY">0</div></div>
+          <div class="readout"><div class="label">Rolagem Vertical</div><div class="value" id="rVert">0</div></div>
+          <div class="readout"><div class="label">DeltaY Máx</div><div class="value" id="rMax">0</div></div>
+          <div class="readout"><div class="label">DeltaY Mín</div><div class="value" id="rMin">0</div></div>
+          <div class="readout"><div class="label">Modo Delta</div><div class="value" id="rMode">–</div></div>
+          <div class="readout"><div class="label">Eventos Totais</div><div class="value" id="rEvents">0</div></div>
+        </div>
+
+        <div class="wave-panel">
+          <div class="wave-panel-head">
+            <span class="wave-title">Sinal da Roda — DeltaY ao longo do tempo</span>
+            <span class="wave-legend"><span class="dot-legend"></span>rastro ao vivo</span>
+          </div>
+          <canvas id="waveCanvas" height="160"></canvas>
+        </div>
+
+        <div class="verdict" id="verdict" style="display:none;">
+          <span class="tag good" id="verdictTag">Normal</span>
+          <h3 id="verdictTitle" style="margin:.2em 0;">A entrada da roda parece estável</h3>
+          <p id="verdictBody" style="color:var(--muted); margin:0;"></p>
+        </div>
+      </div>
+
+      <div class="ad-slot">Publicidade</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Você também pode precisar destas ferramentas</h2>
+      <p class="lede">Todas as ferramentas funcionam instantaneamente no navegador — sem instalação, sem conta.</p>
+      <div class="tools-grid">
+        <a class="tool-link" href="../cps-test.html"><h3>Teste de CPS</h3><p>Meça quantos cliques por segundo você consegue sustentar em cinco durações diferentes.</p></a>
+        <a class="tool-link" href="../mouse-test.html"><h3>Teste de Mouse</h3><p>Verifique os botões esquerdo, direito, do meio e laterais, além do clique da roda, tudo em um painel.</p></a>
+        <a class="tool-link" href="../keyboard-test.html"><h3>Teste de Teclado</h3><p>Confirme que cada tecla do seu teclado é detectada corretamente pelo navegador.</p></a>
+        <a class="tool-link" href="../reaction-time-test.html"><h3>Teste de Reação</h3><p>Meça sua velocidade de reação a um estímulo visual, em milissegundos.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>Como funciona o teste de rolagem</h2>
+      <p class="lede">Três passos, sem downloads, resultados em segundos.</p>
+      <div class="steps">
+        <div class="step"><div class="num">01</div><h3>Escolha uma duração</h3><p>Escolha entre 15 e 90 segundos. Testes mais longos dão ao algoritmo mais amostras para trabalhar, tornando o veredito final mais confiável.</p></div>
+        <div class="step"><div class="num">02</div><h3>Role em uma direção</h3><p>Mantenha sua rolagem em uma única direção dentro da caixa. Trocar de direção no meio do teste é tratado como ruído e pode mascarar um defeito real.</p></div>
+        <div class="step"><div class="num">03</div><h3>Leia o relatório</h3><p>Quando o cronômetro terminar, você receberá um veredito em linguagem simples, além dos dados brutos abaixo, para que possa conferir por conta própria.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>O que significam os números do painel</h2>
+      <p class="lede">Cada estatística no painel de leitura corresponde a algo concreto sobre o comportamento da sua roda — é isso que realmente vale a pena observar.</p>
+      <div class="metric-grid">
+        <div class="metric-card"><h3>Velocidade da Roda</h3><p>Quantos eventos de rolagem seu navegador recebeu no último segundo. Um número que cai repetidamente para zero geralmente significa que a roda está pulando etapas em vez de lê-las de forma limpa.</p></div>
+        <div class="metric-card"><h3>Último DeltaY</h3><p>A quantidade de rolagem vertical mais recente relatada pelo navegador. Em um teste limpo de uma direção, o sinal desse número nunca deveria mudar.</p></div>
+        <div class="metric-card"><h3>Rolagem Vertical</h3><p>O total acumulado de movimento vertical nesta sessão. Deveria subir constantemente; um total que mal cresce apesar da rolagem constante indica que a roda está se cancelando parcialmente.</p></div>
+        <div class="metric-card"><h3>DeltaY Máx / Mín</h3><p>O "tique" de rolagem mais forte visto em cada direção. Se você só rola para baixo mas o valor Mín continua crescendo, a roda está disparando tiques reversos indesejados.</p></div>
+        <div class="metric-card"><h3>Modo Delta</h3><p>Indica se o navegador está medindo em pixels, linhas ou páginas. Não indica um defeito por si só, mas muda o que é considerado um valor delta "normal".</p></div>
+        <div class="metric-card"><h3>Eventos Totais</h3><p>Quantos eventos distintos de roda foram disparados durante o teste. Compare com quantas vezes você realmente girou a roda — uma grande diferença sugere disparo duplo ou entrada perdida.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>Quando uma roda saudável realmente importa</h2>
+      <p class="lede">É uma peça pequena do mouse, mas está por trás de muitas tarefas do dia a dia.</p>
+      <table class="use-table">
+        <tr><th>Tarefa</th><th>O que uma roda com defeito causa</th></tr>
+        <tr><td>Ler páginas longas ou PDFs</td><td>Obriga você a arrastar a barra de rolagem manualmente a cada página, o que é mais lento e quebra seu ritmo de leitura.</td></tr>
+        <tr><td>Planilhas</td><td>Uma roda que pula linhas de forma imprevisível facilita ler errado ou sobrescrever a célula errada.</td></tr>
+        <tr><td>Revisão de código e logs</td><td>Linhas puladas ou duplicadas durante a rolagem dificultam encontrar a linha exata que você procurava.</td></tr>
+        <tr><td>Ferramentas de design e foto</td><td>Muitos apps ligam a roda ao zoom — uma entrada errática significa níveis de zoom errático ao verificar detalhes.</td></tr>
+        <tr><td>Jogos</td><td>A troca de arma ou item ligada à roda fica pouco confiável, o que importa mais em momentos rápidos ou competitivos.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Perguntas frequentes</h2>
+      <div class="faq">
+        <details open>
+          <summary>Por que o painel não atualiza enquanto eu rolo?</summary>
+          <p>A ferramenta só registra eventos da roda depois que você clica em "Iniciar Teste" (ou clica dentro da caixa já ativa). Rolar antes de iniciar, ou fora da caixa, não será registrado.</p>
+        </details>
+        <details>
+          <summary>Minha roda funciona bem na maior parte do tempo — por que um evento reverso foi detectado?</summary>
+          <p>Um único evento sinalizado geralmente não é motivo de preocupação. Poeira, um toque leve ou um esbarrão acidental podem registrar como um tique reverso isolado. O que mais importa é se eventos reversos continuam aparecendo em várias execuções.</p>
+        </details>
+        <details>
+          <summary>Isso funciona com um trackpad em vez de uma roda de mouse?</summary>
+          <p>Trackpads e rodas de "rolagem infinita" enviam um fluxo contínuo de valores pequenos em vez de cliques discretos, então o total de rolagem vertical ainda vai se mover, mas a detecção de picos reversos é ajustada para rodas mecânicas com entalhes.</p>
+        </details>
+        <details>
+          <summary>O que devo fazer se a roda continuar testando como defeituosa?</summary>
+          <p>Comece pelo básico: troque a pilha se for sem fio, e limpe ao redor da roda com um pouco de ar comprimido. Se ainda assim continuar falhando, o encoder embaixo da roda provavelmente está desgastado.</p>
+        </details>
+        <details>
+          <summary>Meus dados de rolagem são enviados para algum lugar?</summary>
+          <p>Não. Tudo nesta página roda localmente no seu navegador usando as APIs padrão de eventos de roda — nada da sua sessão de teste é transmitido ou armazenado em um servidor.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="siteFooter" data-lang="pt" data-base="../"></footer>
+
+<script src="../js/site.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/langswitch.js"></script>
+<script src="../js/footer.js"></script>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const stageTimer = document.getElementById('stageTimer');
+  const startBtn = document.getElementById('startBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const pills = document.querySelectorAll('.duration-pill');
+  let duration = 30, timeLeft = 30, running = false, timerId = null, speedId = null;
+  let events = [], eventsThisSecond = 0, lastDY = 0, vertical = 0, horizontal = 0;
+  let maxDY = 0, minDY = 0, deltaMode = null, reverseCount = 0, lastSign = 0;
+
+  pills.forEach(p => p.addEventListener('click', () => {
+    if (running) return;
+    pills.forEach(x => x.classList.remove('active'));
+    p.classList.add('active');
+    duration = parseInt(p.dataset.secs, 10);
+    timeLeft = duration;
+    stageTimer.textContent = timeLeft;
+  }));
+
+  function reset(){
+    running = false;
+    clearInterval(timerId); clearInterval(speedId);
+    timeLeft = duration;
+    events = []; eventsThisSecond = 0; lastDY = 0; vertical = 0; horizontal = 0;
+    maxDY = 0; minDY = 0; deltaMode = null; reverseCount = 0; lastSign = 0;
+    stage.classList.remove('active');
+    stageTimer.textContent = timeLeft;
+    document.getElementById('verdict').style.display = 'none';
+    updateReadouts();
+  }
+
+  function start(){
+    reset();
+    running = true;
+    stage.classList.add('active');
+    timerId = setInterval(() => {
+      timeLeft--;
+      stageTimer.textContent = timeLeft;
+      if (timeLeft <= 0) finish();
+    }, 1000);
+    speedId = setInterval(() => {
+      document.getElementById('rSpeed').textContent = eventsThisSecond + '/s';
+      eventsThisSecond = 0;
+    }, 1000);
+  }
+
+  function finish(){
+    running = false;
+    clearInterval(timerId); clearInterval(speedId);
+    stage.classList.remove('active');
+    const total = events.length;
+    const ratio = total ? reverseCount / total : 0;
+    const v = document.getElementById('verdict');
+    const tag = document.getElementById('verdictTag');
+    const title = document.getElementById('verdictTitle');
+    const body = document.getElementById('verdictBody');
+    v.style.display = 'block';
+    if (total === 0){
+      tag.className = 'tag warn'; tag.textContent = 'Sem Dados';
+      title.textContent = 'Nenhum dado de rolagem coletado';
+      body.textContent = 'O teste terminou sem nenhum evento de roda. Certifique-se de rolar dentro da caixa enquanto o teste está em execução.';
+    } else if (ratio === 0){
+      tag.className = 'tag good'; tag.textContent = 'Normal';
+      title.textContent = 'A entrada da roda parece estável';
+      body.textContent = `Nenhum pico de direção reversa encontrado em ${total} eventos. Esta sessão parece saudável.`;
+    } else if (ratio < 0.03){
+      tag.className = 'tag warn'; tag.textContent = 'Ruído Menor';
+      title.textContent = 'Detectado um pequeno número de tiques reversos';
+      body.textContent = `${reverseCount} de ${total} eventos dispararam na direção oposta à sua rolagem. Isso pode ser poeira ou um esbarrão acidental — tente outra execução para confirmar.`;
+    } else {
+      tag.className = 'tag bad'; tag.textContent = 'Possível Defeito';
+      title.textContent = 'Detectados tiques reversos frequentes';
+      body.textContent = `${reverseCount} de ${total} eventos (${Math.round(ratio*100)}%) dispararam na direção oposta à sua rolagem. Esse padrão é consistente com um encoder de roda desgastado ou sujo.`;
+    }
+  }
+
+  function updateReadouts(){
+    document.getElementById('rDuration').textContent = (duration - timeLeft) + 's';
+    document.getElementById('rLastDY').textContent = lastDY.toFixed(0);
+    document.getElementById('rVert').textContent = vertical.toFixed(0);
+    document.getElementById('rMax').textContent = maxDY.toFixed(0);
+    document.getElementById('rMin').textContent = minDY.toFixed(0);
+    document.getElementById('rMode').textContent = deltaMode === null ? '–' : ['Pixel','Linha','Página'][deltaMode] || deltaMode;
+    document.getElementById('rEvents').textContent = events.length;
+  }
+
+  stage.addEventListener('wheel', (e) => {
+    if (!running) return;
+    e.preventDefault();
+    const dy = e.deltaY;
+    const sign = Math.sign(dy);
+    events.push(dy);
+    eventsThisSecond++;
+    lastDY = dy;
+    vertical += dy;
+    horizontal += e.deltaX;
+    deltaMode = e.deltaMode;
+    if (dy > maxDY) maxDY = dy;
+    if (dy < minDY) minDY = dy;
+    if (lastSign !== 0 && sign !== 0 && sign !== lastSign) reverseCount++;
+    if (sign !== 0) lastSign = sign;
+    updateReadouts();
+  }, { passive:false });
+
+  stage.addEventListener('dblclick', () => { running ? finish() : start(); });
+  startBtn.addEventListener('click', () => { if(!running) start(); });
+  resetBtn.addEventListener('click', reset);
+
+  stageTimer.textContent = timeLeft;
+
+  (function(){
+    const canvas = document.getElementById('waveCanvas');
+    const ctx = canvas.getContext('2d');
+    const N = 160;
+    const buffer = new Array(N).fill(0);
+    let currentVal = 0;
+    let t = 0;
+    const MAX_RANGE = 120;
+
+    function resizeCanvas(){
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.round(rect.width * dpr);
+      canvas.height = Math.round(160 * dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    stage.addEventListener('wheel', (e) => {
+      const dy = Math.max(-MAX_RANGE, Math.min(MAX_RANGE, e.deltaY));
+      currentVal = dy;
+    }, { passive:true });
+
+    function drawFrame(){
+      t += 0.05;
+      currentVal *= 0.88;
+      const idle = Math.sin(t) * 3 + Math.sin(t*0.37) * 2;
+      const sample = currentVal + idle;
+
+      buffer.push(sample);
+      buffer.shift();
+
+      const w = canvas.getBoundingClientRect().width;
+      const h = 160;
+      const mid = h / 2;
+      ctx.clearRect(0, 0, w, h);
+
+      ctx.strokeStyle = 'rgba(124,244,203,0.08)';
+      ctx.lineWidth = 1;
+      for (let gy = 0; gy <= 4; gy++){
+        const y = (h / 4) * gy;
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+      }
+      ctx.strokeStyle = 'rgba(124,244,203,0.18)';
+      ctx.beginPath(); ctx.moveTo(0, mid); ctx.lineTo(w, mid); ctx.stroke();
+
+      const stepX = w / (N - 1);
+      const pts = buffer.map((v, i) => {
+        const y = mid - (v / MAX_RANGE) * (mid - 14);
+        return [i * stepX, Math.max(6, Math.min(h - 6, y))];
+      });
+
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0], mid);
+      ctx.lineTo(pts[0][0], pts[0][1]);
+      for (let i = 1; i < pts.length - 1; i++){
+        const xc = (pts[i][0] + pts[i+1][0]) / 2;
+        const yc = (pts[i][1] + pts[i+1][1]) / 2;
+        ctx.quadraticCurveTo(pts[i][0], pts[i][1], xc, yc);
+      }
+      ctx.lineTo(pts[pts.length-1][0], mid);
+      ctx.closePath();
+      const grad = ctx.createLinearGradient(0, 0, 0, h);
+      grad.addColorStop(0, 'rgba(124,244,203,0.22)');
+      grad.addColorStop(1, 'rgba(124,244,203,0.0)');
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0], pts[0][1]);
+      for (let i = 1; i < pts.length - 1; i++){
+        const xc = (pts[i][0] + pts[i+1][0]) / 2;
+        const yc = (pts[i][1] + pts[i+1][1]) / 2;
+        ctx.quadraticCurveTo(pts[i][0], pts[i][1], xc, yc);
+      }
+      ctx.strokeStyle = '#7CF4CB';
+      ctx.lineWidth = 2;
+      ctx.shadowColor = 'rgba(124,244,203,0.9)';
+      ctx.shadowBlur = 8;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      requestAnimationFrame(drawFrame);
+    }
+    requestAnimationFrame(drawFrame);
+  })();
+})();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Teste de Rolagem",
+      "url": "https://scrolltester.studio/pt/index.html",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (runs in browser)",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Teste de roda de rolagem gratuito online. Meça a velocidade, detecte saltos reversos, obtenha um diagnóstico instantâneo."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Por que o painel não atualiza enquanto eu rolo?", "acceptedAnswer": { "@type": "Answer", "text": "A ferramenta só registra eventos depois de clicar em \"Iniciar Teste\". Rolar antes de iniciar não será registrado." } },
+        { "@type": "Question", "name": "Minha roda funciona bem na maior parte do tempo — por que um evento reverso foi detectado?", "acceptedAnswer": { "@type": "Answer", "text": "Um único evento isolado geralmente não é preocupante. O que importa é se eventos reversos continuam aparecendo em várias execuções." } },
+        { "@type": "Question", "name": "Isso funciona com um trackpad?", "acceptedAnswer": { "@type": "Answer", "text": "Trackpads enviam um fluxo contínuo de valores pequenos, então a detecção de picos reversos é ajustada para rodas mecânicas com entalhes." } },
+        { "@type": "Question", "name": "O que devo fazer se a roda continuar testando como defeituosa?", "acceptedAnswer": { "@type": "Answer", "text": "Troque a pilha (se sem fio) e limpe com ar comprimido. Se persistir, o encoder embaixo da roda provavelmente está desgastado." } },
+        { "@type": "Question", "name": "Meus dados de rolagem são enviados para algum lugar?", "acceptedAnswer": { "@type": "Answer", "text": "Não. Tudo roda localmente no seu navegador — nada é transmitido ou armazenado." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

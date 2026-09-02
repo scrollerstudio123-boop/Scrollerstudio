@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test de Mando — Comprueba Botones y Sticks Online | ScrollTester.studio</title>
+<meta name="description" content="Test de mando gratis online. Conecta un gamepad y ve cada pulsación de botón y movimiento de stick analógico detectado en vivo en tu navegador.">
+<link rel="canonical" href="https://scrolltester.studio/es/controller-test.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ScrollTester.studio">
+<meta property="og:title" content="Test de Mando — Comprueba Botones y Sticks Online | ScrollTester.studio">
+<meta property="og:description" content="Test de mando gratis online. Conecta un gamepad y ve cada pulsación detectada en vivo.">
+<meta property="og:url" content="https://scrolltester.studio/es/controller-test.html">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" hreflang="en" href="https://scrolltester.studio/controller-test.html">
+<link rel="alternate" hreflang="es" href="https://scrolltester.studio/es/controller-test.html">
+<link rel="alternate" hreflang="de" href="https://scrolltester.studio/de/controller-test.html">
+<link rel="alternate" hreflang="fr" href="https://scrolltester.studio/fr/controller-test.html">
+<link rel="alternate" hreflang="x-default" href="https://scrolltester.studio/controller-test.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  .btn-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(56px,1fr)); gap:8px; margin-top:16px; }
+  .gbtn{ border:1px solid var(--border); border-radius:8px; background:var(--surface); padding:10px 4px; text-align:center; font-family:'JetBrains Mono',monospace; font-size:.72rem; color:var(--muted); }
+  .gbtn.pressed{ background: linear-gradient(135deg, var(--accent), var(--accent-dark)); border-color:var(--accent); color:#fff; }
+  .stick-box{ position:relative; width:120px; height:120px; border:1px solid var(--panel-line); border-radius:50%; background:rgba(124,244,203,.04); margin:8px auto 0; }
+  .stick-dot{ position:absolute; width:14px; height:14px; border-radius:50%; background:var(--panel-fg); box-shadow:0 0 10px rgba(124,244,203,.7); top:50%; left:50%; transform:translate(-50%,-50%); }
+  .sticks-row{ display:flex; gap:40px; justify-content:center; margin-top:14px; }
+  .stick-label{ text-align:center; color:var(--panel-fg-dim); font-family:'JetBrains Mono',monospace; font-size:.68rem; text-transform:uppercase; letter-spacing:.08em; margin-top:8px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><span class="dot"></span>ScrollTester.studio</a>
+    <nav class="nav-links" id="navLinks" data-lang="es" data-page="controller-test"></nav>
+    <div id="langSwitchMount" data-lang="es" data-page="controller-test" data-base="../"></div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Diagnóstico de Mando</div>
+      <h1>Test de Mando — comprueba cada botón y stick del gamepad</h1>
+      <p class="lede">Conecta un mando con cable o inalámbrico, pulsa un botón para activarlo y luego usa los botones y sticks con libertad. Todo lo de abajo se actualiza en vivo usando la Gamepad API de tu navegador.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="tool-card">
+        <div class="stage" id="stage" style="min-height:140px;">
+          <div><div class="stage-hint" id="statusHint">No se detecta ningún mando. Pulsa cualquier botón de tu mando para conectarlo.</div></div>
+        </div>
+
+        <div class="readout-panel" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); margin-top:16px;">
+          <div class="readout"><div class="label">Mando</div><div class="value" id="rName" style="font-size:.85rem;">–</div></div>
+          <div class="readout"><div class="label">Botones</div><div class="value" id="rButtons">0</div></div>
+          <div class="readout"><div class="label">Ejes</div><div class="value" id="rAxes">0</div></div>
+        </div>
+
+        <h3 style="margin:22px 0 4px; font-size:.95rem;">Botones</h3>
+        <div class="btn-grid" id="btnGrid"></div>
+
+        <h3 style="margin:22px 0 4px; font-size:.95rem;">Sticks Analógicos</h3>
+        <div class="sticks-row">
+          <div><div class="stick-box"><div class="stick-dot" id="stickL"></div></div><div class="stick-label">Stick Izquierdo</div></div>
+          <div><div class="stick-box"><div class="stick-dot" id="stickR"></div></div><div class="stick-label">Stick Derecho</div></div>
+        </div>
+      </div>
+
+      <div class="ad-slot">Publicidad</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Qué revisar cuando un mando falla este test</h2>
+      <div class="metric-grid">
+        <div class="metric-card"><h3>No se detecta ningún mando</h3><p>Chrome y la mayoría de navegadores solo registran un gamepad después de pulsar un botón en él — con solo conectarlo no basta para activar la detección.</p></div>
+        <div class="metric-card"><h3>Un botón nunca se ilumina</h3><p>Confirma primero que no sea una reasignación a nivel de controlador (común en mandos de terceros), y sospecha de un contacto desgastado bajo ese botón si el resto funcionan bien.</p></div>
+        <div class="metric-card"><h3>El stick no vuelve al centro</h3><p>Un punto que queda fuera del centro al soltarlo indica drift del stick — un fallo muy común en sticks analógicos con desgaste.</p></div>
+        <div class="metric-card"><h3>Retraso o cortes en la conexión inalámbrica</h3><p>Prueba con una conexión por cable o pilas nuevas para descartar una señal débil antes de asumir un fallo de hardware.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq">
+        <details open>
+          <summary>¿Por qué tengo que pulsar un botón antes de que aparezca algo?</summary>
+          <p>Los navegadores requieren un gesto del usuario en el propio mando antes de exponerlo a través de la Gamepad API — es una medida de privacidad y seguridad, no un fallo.</p>
+        </details>
+        <details>
+          <summary>¿Funciona con mandos de PlayStation, Xbox y Switch?</summary>
+          <p>La mayoría de mandos modernos funcionan por USB o Bluetooth una vez emparejados a nivel del sistema operativo, aunque la numeración de botones puede variar ligeramente según la marca del mando y el navegador.</p>
+        </details>
+        <details>
+          <summary>¿Por qué mi mando aparece pero solo se registran algunas entradas?</summary>
+          <p>Algunos mandos requieren un modo USB específico (DirectInput frente a XInput) para exponer correctamente todos los botones y gatillos — revisa el manual de tu mando o su app complementaria si los gatillos o botones extra no responden.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="siteFooter" data-lang="es" data-base="../"></footer>
+
+<script src="../js/site.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/langswitch.js"></script>
+<script src="../js/footer.js"></script>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const statusHint = document.getElementById('statusHint');
+  const btnGrid = document.getElementById('btnGrid');
+  const stickL = document.getElementById('stickL');
+  const stickR = document.getElementById('stickR');
+  let btnEls = [];
+
+  function buildButtons(count){
+    btnGrid.innerHTML = '';
+    btnEls = [];
+    for (let i = 0; i < count; i++){
+      const d = document.createElement('div');
+      d.className = 'gbtn';
+      d.textContent = 'B' + i;
+      btnGrid.appendChild(d);
+      btnEls.push(d);
+    }
+  }
+
+  function poll(){
+    const pads = navigator.getGamepads ? navigator.getGamepads() : [];
+    const pad = Array.from(pads).find(p => p);
+    if (pad){
+      stage.classList.add('active');
+      statusHint.textContent = 'Mando conectado — pulsa botones o mueve los sticks.';
+      document.getElementById('rName').textContent = pad.id.slice(0, 28);
+      document.getElementById('rButtons').textContent = pad.buttons.length;
+      document.getElementById('rAxes').textContent = pad.axes.length;
+      if (btnEls.length !== pad.buttons.length) buildButtons(pad.buttons.length);
+      pad.buttons.forEach((b, i) => {
+        if (btnEls[i]) btnEls[i].classList.toggle('pressed', b.pressed || b.value > 0.15);
+      });
+      const lx = pad.axes[0] || 0, ly = pad.axes[1] || 0;
+      const rx = pad.axes[2] || 0, ry = pad.axes[3] || 0;
+      stickL.style.left = (50 + lx * 40) + '%';
+      stickL.style.top = (50 + ly * 40) + '%';
+      stickR.style.left = (50 + rx * 40) + '%';
+      stickR.style.top = (50 + ry * 40) + '%';
+    } else {
+      stage.classList.remove('active');
+      statusHint.textContent = 'No se detecta ningún mando. Pulsa cualquier botón de tu mando para conectarlo.';
+    }
+    requestAnimationFrame(poll);
+  }
+  requestAnimationFrame(poll);
+})();
+</script>
+</body>
+</html>

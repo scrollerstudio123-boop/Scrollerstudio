@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Controller Test — Check Gamepad Buttons &amp; Sticks Online | ScrollTester.studio</title>
+<meta name="description" content="Free online controller test. Connect a gamepad and see every button press and analog stick movement detected live in your browser.">
+<link rel="canonical" href="https://scrolltester.studio/controller-test.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ScrollTester.studio">
+<meta property="og:title" content="Controller Test — Check Gamepad Buttons & Sticks Online | ScrollTester.studio">
+<meta property="og:description" content="Free online controller test. Connect a gamepad and see every button press and analog stick movement detected live in your browser.">
+<meta property="og:url" content="https://scrolltester.studio/controller-test.html">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .btn-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(56px,1fr)); gap:8px; margin-top:16px; }
+  .gbtn{ border:1px solid var(--border); border-radius:8px; background:var(--surface); padding:10px 4px; text-align:center; font-family:'JetBrains Mono',monospace; font-size:.72rem; color:var(--muted); }
+  .gbtn.pressed{ background: linear-gradient(135deg, var(--accent), var(--accent-dark)); border-color:var(--accent); color:#fff; }
+  .stick-box{ position:relative; width:120px; height:120px; border:1px solid var(--panel-line); border-radius:50%; background:rgba(124,244,203,.04); margin:8px auto 0; }
+  .stick-dot{ position:absolute; width:14px; height:14px; border-radius:50%; background:var(--panel-fg); box-shadow:0 0 10px rgba(124,244,203,.7); top:50%; left:50%; transform:translate(-50%,-50%); }
+  .sticks-row{ display:flex; gap:40px; justify-content:center; margin-top:14px; }
+  .stick-label{ text-align:center; color:var(--panel-fg-dim); font-family:'JetBrains Mono',monospace; font-size:.68rem; text-transform:uppercase; letter-spacing:.08em; margin-top:8px; }
+</style>
+<link rel="alternate" hreflang="en" href="https://scrolltester.studio/controller-test.html">
+<link rel="alternate" hreflang="es" href="https://scrolltester.studio/es/controller-test.html">
+<link rel="alternate" hreflang="de" href="https://scrolltester.studio/de/controller-test.html">
+<link rel="alternate" hreflang="fr" href="https://scrolltester.studio/fr/controller-test.html">
+<link rel="alternate" hreflang="x-default" href="https://scrolltester.studio/controller-test.html">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><span class="dot"></span>ScrollTester.studio</a>
+    <nav class="nav-links" id="navLinks" data-lang="en" data-page="controller-test"></nav>
+    <div id="langSwitchMount" data-lang="en" data-page="controller-test" data-base=""></div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Controller Diagnostics</div>
+      <h1>Controller Test — check every gamepad button and stick</h1>
+      <p class="lede">Connect a wired or wireless controller, press a button to activate it, then use the buttons and sticks freely. Everything below updates live using your browser's Gamepad API.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="tool-card">
+        <div class="stage" id="stage" style="min-height:140px;">
+          <div><div class="stage-hint" id="statusHint">No controller detected. Press any button on your controller to connect it.</div></div>
+        </div>
+
+        <div class="readout-panel" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); margin-top:16px;">
+          <div class="readout"><div class="label">Controller</div><div class="value" id="rName" style="font-size:.85rem;">–</div></div>
+          <div class="readout"><div class="label">Buttons</div><div class="value" id="rButtons">0</div></div>
+          <div class="readout"><div class="label">Axes</div><div class="value" id="rAxes">0</div></div>
+        </div>
+
+        <h3 style="margin:22px 0 4px; font-size:.95rem;">Buttons</h3>
+        <div class="btn-grid" id="btnGrid"></div>
+
+        <h3 style="margin:22px 0 4px; font-size:.95rem;">Analog Sticks</h3>
+        <div class="sticks-row">
+          <div><div class="stick-box"><div class="stick-dot" id="stickL"></div></div><div class="stick-label">Left Stick</div></div>
+          <div><div class="stick-box"><div class="stick-dot" id="stickR"></div></div><div class="stick-label">Right Stick</div></div>
+        </div>
+      </div>
+
+      <div class="ad-slot">Advertisement</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>What to check when a controller fails this test</h2>
+      <div class="metric-grid">
+        <div class="metric-card"><h3>No controller detected</h3><p>Chrome and most browsers only register a gamepad after you press a button on it — simply plugging it in isn't enough to trigger detection.</p></div>
+        <div class="metric-card"><h3>A button never lights up</h3><p>Confirm it isn't a driver-level remap first (common on third-party controllers), then suspect a worn contact under that button if other buttons work fine.</p></div>
+        <div class="metric-card"><h3>Stick doesn't return to center</h3><p>A dot that rests away from the middle when you let go points to stick drift — a very common failure mode on aging analog sticks.</p></div>
+        <div class="metric-card"><h3>Wireless input lag or dropout</h3><p>Try a wired connection or fresh batteries to rule out a weak signal before assuming a hardware fault.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>Frequently asked questions</h2>
+      <div class="faq">
+        <details open>
+          <summary>Why do I need to press a button before anything shows up?</summary>
+          <p>Browsers require a user gesture on the controller itself before exposing it through the Gamepad API — this is a privacy and security measure, not a bug.</p>
+        </details>
+        <details>
+          <summary>Does this work with PlayStation, Xbox, and Switch controllers?</summary>
+          <p>Most modern controllers work over USB or Bluetooth once paired at the OS level, though button numbering can vary slightly by controller brand and browser.</p>
+        </details>
+        <details>
+          <summary>Why does my controller show up but only some inputs register?</summary>
+          <p>Some controllers require a specific USB mode (DirectInput vs XInput) to expose all buttons and triggers correctly — check your controller's manual or companion app if triggers or extra buttons don't respond.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="siteFooter"></footer>
+
+<script src="js/site.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/langswitch.js"></script>
+<script src="js/footer.js"></script>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const statusHint = document.getElementById('statusHint');
+  const btnGrid = document.getElementById('btnGrid');
+  const stickL = document.getElementById('stickL');
+  const stickR = document.getElementById('stickR');
+  let btnEls = [];
+
+  function buildButtons(count){
+    btnGrid.innerHTML = '';
+    btnEls = [];
+    for (let i = 0; i < count; i++){
+      const d = document.createElement('div');
+      d.className = 'gbtn';
+      d.textContent = 'B' + i;
+      btnGrid.appendChild(d);
+      btnEls.push(d);
+    }
+  }
+
+  function poll(){
+    const pads = navigator.getGamepads ? navigator.getGamepads() : [];
+    const pad = Array.from(pads).find(p => p);
+    if (pad){
+      stage.classList.add('active');
+      statusHint.textContent = 'Controller connected — press buttons or move sticks.';
+      document.getElementById('rName').textContent = pad.id.slice(0, 28);
+      document.getElementById('rButtons').textContent = pad.buttons.length;
+      document.getElementById('rAxes').textContent = pad.axes.length;
+      if (btnEls.length !== pad.buttons.length) buildButtons(pad.buttons.length);
+      pad.buttons.forEach((b, i) => {
+        if (btnEls[i]) btnEls[i].classList.toggle('pressed', b.pressed || b.value > 0.15);
+      });
+      const lx = pad.axes[0] || 0, ly = pad.axes[1] || 0;
+      const rx = pad.axes[2] || 0, ry = pad.axes[3] || 0;
+      stickL.style.left = (50 + lx * 40) + '%';
+      stickL.style.top = (50 + ly * 40) + '%';
+      stickR.style.left = (50 + rx * 40) + '%';
+      stickR.style.top = (50 + ry * 40) + '%';
+    } else {
+      stage.classList.remove('active');
+      statusHint.textContent = 'No controller detected. Press any button on your controller to connect it.';
+    }
+    requestAnimationFrame(poll);
+  }
+  requestAnimationFrame(poll);
+})();
+</script>
+</body>
+</html>

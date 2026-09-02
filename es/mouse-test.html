@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test de Ratón — Comprueba Cada Botón Online | ScrollTester.studio</title>
+<meta name="description" content="Comprueba los botones izquierdo, derecho, central y laterales de tu ratón, además de la rueda de scroll, todo en tiempo real en tu navegador.">
+<link rel="canonical" href="https://scrolltester.studio/es/mouse-test.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ScrollTester.studio">
+<meta property="og:title" content="Test de Ratón — Comprueba Cada Botón Online | ScrollTester.studio">
+<meta property="og:description" content="Comprueba los botones izquierdo, derecho, central y laterales de tu ratón, además de la rueda de scroll, todo en tiempo real.">
+<meta property="og:url" content="https://scrolltester.studio/es/mouse-test.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Test de Ratón — Comprueba Cada Botón Online | ScrollTester.studio">
+<meta name="twitter:description" content="Comprueba los botones izquierdo, derecho, central y laterales de tu ratón, todo en tiempo real.">
+<link rel="alternate" hreflang="en" href="https://scrolltester.studio/mouse-test.html">
+<link rel="alternate" hreflang="es" href="https://scrolltester.studio/es/mouse-test.html">
+<link rel="alternate" hreflang="de" href="https://scrolltester.studio/de/mouse-test.html">
+<link rel="alternate" hreflang="fr" href="https://scrolltester.studio/fr/mouse-test.html">
+<link rel="alternate" hreflang="x-default" href="https://scrolltester.studio/mouse-test.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><span class="dot"></span>ScrollTester.studio</a>
+    <nav class="nav-links" id="navLinks" data-lang="es" data-page="mouse-test"></nav>
+    <div id="langSwitchMount" data-lang="es" data-page="mouse-test" data-base="../"></div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Diagnóstico de Ratón</div>
+      <p style="margin:0 0 10px;"><a href="mouse.html" style="color:var(--muted); font-size:.85rem;">&#8592; Herramientas de Ratón</a></p>
+      <h1>Test de Ratón — comprueba cada botón en un solo lugar</h1>
+      <p class="lede">Haz clic con cada botón de tu ratón y observa cómo se ilumina abajo. Si un botón no se registra, es una señal clara de un problema de hardware o de controlador.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="tool-card">
+        <div class="stage" id="stage" style="min-height:180px;">
+          <div>
+            <div class="stage-hint">Haz clic en cualquier parte de este recuadro con cada botón del ratón (izquierdo, derecho, central/rueda, y botones laterales si los tienes).</div>
+          </div>
+        </div>
+
+        <div class="readout-panel" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));">
+          <div class="readout"><div class="label">Botón Izquierdo</div><div class="value" id="bLeft">–</div></div>
+          <div class="readout"><div class="label">Botón Derecho</div><div class="value" id="bRight">–</div></div>
+          <div class="readout"><div class="label">Central / Rueda</div><div class="value" id="bMiddle">–</div></div>
+          <div class="readout"><div class="label">Atrás (Lateral 1)</div><div class="value" id="bBack">–</div></div>
+          <div class="readout"><div class="label">Adelante (Lateral 2)</div><div class="value" id="bForward">–</div></div>
+          <div class="readout"><div class="label">Rueda de Scroll</div><div class="value" id="bScroll">–</div></div>
+        </div>
+
+        <div class="tool-controls" style="margin-top:14px; margin-bottom:0;">
+          <button class="btn secondary" id="resetBtn">Reiniciar</button>
+        </div>
+      </div>
+
+      <div class="ad-slot">Publicidad</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>También te pueden ser útiles estas herramientas</h2>
+      <p class="lede">Todas las herramientas funcionan al instante en tu navegador — sin instalar nada, sin cuentas.</p>
+      <div class="tools-grid">
+        <a class="tool-link" href="index.html"><h3>Test de Scroll</h3><p>Detecta saltos de scroll inverso y vibraciones en tu rueda con un informe de diagnóstico en vivo.</p></a>
+        <a class="tool-link" href="cps-test.html"><h3>Test de CPS</h3><p>Mide cuántos clics por segundo puedes sostener durante varias duraciones distintas.</p></a>
+        <a class="tool-link" href="keyboard-test.html"><h3>Test de Teclado</h3><p>Verifica que cada tecla de tu teclado se detecta correctamente en tu navegador.</p></a>
+        <a class="tool-link" href="reaction-time-test.html"><h3>Test de Reacción</h3><p>Mide lo rápido que reaccionas a un estímulo visual, en milisegundos.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>Qué te indica el resultado de cada botón</h2>
+      <div class="metric-grid">
+        <div class="metric-card"><h3>Botón izquierdo / derecho</h3><p>Son las partes que más desgaste sufren en un ratón. Si los clics se registran duplicados o se pierden, el micro-switch de debajo suele ser la causa.</p></div>
+        <div class="metric-card"><h3>Botón central</h3><p>A menudo comparte el mismo switch físico que el clic de la rueda. Si el botón central no se registra, puede que el conjunto de la rueda necesite limpieza.</p></div>
+        <div class="metric-card"><h3>Botones laterales</h3><p>No todos los ratones los tienen, y los navegadores los interpretan de forma distinta. Si el tuyo los tiene pero no se registran aquí, revisa primero el software del controlador por si hay un conflicto de reasignación.</p></div>
+        <div class="metric-card"><h3>Rueda de scroll</h3><p>Este panel confirma que la rueda produce entrada. Para una comprobación más profunda de saltos de scroll inverso y del estado de la rueda, usa el Test de Scroll completo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq">
+        <details open>
+          <summary>Mis botones laterales no hacen nada cuando hago clic.</summary>
+          <p>Algunos ratones vienen con los botones laterales asignados a atajos del sistema (como "atrás" y "adelante" en un navegador) por el software del fabricante, en lugar de enviar un evento de botón sin procesar. Revisa la app de configuración de tu ratón para confirmar que los botones tienen una asignación estándar.</p>
+        </details>
+        <details>
+          <summary>¿Por qué un clic se registra dos veces?</summary>
+          <p>Es una señal clásica de "doble clic" causada por un micro-switch desgastado que pierde el contacto brevemente durante la pulsación. Es uno de los fallos de hardware más comunes en los ratones y normalmente no se puede arreglar sin sustituir el switch.</p>
+        </details>
+        <details>
+          <summary>¿Funciona este test con un trackpad?</summary>
+          <p>El clic izquierdo y derecho suelen registrarse con toques o clics físicos en el trackpad, pero el clic central y los botones laterales dependen de la configuración de gestos de tu trackpad.</p>
+        </details>
+        <details>
+          <summary>¿Es preciso este test con ratones inalámbricos?</summary>
+          <p>Sí, siempre que el ratón esté conectado y tenga batería suficiente. Una batería baja puede causar los mismos síntomas que un fallo de hardware — clics perdidos o retrasados — así que conviene descartarlo primero.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="siteFooter" data-lang="es" data-base="../"></footer>
+
+<script src="../js/site.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/langswitch.js"></script>
+<script src="../js/footer.js"></script>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const map = { 0:'bLeft', 1:'bMiddle', 2:'bRight', 3:'bBack', 4:'bForward' };
+  function mark(id, label){
+    const el = document.getElementById(id);
+    el.textContent = label;
+    el.style.color = 'var(--panel-fg)';
+  }
+  stage.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    const id = map[e.button];
+    if (id) mark(id, 'Detectado ✓');
+  });
+  stage.addEventListener('contextmenu', (e) => e.preventDefault());
+  stage.addEventListener('wheel', (e) => {
+    mark('bScroll', 'Detectado ✓');
+  }, { passive:true });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    ['bLeft','bRight','bMiddle','bBack','bForward','bScroll'].forEach(id => {
+      const el = document.getElementById(id);
+      el.textContent = '–';
+      el.style.color = '';
+    });
+  });
+})();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Test de Ratón",
+      "url": "https://scrolltester.studio/es/mouse-test.html",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (runs in browser)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Comprueba los botones izquierdo, derecho, central y laterales de tu ratón, además de la rueda de scroll, todo en tiempo real en tu navegador."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Mis botones laterales no hacen nada cuando hago clic.",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Algunos ratones vienen con los botones laterales asignados a atajos del sistema por el software del fabricante, en lugar de enviar un evento de botón sin procesar. Revisa la app de configuración de tu ratón."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Por qué un clic se registra dos veces?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Es una señal clásica de doble clic causada por un micro-switch desgastado que pierde el contacto brevemente durante la pulsación. Es uno de los fallos de hardware más comunes en los ratones."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Funciona este test con un trackpad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El clic izquierdo y derecho suelen registrarse con toques en el trackpad, pero el clic central y los botones laterales dependen de la configuración de gestos de tu trackpad."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Es preciso este test con ratones inalámbricos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, siempre que el ratón esté conectado y tenga batería suficiente. Una batería baja puede causar los mismos síntomas que un fallo de hardware."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

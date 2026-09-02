@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tastaturtest — Jede Taste Online Prüfen | ScrollTester.studio</title>
+<meta name="description" content="Teste deine Tastatur online. Drücke eine beliebige Taste, um zu bestätigen, dass Browser und Hardware sie korrekt erkennen — inklusive Funktions- und Zusatztasten.">
+<link rel="canonical" href="https://scrolltester.studio/de/keyboard-test.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ScrollTester.studio">
+<meta property="og:title" content="Tastaturtest — Jede Taste Online Prüfen | ScrollTester.studio">
+<meta property="og:description" content="Teste deine Tastatur online. Drücke eine Taste, um die Erkennung zu bestätigen.">
+<meta property="og:url" content="https://scrolltester.studio/de/keyboard-test.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tastaturtest — Jede Taste Online Prüfen | ScrollTester.studio">
+<meta name="twitter:description" content="Teste deine Tastatur online, inklusive Funktions- und Zusatztasten.">
+<link rel="alternate" hreflang="en" href="https://scrolltester.studio/keyboard-test.html">
+<link rel="alternate" hreflang="es" href="https://scrolltester.studio/es/keyboard-test.html">
+<link rel="alternate" hreflang="de" href="https://scrolltester.studio/de/keyboard-test.html">
+<link rel="alternate" hreflang="fr" href="https://scrolltester.studio/fr/keyboard-test.html">
+<link rel="alternate" hreflang="x-default" href="https://scrolltester.studio/keyboard-test.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  #kbGrid{ display:flex; flex-wrap:wrap; gap:6px; margin-top:16px; }
+  .key{
+    border:1px solid var(--border); border-radius:6px; background:var(--surface);
+    padding:8px 10px; font-size:.78rem; font-family:'JetBrains Mono',monospace;
+    color:var(--muted); min-width:36px; text-align:center;
+  }
+  .key.hit{ background: var(--accent); border-color: var(--accent); color:#fff; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><span class="dot"></span>ScrollTester.studio</a>
+    <nav class="nav-links" id="navLinks" data-lang="de" data-page="keyboard-test"></nav>
+    <div id="langSwitchMount" data-lang="de" data-page="keyboard-test" data-base="../"></div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Tastatur-Diagnose</div>
+      <p style="margin:0 0 10px;"><a href="keyboard.html" style="color:var(--muted); font-size:.85rem;">&#8592; Tastatur-Tools</a></p>
+      <h1>Tastaturtest — prüfe, ob jede Taste erkannt wird</h1>
+      <p class="lede">Drücke eine beliebige Taste deiner Tastatur. Sie leuchten unten auf, sobald dein Browser sie erkennt — so siehst du schnell, welche klemmt, nicht reagiert oder doppelt auslöst.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="tool-card">
+        <div class="stage" id="stage" style="min-height:120px;" tabindex="0">
+          <div><div class="stage-hint">Hier klicken und dann Tasten drücken.</div></div>
+        </div>
+
+        <div class="readout-panel" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));">
+          <div class="readout"><div class="label">Letzte Taste</div><div class="value" id="rLastKey">–</div></div>
+          <div class="readout"><div class="label">Tastencode</div><div class="value" id="rKeyCode">–</div></div>
+          <div class="readout"><div class="label">Tasten gedrückt</div><div class="value" id="rCount">0</div></div>
+          <div class="readout"><div class="label">Wiederholungen</div><div class="value" id="rRepeats">0</div></div>
+        </div>
+
+        <div id="kbGrid"></div>
+
+        <div class="tool-controls" style="margin-top:14px; margin-bottom:0;">
+          <button class="btn secondary" id="resetBtn">Zurücksetzen</button>
+        </div>
+      </div>
+
+      <div class="ad-slot">Werbung</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Diese Tools könnten dir auch helfen</h2>
+      <p class="lede">Alle Tools laufen sofort im Browser — keine Installation, keine Konten.</p>
+      <div class="tools-grid">
+        <a class="tool-link" href="index.html"><h3>Scrolltest</h3><p>Erkenne Rückwärts-Sprünge und Aussetzer im Mausrad mit einer Live-Diagnose.</p></a>
+        <a class="tool-link" href="cps-test.html"><h3>CPS-Test</h3><p>Miss deine Klicks pro Sekunde in mehreren unterschiedlichen Zeitfenstern.</p></a>
+        <a class="tool-link" href="mouse-test.html"><h3>Maustest</h3><p>Prüfe linke, rechte und mittlere Taste sowie die Seitentasten und den Radklick — alles auf einen Blick.</p></a>
+        <a class="tool-link" href="reaction-time-test.html"><h3>Reaktionstest</h3><p>Miss deine Reaktionszeit auf einen visuellen Reiz, in Millisekunden.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>Häufige Tastaturprobleme, die dieser Test erkennen kann</h2>
+      <table class="use-table">
+        <tr><th>Symptom</th><th>Wahrscheinliche Ursache</th></tr>
+        <tr><td>Eine Taste leuchtet nicht auf, egal wie fest man drückt</td><td>Verschlissener Schalter, Schmutz unter der Taste oder ein beschädigter Membrankontakt darunter.</td></tr>
+        <tr><td>Eine Taste registriert bei einem Druck doppelt</td><td>Schalterprellen — der Kontakt löst und schließt sich kurz während eines einzelnen Drucks, was der Browser als zwei Tastendrücke liest.</td></tr>
+        <tr><td>Eine Taste "klemmt" und wiederholt sich von selbst</td><td>Entweder eine physisch klemmende Taste oder eine von einer anderen App gehaltene Modifikatorkombination — versuche, die Taste nochmal fest zu drücken, um sie zu lösen.</td></tr>
+        <tr><td>Mehrere Tasten funktionieren nur nicht, wenn sie zusammen gedrückt werden</td><td>Meist eine Ghosting-/Rollover-Einschränkung — die meisten Tastaturen erkennen zuverlässig nur eine bestimmte Anzahl gleichzeitiger Tastendrücke.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Häufig gestellte Fragen</h2>
+      <div class="faq">
+        <details open>
+          <summary>Warum werden manche Tasten (wie Browser-Shortcuts) nicht erkannt?</summary>
+          <p>Bestimmte Kombinationen wie Strg+W oder Strg+T werden vom Browser selbst für Tab- und Fensterverwaltung abgefangen, bevor die Seite sie überhaupt sieht. Das ist eine Einschränkung auf Browserebene, kein Fehler deiner Tastatur.</p>
+        </details>
+        <details>
+          <summary>Was bedeutet "Wiederholungen"?</summary>
+          <p>Es zählt Tastendruck-Ereignisse, die durch das Halten einer Taste ausgelöst werden, nicht durch einen echten zweiten Druck. Eine kleine Zahl ist normal — Browser wiederholen eine gehaltene Taste automatisch nach kurzer Verzögerung. Untersuchenswert ist es, wenn Wiederholungen auftreten, ohne dass du etwas gedrückt hältst.</p>
+        </details>
+        <details>
+          <summary>Funktioniert dieser Test mit einer Bildschirm- oder virtuellen Tastatur?</summary>
+          <p>Ja, solange die virtuelle Tastatur Standard-Tastenereignisse an den Browser sendet, aber das Layout dieser Seite orientiert sich an den Tastenpositionen einer physischen Tastatur, sodass das visuelle Raster nicht exakt zu einem virtuellen Layout passen kann.</p>
+        </details>
+        <details>
+          <summary>Die Funktionstasten meines Laptops verhalten sich anders als erwartet.</summary>
+          <p>Viele Laptops benötigen eine Fn-Tastenkombination, um ein Standard-Funktionstastensignal statt eines Hardware-Shortcuts (Helligkeit, Lautstärke usw.) zu senden. Prüfe die Tastatureinstellungen deines Systems, wenn F-Tasten nicht wie erwartet reagieren.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="siteFooter" data-lang="de" data-base="../"></footer>
+
+<script src="../js/site.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/langswitch.js"></script>
+<script src="../js/footer.js"></script>
+<script>
+(function(){
+  const rows = [
+    ['Esc','1','2','3','4','5','6','7','8','9','0','-','=','Backspace'],
+    ['Tab','Q','W','E','R','T','Y','U','I','O','P','[',']','\\'],
+    ['CapsLock','A','S','D','F','G','H','J','K','L',';',"'",'Enter'],
+    ['ShiftLeft','Z','X','C','V','B','N','M',',','.','/','ShiftRight'],
+    ['ControlLeft','AltLeft','Space','AltRight','ControlRight']
+  ];
+  const grid = document.getElementById('kbGrid');
+  const els = {};
+  rows.forEach(row => {
+    row.forEach(label => {
+      const d = document.createElement('div');
+      d.className = 'key';
+      d.textContent = label === 'Space' ? 'Space' : label.replace('Left','').replace('Right','');
+      grid.appendChild(d);
+      els[label] = els[label] || [];
+      els[label].push(d);
+    });
+  });
+
+  let count = 0, repeats = 0;
+  const stage = document.getElementById('stage');
+
+  function codeToLabel(code){
+    if (code.startsWith('Key')) return code.slice(3);
+    if (code.startsWith('Digit')) return code.slice(5);
+    const map = {
+      Backquote:'`', Minus:'-', Equal:'=', BracketLeft:'[', BracketRight:']',
+      Backslash:'\\', Semicolon:';', Quote:"'", Comma:',', Period:'.', Slash:'/',
+      Space:'Space', Enter:'Enter', Tab:'Tab', CapsLock:'CapsLock', Escape:'Esc',
+      Backspace:'Backspace', ShiftLeft:'ShiftLeft', ShiftRight:'ShiftRight',
+      ControlLeft:'ControlLeft', ControlRight:'ControlRight',
+      AltLeft:'AltLeft', AltRight:'AltRight'
+    };
+    return map[code] || code;
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (document.activeElement !== stage) return;
+    e.preventDefault();
+    if (e.repeat) repeats++;
+    else count++;
+    document.getElementById('rLastKey').textContent = e.key === ' ' ? 'Space' : e.key;
+    document.getElementById('rKeyCode').textContent = e.code;
+    document.getElementById('rCount').textContent = count;
+    document.getElementById('rRepeats').textContent = repeats;
+    const label = codeToLabel(e.code);
+    (els[label] || []).forEach(el => el.classList.add('hit'));
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    count = 0; repeats = 0;
+    document.getElementById('rLastKey').textContent = '–';
+    document.getElementById('rKeyCode').textContent = '–';
+    document.getElementById('rCount').textContent = 0;
+    document.getElementById('rRepeats').textContent = 0;
+    document.querySelectorAll('.key.hit').forEach(el => el.classList.remove('hit'));
+  });
+
+  stage.addEventListener('click', () => stage.focus());
+})();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Tastaturtest",
+      "url": "https://scrolltester.studio/de/keyboard-test.html",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (runs in browser)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Teste deine Tastatur online. Drücke eine beliebige Taste, um zu bestätigen, dass Browser und Hardware sie korrekt erkennen — inklusive Funktions- und Zusatztasten."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Warum werden manche Tasten (wie Browser-Shortcuts) nicht erkannt?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bestimmte Kombinationen wie Strg+W oder Strg+T werden vom Browser selbst für Tab- und Fensterverwaltung abgefangen, bevor die Seite sie sieht."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was bedeutet \"Wiederholungen\"?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Es zählt Tastendruck-Ereignisse durch das Halten einer Taste, nicht durch einen echten zweiten Druck. Untersuchenswert ist es, wenn Wiederholungen ohne gehaltene Taste auftreten."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Funktioniert dieser Test mit einer Bildschirm- oder virtuellen Tastatur?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja, solange die virtuelle Tastatur Standard-Tastenereignisse sendet, aber das visuelle Raster orientiert sich am Layout einer physischen Tastatur."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Die Funktionstasten meines Laptops verhalten sich anders als erwartet.",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Viele Laptops benötigen eine Fn-Kombination, um ein Standard-Funktionstastensignal statt eines Hardware-Shortcuts wie Helligkeit oder Lautstärke zu senden."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

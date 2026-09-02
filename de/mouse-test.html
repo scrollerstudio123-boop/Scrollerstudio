@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maustest — Jede Taste Online Prüfen | ScrollTester.studio</title>
+<meta name="description" content="Prüfe die linke, rechte und mittlere Taste sowie die Seitentasten und das Scrollrad deiner Maus — alles live in Echtzeit im Browser.">
+<link rel="canonical" href="https://scrolltester.studio/de/mouse-test.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ScrollTester.studio">
+<meta property="og:title" content="Maustest — Jede Taste Online Prüfen | ScrollTester.studio">
+<meta property="og:description" content="Prüfe alle Tasten und das Scrollrad deiner Maus live in Echtzeit.">
+<meta property="og:url" content="https://scrolltester.studio/de/mouse-test.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Maustest — Jede Taste Online Prüfen | ScrollTester.studio">
+<meta name="twitter:description" content="Prüfe alle Tasten deiner Maus live in Echtzeit.">
+<link rel="alternate" hreflang="en" href="https://scrolltester.studio/mouse-test.html">
+<link rel="alternate" hreflang="es" href="https://scrolltester.studio/es/mouse-test.html">
+<link rel="alternate" hreflang="de" href="https://scrolltester.studio/de/mouse-test.html">
+<link rel="alternate" hreflang="fr" href="https://scrolltester.studio/fr/mouse-test.html">
+<link rel="alternate" hreflang="x-default" href="https://scrolltester.studio/mouse-test.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><span class="dot"></span>ScrollTester.studio</a>
+    <nav class="nav-links" id="navLinks" data-lang="de" data-page="mouse-test"></nav>
+    <div id="langSwitchMount" data-lang="de" data-page="mouse-test" data-base="../"></div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Maus-Diagnose</div>
+      <p style="margin:0 0 10px;"><a href="mouse.html" style="color:var(--muted); font-size:.85rem;">&#8592; Maus-Tools</a></p>
+      <h1>Maustest — jede Taste an einem Ort prüfen</h1>
+      <p class="lede">Klicke jede Taste deiner Maus und beobachte, wie sie unten aufleuchtet. Reagiert eine Taste nicht, ist das ein starkes Anzeichen für ein Hardware- oder Treiberproblem.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="tool-card">
+        <div class="stage" id="stage" style="min-height:180px;">
+          <div>
+            <div class="stage-hint">Klicke mit jeder Maustaste (links, rechts, mittel/Rad und ggf. Seitentasten) irgendwo in dieses Feld.</div>
+          </div>
+        </div>
+
+        <div class="readout-panel" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));">
+          <div class="readout"><div class="label">Linke Taste</div><div class="value" id="bLeft">–</div></div>
+          <div class="readout"><div class="label">Rechte Taste</div><div class="value" id="bRight">–</div></div>
+          <div class="readout"><div class="label">Mitte / Rad</div><div class="value" id="bMiddle">–</div></div>
+          <div class="readout"><div class="label">Zurück (Seite 1)</div><div class="value" id="bBack">–</div></div>
+          <div class="readout"><div class="label">Vor (Seite 2)</div><div class="value" id="bForward">–</div></div>
+          <div class="readout"><div class="label">Scrollrad</div><div class="value" id="bScroll">–</div></div>
+        </div>
+
+        <div class="tool-controls" style="margin-top:14px; margin-bottom:0;">
+          <button class="btn secondary" id="resetBtn">Zurücksetzen</button>
+        </div>
+      </div>
+
+      <div class="ad-slot">Werbung</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Diese Tools könnten dir auch helfen</h2>
+      <p class="lede">Alle Tools laufen sofort im Browser — keine Installation, keine Konten.</p>
+      <div class="tools-grid">
+        <a class="tool-link" href="index.html"><h3>Scrolltest</h3><p>Erkenne Rückwärts-Sprünge und Aussetzer im Mausrad mit einer Live-Diagnose.</p></a>
+        <a class="tool-link" href="cps-test.html"><h3>CPS-Test</h3><p>Miss deine Klicks pro Sekunde in mehreren unterschiedlichen Zeitfenstern.</p></a>
+        <a class="tool-link" href="keyboard-test.html"><h3>Tastaturtest</h3><p>Prüfe, ob jede Taste deiner Tastatur vom Browser korrekt erkannt wird.</p></a>
+        <a class="tool-link" href="reaction-time-test.html"><h3>Reaktionstest</h3><p>Miss deine Reaktionszeit auf einen visuellen Reiz, in Millisekunden.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>Was dir jedes Tastenergebnis verrät</h2>
+      <div class="metric-grid">
+        <div class="metric-card"><h3>Linke / rechte Taste</h3><p>Sie verschleißen am stärksten. Wenn Klicks doppelt oder gar nicht registriert werden, liegt es meist am Mikroschalter darunter.</p></div>
+        <div class="metric-card"><h3>Mittlere Taste</h3><p>Oft derselbe physische Schalter wie der Radklick. Reagiert die mittlere Taste nicht, muss das Rad selbst möglicherweise gereinigt werden.</p></div>
+        <div class="metric-card"><h3>Seitentasten</h3><p>Nicht jede Maus hat sie, und Browser ordnen sie uneinheitlich zu. Hat deine Maus welche, reagieren sie hier aber nicht, prüfe zuerst die Treibersoftware auf einen Belegungskonflikt.</p></div>
+        <div class="metric-card"><h3>Scrollrad</h3><p>Dieses Feld bestätigt nur, dass das Rad überhaupt Eingaben erzeugt. Für eine tiefergehende Prüfung auf Rückwärts-Sprünge und Radzustand nutze den vollständigen Scrolltest.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Häufig gestellte Fragen</h2>
+      <div class="faq">
+        <details open>
+          <summary>Meine Seitentasten tun nichts, wenn ich sie klicke.</summary>
+          <p>Manche Mäuse belegen die Seitentasten per Hersteller-Software mit Systembefehlen (wie "Zurück" und "Vor" im Browser), statt ein rohes Tastenereignis zu senden. Prüfe die Konfigurations-App deiner Maus, ob die Tasten auf eine Standardbelegung eingestellt sind.</p>
+        </details>
+        <details>
+          <summary>Warum registriert ein Klick doppelt?</summary>
+          <p>Das ist ein klassisches Zeichen für "Doppelklicken", verursacht durch einen verschlissenen Mikroschalter, der beim Drücken kurz den Kontakt verliert. Es ist einer der häufigsten Hardwaredefekte bei Mäusen und lässt sich meist nur durch Austausch des Schalters beheben.</p>
+        </details>
+        <details>
+          <summary>Funktioniert dieser Test mit einem Trackpad?</summary>
+          <p>Links- und Rechtsklick werden über Trackpad-Tipps oder physische Klicks meist erkannt, aber Mittelklick und Seitentasten hängen von der Gesten-Konfiguration deines Trackpads ab.</p>
+        </details>
+        <details>
+          <summary>Ist dieser Test bei kabellosen Mäusen genau?</summary>
+          <p>Ja, solange die Maus verbunden ist und genug Akku hat. Ein niedriger Akkustand kann dieselben Symptome wie ein Hardwaredefekt verursachen — verlorene oder verzögerte Klicks — es lohnt sich also, das zuerst auszuschließen.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="siteFooter" data-lang="de" data-base="../"></footer>
+
+<script src="../js/site.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/langswitch.js"></script>
+<script src="../js/footer.js"></script>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const map = { 0:'bLeft', 1:'bMiddle', 2:'bRight', 3:'bBack', 4:'bForward' };
+  function mark(id, label){
+    const el = document.getElementById(id);
+    el.textContent = label;
+    el.style.color = 'var(--panel-fg)';
+  }
+  stage.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    const id = map[e.button];
+    if (id) mark(id, 'Erkannt ✓');
+  });
+  stage.addEventListener('contextmenu', (e) => e.preventDefault());
+  stage.addEventListener('wheel', (e) => {
+    mark('bScroll', 'Erkannt ✓');
+  }, { passive:true });
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    ['bLeft','bRight','bMiddle','bBack','bForward','bScroll'].forEach(id => {
+      const el = document.getElementById(id);
+      el.textContent = '–';
+      el.style.color = '';
+    });
+  });
+})();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Maustest",
+      "url": "https://scrolltester.studio/de/mouse-test.html",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (runs in browser)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Prüfe die linke, rechte und mittlere Taste sowie die Seitentasten und das Scrollrad deiner Maus — alles live in Echtzeit im Browser."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Meine Seitentasten tun nichts, wenn ich sie klicke.",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Manche Mäuse belegen die Seitentasten per Hersteller-Software mit Systembefehlen, statt ein rohes Tastenereignis zu senden. Prüfe die Konfigurations-App deiner Maus."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Warum registriert ein Klick doppelt?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Das ist ein klassisches Zeichen für Doppelklicken, verursacht durch einen verschlissenen Mikroschalter, der beim Drücken kurz den Kontakt verliert. Einer der häufigsten Hardwaredefekte bei Mäusen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Funktioniert dieser Test mit einem Trackpad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Links- und Rechtsklick werden über Trackpad-Tipps meist erkannt, aber Mittelklick und Seitentasten hängen von der Gesten-Konfiguration deines Trackpads ab."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Ist dieser Test bei kabellosen Mäusen genau?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja, solange die Maus verbunden ist und genug Akku hat. Ein niedriger Akkustand kann dieselben Symptome wie ein Hardwaredefekt verursachen."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test de Pantalla — Tasa de Refresco y Píxeles Muertos | ScrollTester.studio</title>
+<meta name="description" content="Test de pantalla gratis online. Estima la tasa de refresco de tu monitor y comprueba si hay píxeles muertos o atascados con paneles de color a pantalla completa, en tu navegador.">
+<link rel="canonical" href="https://scrolltester.studio/es/display-test.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ScrollTester.studio">
+<meta property="og:title" content="Test de Pantalla — Tasa de Refresco y Píxeles Muertos | ScrollTester.studio">
+<meta property="og:description" content="Test de pantalla gratis online. Estima la tasa de refresco y detecta píxeles muertos o atascados.">
+<meta property="og:url" content="https://scrolltester.studio/es/display-test.html">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" hreflang="en" href="https://scrolltester.studio/display-test.html">
+<link rel="alternate" hreflang="es" href="https://scrolltester.studio/es/display-test.html">
+<link rel="alternate" hreflang="de" href="https://scrolltester.studio/de/display-test.html">
+<link rel="alternate" hreflang="fr" href="https://scrolltester.studio/fr/display-test.html">
+<link rel="alternate" hreflang="x-default" href="https://scrolltester.studio/display-test.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  .color-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+  .color-swatch{ width:64px; height:44px; border-radius:8px; border:1px solid var(--border); cursor:pointer; }
+  #fullscreenOverlay{ position:fixed; inset:0; z-index:999; display:none; cursor:pointer; }
+  #fullscreenOverlay .exit-hint{ position:absolute; bottom:24px; left:50%; transform:translateX(-50%); color:#fff; font-family:'Inter',sans-serif; font-size:.85rem; background:rgba(0,0,0,.4); padding:8px 16px; border-radius:999px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><span class="dot"></span>ScrollTester.studio</a>
+    <nav class="nav-links" id="navLinks" data-lang="es" data-page="display-test"></nav>
+    <div id="langSwitchMount" data-lang="es" data-page="display-test" data-base="../"></div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Diagnóstico de Pantalla</div>
+      <h1>Test de Pantalla — estimación de tasa de refresco y píxeles muertos</h1>
+      <p class="lede">Estima la tasa de refresco real de tu monitor y luego llena la pantalla con colores sólidos para detectar píxeles muertos, atascados o descoloridos.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="tool-card">
+        <h3 style="margin:0 0 6px; font-size:1rem;">Estimación de Tasa de Refresco</h3>
+        <p style="color:var(--muted); font-size:.88rem; margin:0 0 12px;">Se mide contando los fotogramas de animación que tu navegador realmente renderiza durante unos segundos.</p>
+        <div class="tool-controls">
+          <button class="btn" id="measureBtn">Medir Tasa de Refresco</button>
+        </div>
+        <div class="readout-panel" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));">
+          <div class="readout"><div class="label">Tasa de Refresco Estimada</div><div class="value" id="rHz">–</div></div>
+          <div class="readout"><div class="label">Muestras de Fotogramas</div><div class="value" id="rSamples">0</div></div>
+        </div>
+
+        <h3 style="margin:26px 0 6px; font-size:1rem;">Comprobación de Píxeles Muertos / Color</h3>
+        <p style="color:var(--muted); font-size:.88rem; margin:0 0 4px;">Haz clic en una muestra para llenar tu pantalla completa con ese color. Mira de cerca si hay algún píxel que no coincida. Haz clic en cualquier parte o pulsa Esc para salir.</p>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#000;" data-color="#000000"></div>
+          <div class="color-swatch" style="background:#fff; border-color:#ccc;" data-color="#ffffff"></div>
+          <div class="color-swatch" style="background:#ff0000;" data-color="#ff0000"></div>
+          <div class="color-swatch" style="background:#00ff00;" data-color="#00ff00"></div>
+          <div class="color-swatch" style="background:#0000ff;" data-color="#0000ff"></div>
+          <div class="color-swatch" style="background:#808080;" data-color="#808080"></div>
+        </div>
+      </div>
+
+      <div class="ad-slot">Publicidad</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Cómo interpretar los resultados</h2>
+      <div class="metric-grid">
+        <div class="metric-card"><h3>La tasa de refresco sale más baja que la especificación</h3><p>La limitación del navegador, la configuración de ahorro de energía, o un cable/puerto que no soporta la tasa completa de tu monitor pueden limitar el número por debajo de la especificación anunciada.</p></div>
+        <div class="metric-card"><h3>Un punto se queda negro en todos los colores</h3><p>Es un píxel muerto clásico — el píxel no recibe energía en absoluto.</p></div>
+        <div class="metric-card"><h3>Un punto se queda en un color sin importar la muestra</h3><p>Esto indica un píxel atascado — recibe energía pero está fijo en rojo, verde o azul. Técnicas de masaje suave a veces arreglan píxeles atascados; los píxeles muertos generalmente no se recuperan.</p></div>
+        <div class="metric-card"><h3>Brillo desigual leve en negro</h3><p>Suele ser fuga de retroiluminación en vez de un fallo de píxel — común en paneles LCD y, en general, algo que un test de color por sí solo no puede distinguir de un defecto real.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq">
+        <details open>
+          <summary>¿Qué tan precisa es la medición de la tasa de refresco?</summary>
+          <p>Es una estimación sólida basada en fotogramas realmente renderizados, pero la limitación de pestañas del navegador y otros procesos en ejecución pueden restar algunos Hz a la tasa real del panel — trátalo como una aproximación fuerte, no como una lectura certificada.</p>
+        </details>
+        <details>
+          <summary>¿Por qué mi portátil muestra una tasa más baja con batería?</summary>
+          <p>Muchos portátiles limitan automáticamente la tasa de refresco de la pantalla para ahorrar energía cuando están desconectados — revisa tu configuración de energía si el número parece bajo.</p>
+        </details>
+        <details>
+          <summary>¿Cuál es la diferencia entre un píxel muerto y uno atascado?</summary>
+          <p>Un píxel muerto no muestra luz en ningún color, incluido el blanco. Un píxel atascado se enciende pero queda fijo en un solo color sin importar lo que se muestre detrás de él.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="fullscreenOverlay"><div class="exit-hint">Haz clic o pulsa Esc para salir</div></div>
+
+<footer class="site-footer" id="siteFooter" data-lang="es" data-base="../"></footer>
+
+<script src="../js/site.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/langswitch.js"></script>
+<script src="../js/footer.js"></script>
+<script>
+(function(){
+  // Refresh rate measurement
+  const measureBtn = document.getElementById('measureBtn');
+  measureBtn.addEventListener('click', () => {
+    let frames = 0;
+    const start = performance.now();
+    function tick(){
+      frames++;
+      const elapsed = performance.now() - start;
+      document.getElementById('rSamples').textContent = frames;
+      if (elapsed < 2000){
+        requestAnimationFrame(tick);
+      } else {
+        const hz = Math.round((frames / elapsed) * 1000);
+        document.getElementById('rHz').textContent = hz + ' Hz';
+      }
+    }
+    document.getElementById('rHz').textContent = 'Midiendo…';
+    requestAnimationFrame(tick);
+  });
+
+  // Dead pixel overlay
+  const overlay = document.getElementById('fullscreenOverlay');
+  document.querySelectorAll('.color-swatch').forEach(sw => {
+    sw.addEventListener('click', () => {
+      overlay.style.background = sw.dataset.color;
+      overlay.style.display = 'block';
+    });
+  });
+  overlay.addEventListener('click', () => overlay.style.display = 'none');
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') overlay.style.display = 'none';
+  });
+})();
+</script>
+</body>
+</html>

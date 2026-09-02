@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test de Micrófono — Comprueba tu Micrófono Online | ScrollTester.studio</title>
+<meta name="description" content="Test de micrófono gratis online. Ve el nivel de entrada de tu micrófono en vivo como forma de onda para confirmar que capta el sonido correctamente, en tu navegador.">
+<link rel="canonical" href="https://scrolltester.studio/es/mic-test.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ScrollTester.studio">
+<meta property="og:title" content="Test de Micrófono — Comprueba tu Micrófono Online | ScrollTester.studio">
+<meta property="og:description" content="Test de micrófono gratis online. Ve el nivel de entrada en vivo como forma de onda.">
+<meta property="og:url" content="https://scrolltester.studio/es/mic-test.html">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" hreflang="en" href="https://scrolltester.studio/mic-test.html">
+<link rel="alternate" hreflang="es" href="https://scrolltester.studio/es/mic-test.html">
+<link rel="alternate" hreflang="de" href="https://scrolltester.studio/de/mic-test.html">
+<link rel="alternate" hreflang="fr" href="https://scrolltester.studio/fr/mic-test.html">
+<link rel="alternate" hreflang="x-default" href="https://scrolltester.studio/mic-test.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><span class="dot"></span>ScrollTester.studio</a>
+    <nav class="nav-links" id="navLinks" data-lang="es" data-page="mic-test"></nav>
+    <div id="langSwitchMount" data-lang="es" data-page="mic-test" data-base="../"></div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Diagnóstico de Audio</div>
+      <p style="margin:0 0 10px;"><a href="audio-camera.html" style="color:var(--muted); font-size:.85rem;">← Herramientas de Audio y Cámara</a></p>
+      <h1>Test de Micrófono — comprueba que tu micrófono capta sonido</h1>
+      <p class="lede">Permite el acceso al micrófono y luego habla o haz ruido. Un micrófono que funciona debería mostrar abajo una forma de onda en vivo y con respuesta — plana o en silencio significa que la entrada no llega a tu navegador.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="tool-card">
+        <div class="tool-controls">
+          <button class="btn" id="startBtn">Activar Micrófono</button>
+          <button class="btn secondary" id="stopBtn" style="display:none;">Detener</button>
+        </div>
+        <div class="stage" id="stage" style="min-height:100px;">
+          <div><div class="stage-hint" id="statusHint">Haz clic en "Activar Micrófono" y permite el acceso cuando se te pida.</div></div>
+        </div>
+
+        <div class="readout-panel" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));">
+          <div class="readout"><div class="label">Nivel de Entrada</div><div class="value" id="rLevel">0%</div></div>
+          <div class="readout"><div class="label">Nivel Máximo</div><div class="value" id="rPeak">0%</div></div>
+          <div class="readout"><div class="label">Estado</div><div class="value" id="rStatus">Inactivo</div></div>
+        </div>
+
+        <div class="wave-panel">
+          <div class="wave-panel-head">
+            <span class="wave-title">Entrada del Micrófono — forma de onda</span>
+            <span class="wave-legend"><span class="dot-legend"></span>traza en vivo</span>
+          </div>
+          <canvas id="waveCanvas" height="160"></canvas>
+        </div>
+      </div>
+
+      <div class="ad-slot">Publicidad</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Por qué un micrófono puede parecer conectado pero no funcionar</h2>
+      <div class="metric-grid">
+        <div class="metric-card"><h3>Entrada equivocada seleccionada</h3><p>Tu sistema o navegador puede usar por defecto un micrófono distinto al que esperas — revisa la configuración de sonido del sistema si la traza se queda plana.</p></div>
+        <div class="metric-card"><h3>Silenciado a nivel de hardware</h3><p>Muchos auriculares y micrófonos USB tienen un botón de silencio físico o un indicador LED — vale la pena revisarlo antes de asumir un fallo de software.</p></div>
+        <div class="metric-card"><h3>Permiso bloqueado</h3><p>Si tu navegador denegó antes el acceso al micrófono para este sitio, tendrás que restablecer ese permiso en la configuración del sitio de tu navegador antes de que pueda pedirlo de nuevo.</p></div>
+        <div class="metric-card"><h3>Nivel demasiado bajo</h3><p>Una traza débil pero presente suele significar que la ganancia está baja — revisa el volumen de entrada de tu sistema antes de sospechar un fallo de hardware.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq">
+        <details open>
+          <summary>¿Se graba o se envía mi audio a algún sitio?</summary>
+          <p>No. La forma de onda se dibuja directamente a partir de la señal en vivo de tu micrófono usando la Web Audio API — nada se graba, guarda o transmite.</p>
+        </details>
+        <details>
+          <summary>¿Por qué el navegador pide permiso cada vez?</summary>
+          <p>El acceso al micrófono se concede por sitio y, en algunos navegadores, por sesión, por motivos de privacidad. Puedes hacerlo persistente desde la configuración del sitio en tu navegador si prefieres que no se te vuelva a preguntar.</p>
+        </details>
+        <details>
+          <summary>La forma de onda salta o se corta — ¿es normal?</summary>
+          <p>Pueden ocurrir parpadeos breves por el procesamiento de ruido de fondo que aplica tu sistema automáticamente. Un micrófono que se corta por completo y de forma repetida suele apuntar a una conexión suelta o un problema de controlador.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="siteFooter" data-lang="es" data-base="../"></footer>
+
+<script src="../js/site.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/langswitch.js"></script>
+<script src="../js/footer.js"></script>
+<script>
+(function(){
+  const startBtn = document.getElementById('startBtn');
+  const stopBtn = document.getElementById('stopBtn');
+  const stage = document.getElementById('stage');
+  const statusHint = document.getElementById('statusHint');
+  const canvas = document.getElementById('waveCanvas');
+  const ctx = canvas.getContext('2d');
+  let audioCtx, analyser, source, stream, rafId, peak = 0;
+
+  function resizeCanvas(){
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.round(rect.width * dpr);
+    canvas.height = Math.round(160 * dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  async function start(){
+    try{
+      stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    } catch(err){
+      statusHint.textContent = 'El acceso al micrófono fue bloqueado o no está disponible: ' + err.message;
+      return;
+    }
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    analyser = audioCtx.createAnalyser();
+    analyser.fftSize = 1024;
+    source = audioCtx.createMediaStreamSource(stream);
+    source.connect(analyser);
+    stage.classList.add('active');
+    statusHint.textContent = 'Escuchando — habla o haz ruido cerca de tu micrófono.';
+    document.getElementById('rStatus').textContent = 'Activo';
+    startBtn.style.display = 'none';
+    stopBtn.style.display = 'inline-block';
+    draw();
+  }
+
+  function stop(){
+    if (rafId) cancelAnimationFrame(rafId);
+    if (stream) stream.getTracks().forEach(t => t.stop());
+    if (audioCtx) audioCtx.close();
+    stage.classList.remove('active');
+    statusHint.textContent = 'Detenido. Haz clic en "Activar Micrófono" para volver a probar.';
+    document.getElementById('rStatus').textContent = 'Inactivo';
+    document.getElementById('rLevel').textContent = '0%';
+    startBtn.style.display = 'inline-block';
+    stopBtn.style.display = 'none';
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+
+  function draw(){
+    const data = new Uint8Array(analyser.fftSize);
+    analyser.getByteTimeDomainData(data);
+
+    let sum = 0;
+    for (let i = 0; i < data.length; i++){ const v = (data[i]-128)/128; sum += v*v; }
+    const rms = Math.sqrt(sum / data.length);
+    const level = Math.min(100, Math.round(rms * 220));
+    if (level > peak) peak = level;
+    document.getElementById('rLevel').textContent = level + '%';
+    document.getElementById('rPeak').textContent = peak + '%';
+
+    const w = canvas.getBoundingClientRect().width, h = 160, mid = h/2;
+    ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle = 'rgba(124,244,203,0.15)';
+    ctx.beginPath(); ctx.moveTo(0,mid); ctx.lineTo(w,mid); ctx.stroke();
+
+    ctx.beginPath();
+    const step = w / data.length;
+    for (let i = 0; i < data.length; i++){
+      const v = (data[i]-128)/128;
+      const y = mid + v * (mid - 10);
+      if (i===0) ctx.moveTo(0,y); else ctx.lineTo(i*step, y);
+    }
+    ctx.strokeStyle = '#7CF4CB';
+    ctx.lineWidth = 2;
+    ctx.shadowColor = 'rgba(124,244,203,0.9)';
+    ctx.shadowBlur = 8;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    rafId = requestAnimationFrame(draw);
+  }
+
+  startBtn.addEventListener('click', start);
+  stopBtn.addEventListener('click', stop);
+})();
+</script>
+</body>
+</html>

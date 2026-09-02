@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bildschirmtest — Bildwiederholrate &amp; Pixelfehler prüfen | ScrollTester.studio</title>
+<meta name="description" content="Kostenloser Online-Bildschirmtest. Schätze die Bildwiederholrate deines Monitors und prüfe mit Vollbild-Farbfeldern auf tote oder hängende Pixel — direkt im Browser.">
+<link rel="canonical" href="https://scrolltester.studio/de/display-test.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ScrollTester.studio">
+<meta property="og:title" content="Bildschirmtest — Bildwiederholrate & Pixelfehler prüfen | ScrollTester.studio">
+<meta property="og:description" content="Kostenloser Online-Bildschirmtest. Schätze die Bildwiederholrate und prüfe auf tote oder hängende Pixel, direkt im Browser.">
+<meta property="og:url" content="https://scrolltester.studio/de/display-test.html">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  .color-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+  .color-swatch{ width:64px; height:44px; border-radius:8px; border:1px solid var(--border); cursor:pointer; }
+  #fullscreenOverlay{ position:fixed; inset:0; z-index:999; display:none; cursor:pointer; }
+  #fullscreenOverlay .exit-hint{ position:absolute; bottom:24px; left:50%; transform:translateX(-50%); color:#fff; font-family:'Inter',sans-serif; font-size:.85rem; background:rgba(0,0,0,.4); padding:8px 16px; border-radius:999px; }
+</style>
+<link rel="alternate" hreflang="en" href="https://scrolltester.studio/display-test.html">
+<link rel="alternate" hreflang="es" href="https://scrolltester.studio/es/display-test.html">
+<link rel="alternate" hreflang="de" href="https://scrolltester.studio/de/display-test.html">
+<link rel="alternate" hreflang="fr" href="https://scrolltester.studio/fr/display-test.html">
+<link rel="alternate" hreflang="x-default" href="https://scrolltester.studio/display-test.html">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><span class="dot"></span>ScrollTester.studio</a>
+    <nav class="nav-links" id="navLinks" data-lang="de" data-page="display-test"></nav>
+    <div id="langSwitchMount" data-lang="de" data-page="display-test" data-base="../"></div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Bildschirm-Diagnose</div>
+      <h1>Bildschirmtest — Bildwiederholrate schätzen und Pixelfehler prüfen</h1>
+      <p class="lede">Schätze die tatsächliche Bildwiederholrate deines Monitors und fülle den Bildschirm dann mit Vollfarben, um tote, hängende oder verfärbte Pixel zu erkennen.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="tool-card">
+        <h3 style="margin:0 0 6px; font-size:1rem;">Bildwiederholrate schätzen</h3>
+        <p style="color:var(--muted); font-size:.88rem; margin:0 0 12px;">Gemessen durch Zählen der Animations-Frames, die dein Browser über einige Sekunden tatsächlich rendert.</p>
+        <div class="tool-controls">
+          <button class="btn" id="measureBtn">Bildwiederholrate messen</button>
+        </div>
+        <div class="readout-panel" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));">
+          <div class="readout"><div class="label">Geschätzte Bildwiederholrate</div><div class="value" id="rHz">–</div></div>
+          <div class="readout"><div class="label">Frame-Stichproben</div><div class="value" id="rSamples">0</div></div>
+        </div>
+
+        <h3 style="margin:26px 0 6px; font-size:1rem;">Pixelfehler- / Farbprüfung</h3>
+        <p style="color:var(--muted); font-size:.88rem; margin:0 0 4px;">Klicke auf ein Farbfeld, um deinen Bildschirm vollständig mit dieser Farbe zu füllen. Achte genau auf Pixel, die nicht übereinstimmen. Klicke irgendwo oder drücke Esc, um zu beenden.</p>
+        <div class="color-row">
+          <div class="color-swatch" style="background:#000;" data-color="#000000"></div>
+          <div class="color-swatch" style="background:#fff; border-color:#ccc;" data-color="#ffffff"></div>
+          <div class="color-swatch" style="background:#ff0000;" data-color="#ff0000"></div>
+          <div class="color-swatch" style="background:#00ff00;" data-color="#00ff00"></div>
+          <div class="color-swatch" style="background:#0000ff;" data-color="#0000ff"></div>
+          <div class="color-swatch" style="background:#808080;" data-color="#808080"></div>
+        </div>
+      </div>
+
+      <div class="ad-slot">Werbung</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Ergebnisse richtig deuten</h2>
+      <div class="metric-grid">
+        <div class="metric-card"><h3>Bildwiederholrate liegt unter der Spezifikation</h3><p>Browser-Throttling, Energiesparoptionen oder ein Kabel/Anschluss, das die volle Rate deines Monitors nicht unterstützt, können die Zahl unter den beworbenen Wert drücken.</p></div>
+        <div class="metric-card"><h3>Ein Punkt bleibt bei jeder Farbe schwarz</h3><p>Das ist ein klassisches totes Pixel — das Pixel erhält überhaupt keinen Strom.</p></div>
+        <div class="metric-card"><h3>Ein Punkt bleibt unabhängig vom Farbfeld eine Farbe</h3><p>Das deutet auf ein hängendes Pixel hin — es erhält Strom, ist aber auf Rot, Grün oder Blau fixiert. Sanfte Massagetechniken beheben hängende Pixel manchmal; tote Pixel erholen sich in der Regel nicht.</p></div>
+        <div class="metric-card"><h3>Leichte ungleichmäßige Helligkeit bei Schwarz</h3><p>Meist Backlight-Bleeding statt eines Pixelfehlers — üblich bei LCD-Panels und mit einem reinen Farbtest allein in der Regel nicht von einem echten Defekt zu unterscheiden.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>Häufig gestellte Fragen</h2>
+      <div class="faq">
+        <details open>
+          <summary>Wie genau ist die Messung der Bildwiederholrate?</summary>
+          <p>Es ist eine solide Schätzung basierend auf tatsächlich gerenderten Frames, aber Browser-Tab-Throttling und andere laufende Prozesse können ein paar Hz von der wahren Panel-Rate abziehen — betrachte sie als starke Annäherung, nicht als zertifizierten Messwert.</p>
+        </details>
+        <details>
+          <summary>Warum zeigt mein Laptop im Akkubetrieb eine niedrigere Rate an?</summary>
+          <p>Viele Laptops begrenzen die Bildwiederholrate des Displays automatisch, um Strom zu sparen, wenn sie nicht am Netz hängen — prüfe deine Energieeinstellungen, wenn die Zahl zu niedrig erscheint.</p>
+        </details>
+        <details>
+          <summary>Was ist der Unterschied zwischen einem toten und einem hängenden Pixel?</summary>
+          <p>Ein totes Pixel zeigt bei keiner Farbe Licht, auch nicht bei Weiß. Ein hängendes Pixel leuchtet, ist aber auf eine einzelne Farbe fixiert, unabhängig davon, was dahinter angezeigt wird.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="fullscreenOverlay"><div class="exit-hint">Klicken oder Esc drücken zum Beenden</div></div>
+
+<footer class="site-footer" id="siteFooter" data-lang="de" data-base="../"></footer>
+
+<script src="../js/site.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/langswitch.js"></script>
+<script src="../js/footer.js"></script>
+<script>
+(function(){
+  // Refresh rate measurement
+  const measureBtn = document.getElementById('measureBtn');
+  measureBtn.addEventListener('click', () => {
+    let frames = 0;
+    const start = performance.now();
+    function tick(){
+      frames++;
+      const elapsed = performance.now() - start;
+      document.getElementById('rSamples').textContent = frames;
+      if (elapsed < 2000){
+        requestAnimationFrame(tick);
+      } else {
+        const hz = Math.round((frames / elapsed) * 1000);
+        document.getElementById('rHz').textContent = hz + ' Hz';
+      }
+    }
+    document.getElementById('rHz').textContent = 'Wird gemessen…';
+    requestAnimationFrame(tick);
+  });
+
+  // Dead pixel overlay
+  const overlay = document.getElementById('fullscreenOverlay');
+  document.querySelectorAll('.color-swatch').forEach(sw => {
+    sw.addEventListener('click', () => {
+      overlay.style.background = sw.dataset.color;
+      overlay.style.display = 'block';
+    });
+  });
+  overlay.addEventListener('click', () => overlay.style.display = 'none');
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') overlay.style.display = 'none';
+  });
+})();
+</script>
+</body>
+</html>
