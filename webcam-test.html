@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test de Webcam — Vérifie ta Caméra en Ligne | ScrollTester.studio</title>
+<meta name="description" content="Test de webcam gratuit en ligne. Vois le flux en direct et la résolution de ta caméra directement dans ton navigateur pour la vérifier avant un appel.">
+<link rel="canonical" href="https://scrolltester.studio/fr/webcam-test.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ScrollTester.studio">
+<meta property="og:title" content="Test de Webcam — Vérifie ta Caméra en Ligne | ScrollTester.studio">
+<meta property="og:description" content="Test de webcam gratuit en ligne. Vérifie flux et résolution de ta caméra directement dans le navigateur.">
+<meta property="og:url" content="https://scrolltester.studio/fr/webcam-test.html">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  #camVideo{ width:100%; border-radius:var(--radius-sm); background:#000; max-height:420px; object-fit:contain; }
+</style>
+<link rel="alternate" hreflang="en" href="https://scrolltester.studio/webcam-test.html">
+<link rel="alternate" hreflang="es" href="https://scrolltester.studio/es/webcam-test.html">
+<link rel="alternate" hreflang="de" href="https://scrolltester.studio/de/webcam-test.html">
+<link rel="alternate" hreflang="fr" href="https://scrolltester.studio/fr/webcam-test.html">
+<link rel="alternate" hreflang="x-default" href="https://scrolltester.studio/webcam-test.html">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><span class="dot"></span>ScrollTester.studio</a>
+    <nav class="nav-links" id="navLinks" data-lang="fr" data-page="webcam-test"></nav>
+    <div id="langSwitchMount" data-lang="fr" data-page="webcam-test" data-base="../"></div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Diagnostic Caméra</div>
+      <p style="margin:0 0 10px;"><a href="audio-camera.html" style="color:var(--muted); font-size:.85rem;">← Outils Audio &amp; Caméra</a></p>
+      <h1>Test de Webcam — vérifie ta caméra avant un appel</h1>
+      <p class="lede">Autorise l'accès à la caméra pour voir ton flux en direct ci-dessous, ainsi que la résolution et la fréquence d'images réellement reçues par ton navigateur.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="tool-card">
+        <div class="tool-controls">
+          <button class="btn" id="startBtn">Activer la caméra</button>
+          <button class="btn secondary" id="stopBtn" style="display:none;">Arrêter</button>
+        </div>
+        <div class="stage" id="stage" style="min-height:100px; padding:10px;">
+          <video id="camVideo" autoplay playsinline muted style="display:none;"></video>
+          <div id="statusHint"><div class="stage-hint">Clique sur « Activer la caméra » et autorise l'accès si on te le demande.</div></div>
+        </div>
+
+        <div class="readout-panel" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));">
+          <div class="readout"><div class="label">Résolution</div><div class="value" id="rRes">–</div></div>
+          <div class="readout"><div class="label">Fréquence d'images</div><div class="value" id="rFps">–</div></div>
+          <div class="readout"><div class="label">Caméra</div><div class="value" id="rCam" style="font-size:.85rem;">–</div></div>
+        </div>
+      </div>
+
+      <div class="ad-slot">Publicité</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Problèmes courants de webcam détectables ici</h2>
+      <table class="use-table">
+        <tr><th>Symptôme</th><th>Cause probable</th></tr>
+        <tr><td>La liste des caméras n'affiche rien</td><td>Une autre application (un appel vidéo déjà ouvert ou un logiciel de sécurité) bloque peut-être l'accès exclusif à la caméra.</td></tr>
+        <tr><td>L'image reste noire</td><td>Un cache-objectif physique ou de confidentialité, ou un pilote connecté mais qui ne transmet aucune image.</td></tr>
+        <tr><td>Résolution très basse</td><td>Certains navigateurs demandent par défaut une résolution basse tant qu'un site n'en demande pas explicitement une plus élevée — cela ne signifie pas forcément que le matériel est limité.</td></tr>
+        <tr><td>Fréquence d'images saccadée ou basse</td><td>Souvent un problème de bande passante USB ou d'éclairage — beaucoup de webcams réduisent automatiquement la fréquence d'images en faible lumière pour garder l'image plus claire.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <h2>Questions fréquentes</h2>
+      <div class="faq">
+        <details open>
+          <summary>Ma vidéo est-elle enregistrée ou envoyée quelque part ?</summary>
+          <p>Non. L'aperçu est diffusé directement de ta caméra vers l'élément vidéo de cette page — rien n'est enregistré, stocké ou transmis nulle part.</p>
+        </details>
+        <details>
+          <summary>Pourquoi dit-on que ma caméra est utilisée par une autre application ?</summary>
+          <p>La plupart des caméras n'autorisent qu'une seule application à y accéder à la fois. Ferme les autres applications d'appel vidéo ou onglets de navigateur qui utilisent la caméra et réessaie.</p>
+        </details>
+        <details>
+          <summary>Puis-je tester une deuxième webcam externe ?</summary>
+          <p>Si ton système a plusieurs caméras connectées, tu peux généralement choisir laquelle utiliser dans la demande de permission de ton navigateur ou dans les paramètres du site — vérifie-le si la mauvaise caméra apparaît.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="siteFooter" data-lang="fr" data-base="../"></footer>
+
+<script src="../js/site.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/langswitch.js"></script>
+<script src="../js/footer.js"></script>
+<script>
+(function(){
+  const startBtn = document.getElementById('startBtn');
+  const stopBtn = document.getElementById('stopBtn');
+  const stage = document.getElementById('stage');
+  const video = document.getElementById('camVideo');
+  const statusHint = document.getElementById('statusHint');
+  let stream;
+
+  async function start(){
+    try{
+      stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    } catch(err){
+      statusHint.innerHTML = '<div class="stage-hint">Accès à la caméra bloqué ou indisponible : ' + err.message + '</div>';
+      return;
+    }
+    video.srcObject = stream;
+    video.style.display = 'block';
+    statusHint.style.display = 'none';
+    stage.classList.add('active');
+    startBtn.style.display = 'none';
+    stopBtn.style.display = 'inline-block';
+
+    const track = stream.getVideoTracks()[0];
+    const settings = track.getSettings ? track.getSettings() : {};
+    document.getElementById('rRes').textContent = (settings.width || '?') + '×' + (settings.height || '?');
+    document.getElementById('rFps').textContent = settings.frameRate ? Math.round(settings.frameRate) + ' fps' : '–';
+    document.getElementById('rCam').textContent = (track.label || 'Caméra').slice(0, 26);
+  }
+
+  function stop(){
+    if (stream) stream.getTracks().forEach(t => t.stop());
+    video.style.display = 'none';
+    statusHint.style.display = 'block';
+    statusHint.innerHTML = '<div class="stage-hint">Arrêté. Clique sur « Activer la caméra » pour retester.</div>';
+    stage.classList.remove('active');
+    startBtn.style.display = 'inline-block';
+    stopBtn.style.display = 'none';
+    document.getElementById('rRes').textContent = '–';
+    document.getElementById('rFps').textContent = '–';
+    document.getElementById('rCam').textContent = '–';
+  }
+
+  startBtn.addEventListener('click', start);
+  stopBtn.addEventListener('click', stop);
+})();
+</script>
+</body>
+</html>
